@@ -1,0 +1,11 @@
+{
+    "author": {
+        "name": "Evan"
+    },
+    "license": "MIT",
+    "scripts": {
+        "docs:dev": "vuepress dev docs",
+        "docs:build": "vuepress build docs",
+        "docs:eject": "vuepress eject gnome"
+    }
+}
