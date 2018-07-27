@@ -4,30 +4,63 @@ date: 2018-07-25 16:10:11
 ---
 # Dialogs In Your App & Closing Files
 
-## Closing the file
+## Exiting the file
 
-In order to handle closing a file we will first need to add a close file button.
+### Adding the back button
 
-// TODO: Add Glade Images
+When the user wants to "exit" a file we want to send them back to the screen they started at. The best way to represent this is a back button. So let's put on in our headerbar.
 
-And handle clicks...
+<img :src="$withBase('/assets/img/back-button-1.png')" />
 
-// TODO Source code
+Once you've added the button name it `backButton`. Make sure to select `Add custom content` and put a `GtkImage` inside the open slot.
+
+<img :src="$withBase('/assets/img/back-button-3.png')" />
+
+Now, set the `GtkImage` `Image` property to *`Icon Name`* and select `go-previous-symbolic`.
+
+<img :src="$withBase('/assets/img/back-button-4.png')" />
+
+Because we want the back button all the way to the left we have to adjust the position of the buttons. Go to `Packing` and change the back button's position to `0`.
+
+<img :src="$withBase('/assets/img/back-button-5.png')" />
+
+Now change the open file button's position to one in `Packing`.
+
+### And handle clicks...
+
+In `_init()` write...
+
+```js
+this._backButton.connect('clicked', () => {
+&nbsp;&nbsp;&nbsp;&nbsp;log('addFileButton has been clicked.');
+/* file close code*/
+});
+
+```
 
 Now let's actually implement `/* file close code */`. We will essentially be reversing everything we did in `/* file open code */`.
 
-`this._fileNotesTextView.set_sensitive(false);`
-`this._fileNotesTextView.set_buffer(null);`  // TODO
-`this._headerBar.setTitle('Tags');`
+```js
+this._fileNotesTextView.set_sensitive(false);
+this._fileNotesTextView.set_buffer(null); // TODO 
+this._headerBar.setTitle('Tags');
+```
 
 Now we should have:
 
-// ETC
+```js
+this._backButton.connect('clicked', () => {
+    log('addFileButton has been clicked.');
+    this._fileNotesTextView.set_sensitive(false);
+    this._fileNotesTextView.set_buffer(null); // TODO 
+    this._headerBar.setTitle('Tags');
+});
+```
 
-## Ask the user if there are unsaved changes
+## Asking the user if there are unsaved changes before exiting
 
 ### Creating a dialog.
-### Working on it....
+### Responding to the dialog.
 
 
 
