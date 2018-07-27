@@ -38,8 +38,9 @@ module.exports = {
         'gjs-gtk-templating',
         'gjs-legacy-class-syntax'
       ],
-      '/tags/': [
+      '/examples/tags/': [
         '',
+        '00-creating-user-interface',
         '01-writing-notes-saving-data',
         '02-tags-exiting-an-opened-file',
       ],
