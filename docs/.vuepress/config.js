@@ -3,7 +3,7 @@ module.exports = {
   description: 'A Guide To GNOME Javascript',
   editLinks: true,
   dest: "public",
-  base: "gjs-guide",
+  base: "/gjs-guide/",
   themeConfig: {
     logo: '/logo.svg',
     docsDir: 'docs',
