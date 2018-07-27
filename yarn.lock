@@ -1304,27 +1304,6 @@ strip-indent@^1.0.1:
   dependencies:
     get-stdin "^4.0.1"
 
-stylus-converter@^0.6.4:
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/stylus-converter/-/stylus-converter-0.6.4.tgz#927cc16eaca25e75c630c4b11acc1830b35e8621"
-  dependencies:
-    commander "^2.15.1"
-    invariant "^2.2.4"
-    optimist "^0.6.1"
-    ora "^2.1.0"
-    stylus "^0.54.5"
-
-stylus@^0.54.5:
-  version "0.54.5"
-  resolved "https://registry.yarnpkg.com/stylus/-/stylus-0.54.5.tgz#42b9560931ca7090ce8515a798ba9e6aa3d6dc79"
-  dependencies:
-    css-parse "1.7.x"
-    debug "*"
-    glob "7.0.x"
-    mkdirp "0.5.x"
-    sax "0.5.x"
-    source-map "0.1.x"
-
 supports-color@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-2.0.0.tgz#535d045ce6b6363fa40117084629995e9df324c7"
