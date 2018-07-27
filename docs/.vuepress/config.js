@@ -1,6 +1,6 @@
 module.exports = {
   title: 'GNOME Javascript',
-  description: 'A Guide To GNOME Javascript',
+  description: 'A Guide To GNOME Javascript!',
   editLinks: true,
   dest: "public",
   themeConfig: {
