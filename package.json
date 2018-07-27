@@ -6,6 +6,14 @@
     "scripts": {
         "docs:dev": "vuepress dev docs",
         "docs:build": "vuepress build docs",
-        "docs:eject": "vuepress eject gnome"
+        "docs:eject": "vuepress eject gnome",
+        "conver": "stylus-conver -i docs/.vuepress/theme/temp.styl -o docs/.vuepress/theme/temp.styl"
+    },
+    "devDependencies": {
+        "stylus-converter": "^0.6.4"
+    },
+    "dependencies": {
+        "node-sass": "^4.9.2",
+        "sass-loader": "^7.0.3"
     }
 }

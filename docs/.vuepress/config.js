@@ -2,6 +2,8 @@ module.exports = {
   title: 'GNOME Javascript',
   description: 'A Guide To GNOME Javascript',
   editLinks: true,
+  dest: "public",
+  base: "gjs-guide",
   themeConfig: {
     logo: '/logo.svg',
     docsDir: 'docs',
@@ -14,11 +16,15 @@ module.exports = {
         link: '/tutorials/'
       },
       {
-        text: 'Building Your First App',
-        link: '/tags/'
+        text: 'Examples',
+        link: '/examples/'
       },
       {
-        text: 'API',
+        text: 'Showcase',
+        link: '/showcase/'
+      },
+      {
+        text: 'API References',
         link: 'https://devdocs.baznga.org'
       },
     ],
