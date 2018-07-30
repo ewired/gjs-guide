@@ -1,5 +1,5 @@
 ---
-title: Writing Your First GNOME Application in GNOME Javascript
+title: Creating A User Interface With Glade
 date: 2018-07-25 16:10:11
 ---
 # Getting Started
@@ -117,8 +117,28 @@ Here we'll find a version selector. From it, select `3.20`.
 
 <img :src="$withBase('/assets/img/glade-tutorial-step-27.png')" />-->
 
-<img :src="$withBase('/assets/img/glade-tutorial-step-28.png')" />
 
-Now we will add a `GtkBox` to store the window contents. Pop it into the empty space in our window, `TagsWindow`.
+<img :src="$withBase('/assets/img/glade-tutorial-step-30.png')" />
 
-<!-- TODO: Add image! <img :src="$withBase('/assets/img/glade-tutorial-step-29.png')" /> -->
+Select `GtkBox` from the widget picker.
+
+<img :src="$withBase('/assets/img/glade-tutorial-step-31.png')" />
+
+Now we will add a `GtkBox` to store the window contents.
+
+<img :src="$withBase('/assets/img/glade-tutorial-step-32.png')" />
+
+ Pop it into the empty space in our window, `TagsWindow`.
+
+
+<img :src="$withBase('/assets/img/glade-tutorial-step-33.png')" />
+
+<img :src="$withBase('/assets/img/glade-tutorial-step-34.png')" />
+
+Now set `Number of items` in `General` in the widgets properties to `1`.
+
+<img :src="$withBase('/assets/img/glade-tutorial-step-35.png')" />
+
+Now set the widget ID to `mainBox`.
+
+***And we've built our UI!***

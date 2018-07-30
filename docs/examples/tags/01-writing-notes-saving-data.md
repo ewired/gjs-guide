@@ -17,9 +17,9 @@ And when the user clicks `addFileButton`...
 
 ## Adding the text view
 
-// Glade parts
+<img :src="$withBase('/assets/img/writing-notes-step-1.png')" />
 
-Now add `fileNotesTextView` to your `InternalChildren` array [from Part 00]().
+Now add `fileNotesTextView` to your `InternalChildren` array from [Creating A User Interface](./00-creating-user-interface.md).
 
 As a file hasn't been opened yet, we will disable the text view so the user doesn't think they can write in it.
 
@@ -115,7 +115,16 @@ And there you have it!
 
 ### Adding a save button
 
-// Glade
+We'll first add a save button to the header. This is similar to adding `addFileButton` in [Creating A User Interface](./00-creating-user-interface.md).
+
+<img :src="$withBase('/assets/img/writing-notes-step-2.png')" />
+
+Note that the widget ID is `saveButton` and the `Label` is `Save`.
+
+<img :src="$withBase('/assets/img/writing-notes-step-3.png')" />
+
+To position the button on the right we set `Position` under `Packing` in properties to `End`.
+
 
 ### Handling `saveButton` clicks
 
