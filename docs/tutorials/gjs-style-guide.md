@@ -10,15 +10,11 @@ with a spaghetti-code mess.
 
 ## Semicolons
 
-JavaScript allows omitting semicolons at the end of lines, but don't. Always end statements with a semicolon.
-
-## js2-mode
-
-If using Emacs, try js2-mode. It functions as a "lint" by highlighting missing semicolons and the like.
+While JavaScript allows omitting semicolons at the end of lines,we do not. Always end statements with a semicolon.
 
 ## Imports
 
-Use CamelCase when importing modules to distinguish them from ordinary variables, e.g.
+Always use **CamelCase** when importing modules and classes to distinguish them from other variables.
 
 ```js
 const Big = imports.big;
@@ -27,32 +23,59 @@ const GLib = imports.gi.GLib;
 
 ## Variable declaration
 
-Always use one of `const`, `var`, or `let` when defining a variable. Always use `let` when block scope is intended; in particular, inside `for()` and `while()` loops, `let` is almost always correct.
+Always use one of `const`, `let`, or `var` when defining a variable. Always use `let` when block scope is intended; in particular, inside `for()` and `while()` loops, `let` is almost always correct.
+
+### `var`
+
+`var` declares variables at the beginning of the closest function, module, or script, regardless of where the declaration occurs.
+`var` should be used with caution and typically only when you need to export a variable to other modules. *Never use `var` in `while` or `for` loops.*
+
+### `const` vs. `let`
+
+`const` and `let` both ensure that variables are only accessible *after* they are declared in the code. `const` should always be used *unless* you absolutely need to change the variable value. This prevents bugs from accidental reassignments.
+
+Examples:
 
 ```js
-// Iterating over an array
-for (let i = 0; i < 10; ++i) {
-  let foo = bar(i);
-}
-// Iterating over an object's properties
-for (let prop in someobj) {
+
+
+/* Iterating over any iterable object (Array, etc)
+ * This is valid because the logic of this loop is:
+ * { const prop = someobj[0]; ~your code~ }
+ * { const prop = someobj[1]; ~your code~ }
+ */
+for (const prop of someobj) {
   ...
 }
+
+// vs.
+
+/* Using an actual counter which logically functions as...
+ *  let i = 0;
+ *  if (i < 10) ~your code~
+ *  i++;
+ *  if (i < 10) ~your code~
+ *  i++;
+ */
+for (let i = 0; i < 10; i++) {
+  ...
+}
+
 ```
 
-If you don't use `let` then the variable is added to function scope, not the for loop block scope.
+If you don't use `let`/`const` then the variable is added to function scope, not the for loop block scope.
 See [What's new in JavaScript 1.7][1]
 
 A common case where this matters is when you have a closure inside a loop:
 ```js
-for (let i = 0; i < 10; ++i) {
-  mainloop.idle_add(function() { log("number is: " + i); });
+for (const i = 0; i < 10; ++i) {
+  mainloop.idle_add(() => {
+    log(`Printing i: ${i}`);
+  });
 }
 ```
 
-If you used `var` instead of `let` it would print "10" a bunch of times.
-
-Inside functions, `let` is always correct instead of `var` as far as we know. `var` is useful when you want to add something to the `with()` object, though... in particular we think you need `var` to define module variables, since our module system loads modules with the equivalent of `with (moduleObject)`
+If you used `var` instead of `const` it would print "10" numerous times.
 
 ## `this` in closures ##
 
@@ -133,3 +156,6 @@ If the property requires a setter, or if getting it has side effects, methods ar
 
 [1] http://developer.mozilla.org/en/docs/index.php?title=New_in_JavaScript_1.7&printable=yes#Block_scope_with_let
 
+## Tips
+
+- If using Emacs, try js2-mode. It functions as a "lint" by highlighting missing semicolons and the like.

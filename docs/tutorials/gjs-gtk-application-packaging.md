@@ -44,40 +44,40 @@ The following API will be available to applications, through the package.js modu
    * **data/${entry-point-name}.desktop:** contains the primary desktop file for the application
  * Optional Files
    * **data/${entry-point-name}.data.gresource:** contains the primary application resource
-   * data/${entry-point-name}.gschema.xml: contains the primary GSettings schema
-   * data/gschemas.compiled: compiled version of GSettings schemas in data/, for uninstalled use
-   * lib/: contains sources and .la files of private shared libraries
-   * lib/.libs: contains the compiled (.so) version of private libraries
-   * another toplevel directory such as libgd or egg-list-box: same as lib/, but for shared submodules
-   * po/: contains intltool PO files and templates; the translation domain must be ${package-name}
+   * **data/${entry-point-name}.gschema.xml:** contains the primary GSettings schema
+   * **data/gschemas.compiled:** compiled version of GSettings schemas in data/, for uninstalled use
+   * **lib/:** contains sources and .la files of private shared libraries
+   * **lib/.libs:** contains the compiled (.so) version of private libraries
+   * **po/:** contains intltool PO files and templates; the translation domain must be ${package-name}
+   * **Other toplevel directories (e.g. libgd,  egg-list-box)**: same structure as lib/ but utilized for shared submodules
  * The package must be installed as following:
    * ${datadir} must be configured as ${prefix}/share
    * Arch-independent private data (CSS, GtkBuilder, GResource) must be installed in ${datadir}/${package-name} (a.k.a. ${pkgdatadir})
    * Source files must be compiled in a GResource with path ${entry-point-path}/js, in a bundle called ${entry-point-name}.src.gresource installed in ${pkgdatadir}
-   * Private libraries must be ${libdir}/${package-name}, aka ${pkglibdir}
+   * Private libraries must be ${libdir}/${package-name}, aka \${pkglibdir}
    * Typelib for private libraries must be in ${pkglibdir}/girepository-1.0
    * Translations must be in ${datadir}/locale/
    * Other files (launchers, GSettings schemas, icons, etc) must be in their specified locations, relative to ${prefix} and ${datadir}
 
 ## Usage
 
-Applications complying with this specification will have one application script, installed in ${prefix}/share/${package-name} (aka ${pkgdatadir}), and named as ${entry-point-name}, without any extension or mangling.
+Applications complying with this specification will have one application script, installed in \${prefix}/share/\${package-name} (aka ${pkgdatadir}), and named as ${entry-point-name}, without any extension or mangling.
 
 Optionally, one or more symlinks will be placed in ${bindir}, pointing to the appropriate script in ${pkgdatadir} and named in a fashion more suitable for command line usage (usually ${package-tarname}). Alternatively, a script that calls "gapplication launch ${package-name}" can be used.
 
-The application itself will be DBus activated from a script called src/${entry-point-name}, generated from configure substitution of the following
-${entry-point-name}.in:
+The application itself will be DBus activated from a script called src/\${entry-point-name}, generated from configure substitution of the following
+\${entry-point-name}.in:
 
-<code>
+```js
 #!javascript
 #!@GJS@
-<br />imports.package.init({
-<br />&nbsp;&nbsp;&nbsp;&nbsp;name: "${package-name}",
-<br />&nbsp;&nbsp;&nbsp;&nbsp;version: "@PACKAGE_VERSION@",
-<br />&nbsp;&nbsp;&nbsp;&nbsp;prefix: "@prefix@"
-<br />});
-<br />imports.package.run(${main-module});
-</code>
+imports.package.init({
+    name: "${package-name}",
+    version: "@PACKAGE_VERSION@",
+    prefix: "@prefix@"
+});
+imports.package.run(/* ${main-module} */);
+```
 
 Where ${main-module} is a module containing `main()` the function that will be invoked to start the process. This function should accept a single argument, an array of command line args. The first element in the array will be the full resolved path to the entry point itself (unlike the global ARGV variable for gjs). Also unlike ARGV, it is safe to modify this array.
 

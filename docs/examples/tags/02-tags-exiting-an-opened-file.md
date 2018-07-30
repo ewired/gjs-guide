@@ -32,8 +32,8 @@ In `_init()` write...
 
 ```js
 this._backButton.connect('clicked', () => {
-&nbsp;&nbsp;&nbsp;&nbsp;log('addFileButton has been clicked.');
-/* file close code*/
+    log('addFileButton has been clicked.');
+    /* file close code*/
 });
 
 ```
@@ -59,8 +59,42 @@ this._backButton.connect('clicked', () => {
 
 ## Asking the user if there are unsaved changes before exiting
 
-### Creating a dialog.
-### Responding to the dialog.
+We want to always ask the user whether they want to save their notes before exiting. To do this we'll need a dialog.
 
+### Creating a dialog
 
+To create the dialog we'll use `GtkMessageDialog`. GtkMessageDialog 
+
+```js
+let dialog = new Gtk.MessageDialog({
+    title: 'Save?',
+    text: 'Do you want to save your notes?',
+    buttons: [Gtk.ButtonsType.NONE],
+    parent: this,
+    transient_for: this
+})
+
+dialog.add_button('Cancel', Gtk.ResponseType.CANCEL);
+dialog.add_button('Close Without Saving', Gtk.ResponseType.NO);
+dialog.add_button('Save Notes', Gtk.ResponseType.NO);
+```
+
+### Responding to the dialog
+
+Now we'll need to respond to the dialog. To do this we'll use the return result of `dialog.run()`.
+
+```js
+let response = dialog.run();
+
+if(response === Gtk.ResponseType.YES) {
+  /* save code */
+  /* exit code */
+} else if (response === Gtk.ResponseType.NO) {
+  /* exit code */
+} else {
+  /* do nothing */
+}
+```
+
+Your final code should look something [like this]().
 

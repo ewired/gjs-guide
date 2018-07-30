@@ -106,7 +106,7 @@ Select the appropriate semantic name for 'adding' which is `list-add-symbolic`. 
 
 You should now see the symbolic name `list-add-symbolic` under `Icon Name`.
 
-<img :src="$withBase('/assets/img/glade-tutorial-step-26-0.png')" />
+<!--<img :src="$withBase('/assets/img/glade-tutorial-step-26-0.png')" />
 
 Now we want to add a relatively recent GTK+ widget, `GtkFlowBox`. Be default, Glade assumes we want to build our application on GTK+ 3.10.x, so it will not allow us to access `GtkFlowBox`. To remedy this, select the project properties button in the upper right.
 | | |
@@ -115,14 +115,10 @@ Now we want to add a relatively recent GTK+ widget, `GtkFlowBox`. Be default, Gl
 
 Here we'll find a version selector. From it, select `3.20`.
 
-<img :src="$withBase('/assets/img/glade-tutorial-step-27.png')" />
-
-Now we will add a `GtkBox` to store the window contents.
+<img :src="$withBase('/assets/img/glade-tutorial-step-27.png')" />-->
 
 <img :src="$withBase('/assets/img/glade-tutorial-step-28.png')" />
 
-Pop it into the empty space in our window, `TagsWindow`.
+Now we will add a `GtkBox` to store the window contents. Pop it into the empty space in our window, `TagsWindow`.
 
-<img :src="$withBase('/assets/img/glade-tutorial-step-29.png')" />
-
-## Next Time
+<!-- TODO: Add image! <img :src="$withBase('/assets/img/glade-tutorial-step-29.png')" /> -->

@@ -30,6 +30,7 @@ module.exports = {
     sidebar: {
       '/tutorials/': [
         '',
+        'gjs-transition',
         'gjs-features-across-versions',
         'gjs-style-guide',
         'gjs-basic-file-operations',
@@ -42,6 +43,7 @@ module.exports = {
         '00-creating-user-interface',
         '01-writing-notes-saving-data',
         '02-tags-exiting-an-opened-file',
+        '03-adding-a-new-view'
       ],
       '/': false
     }

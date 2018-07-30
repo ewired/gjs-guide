@@ -6,11 +6,11 @@ actionText: Get Started →
 actionLink: /tutorials/
 heroImage: /hero.png
 features:
-- title: Simplicity First
-  details: Minimal setup with markdown-centered project structure helps you focus on writing.
-- title: Vue-Powered
-  details: Enjoy the dev experience of Vue + webpack, use Vue components in markdown, and develop custom themes with Vue.
-- title: Performant
-  details: VuePress generates pre-rendered static HTML for each page, and runs as an SPA once a page is loaded.
-footer: MIT Licensed | Copyright © 2018-present Evan You
+- title: Flexible
+  details: Create Desktop Apps to fit your needs!
+- title: Fast
+  details: A fast JavaScript engine backed by all the resources of Mozilla's SpiderMonkey & Firefox development.
+- title: Fully Featured
+  details: Complete access to the GNOME stack, all in JavaScript
+footer: MIT Licensed | Copyright © 2018 Evan Welsh | GJS, A GNOME Project 
 ---
