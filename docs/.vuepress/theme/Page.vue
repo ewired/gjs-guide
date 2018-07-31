@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <slot name="top" />
-    <Content :custom="false" />
+    <Content :custom="custom" />
     <div class="page-edit">
       <div class="edit-link" v-if="editLink">
         <a :href="editLink" target="_blank" rel="noopener noreferrer">{{ editLinkText }}</a>
@@ -35,7 +35,17 @@
 import { resolvePage, normalize, outboundRE, endingSlashRE } from './util';
 
 export default {
-  props: ['sidebarItems'],
+  props: {
+    sidebarItems: {
+      default() {
+        return [];
+      }
+    },
+    custom: {
+      type: Boolean,
+      default: false
+    }
+  },
   computed: {
     lastUpdated() {
       if (this.$page.lastUpdated) {

@@ -26,7 +26,7 @@ export default {
 
 <style lang="scss">
 .showcase {
-  padding: 2rem;
+  margin: 2rem;
   text-decoration: none !important;
   color: black;
 

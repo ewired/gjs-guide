@@ -10,7 +10,7 @@
       <component :is="$page.frontmatter.layout" />
     </div>
     <Home v-else-if="$page.frontmatter.home" />
-    <Page v-else :sidebar-items="sidebarItems">
+    <Page v-else :custom="custom" :sidebar-items="sidebarItems">
       <slot name="page-top" slot="top" />
       <slot name="page-bottom" slot="bottom" />
     </Page>
@@ -23,11 +23,12 @@ import nprogress from 'nprogress';
 import Home from './Home.vue';
 import Navbar from './Navbar.vue';
 import Page from './Page.vue';
+import IndexPage from './IndexPage.vue';
 import Sidebar from './Sidebar.vue';
 import { resolveSidebarItems } from './util';
 
 export default {
-  components: { Home, Page, Sidebar, Navbar },
+  components: { Home, Page, IndexPage, Sidebar, Navbar },
   data() {
     return {
       isSidebarOpen: false
@@ -57,6 +58,9 @@ export default {
         frontmatter.sidebar !== false &&
         this.sidebarItems.length
       );
+    },
+    custom() {
+      return this.$page.frontmatter.isCustom;
     },
     sidebarItems() {
       return resolveSidebarItems(

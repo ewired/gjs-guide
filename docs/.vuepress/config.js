@@ -4,6 +4,8 @@ module.exports = {
   editLinks: true,
   dest: "public",
   themeConfig: {
+    editLinks: true,
+    repo: 'https://gitlab.com/gjs-guide/gjs-guide.gitlab.io/',
     logo: '/logo.svg',
     docsDir: 'docs',
     nav: [{
@@ -28,16 +30,6 @@ module.exports = {
       },
     ],
     sidebar: {
-      '/tutorials/': [
-        '',
-        'gjs-transition',
-        'gjs-features-across-versions',
-        'gjs-style-guide',
-        'gjs-basic-file-operations',
-        'gjs-gtk-application-packaging',
-        'gjs-gtk-templating',
-        'gjs-legacy-class-syntax'
-      ],
       '/examples/tags/': [
         '',
         '00-creating-user-interface',
