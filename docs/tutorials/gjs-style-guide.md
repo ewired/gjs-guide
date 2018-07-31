@@ -2,28 +2,53 @@
 title: Style Guide
 date: 2018-07-25 16:10:11
 ---
-# GJS Coding Style
+# GJS Style Guide
 
-Our goal is to have all JavaScript code in GNOME follow a consistent style. In a dynamic language like
-JavaScript, it is essential to be rigorous about style (and unit tests), or you rapidly end up
-with a spaghetti-code mess.
+This guide represents the official coding style of GJS and all official GNOME projects which utilize GJS.
+
+The goal of this guide is to provide a flexible, balanced JavaScript syntax for all projects, GNOME or otherwise, which utilize our platform.
+
+In an amazing, dynamic language like JavaScript, a correct style guide (and unit tests) are critical or your codebase rapidly becomes a spaghetti-code mess.
+
+## Rule List
+[[toc]]
 
 ## Semicolons
 
-While JavaScript allows omitting semicolons at the end of lines,we do not. Always end statements with a semicolon.
+While JavaScript allows omitting semicolons at the end of lines, we do not. Always end statements with a semicolon.
+
+## Variable naming ##
+
+- We use *CamelCase* variable names, with CamelCase for type names and lowerCamelCase for variable, property, and method names.
+- Private variables, whether object member variables or module-scoped variables, should begin with `_`.
+- Global variables (in the global or 'window' object) should be avoided whenever possible. If you do create them, the variable name should have a namespace.
+<!-- DISCUSS - If you are need to name a variable something weird to avoid a namespace collision, add a trailing `_` (not leading, leading `_` means private). -->
 
 ## Imports
 
-Always use **CamelCase** when importing modules and classes to distinguish them from other variables.
+1. Always use **CamelCase** when importing modules and classes to distinguish them from other variables.
 
-```js
-const Big = imports.big;
-const GLib = imports.gi.GLib;
-```
+   ```js
+   const Lang = imports.lang;
+   ```
+2. Use quick object syntax when importing multiple classes from one source.
+
+   ```js
+   const { GLib, GObject } = imports.gi;
+   const Lang = imports.lang;
+   ``` 
+3. Always separate library imports from local imports.
+   
+   ```js
+   const { GLib, GObject } = imports.gi;
+   const Lang = imports.lang;
+
+   const LocalClass = imports.localClass;
+   ``` 
 
 ## Variable declaration
 
-Always use one of `const`, `let`, or `var` when defining a variable. Always use `let` when block scope is intended; in particular, inside `for()` and `while()` loops, `let` is almost always correct.
+Always use one of `const`, `let`, or `var` when defining a variable. Always use `let` when block scope is intended; in particular, inside `for()` and `while()` loops, `let` or `const` is almost always correct.
 
 ### `var`
 
@@ -77,31 +102,120 @@ for (const i = 0; i < 10; ++i) {
 
 If you used `var` instead of `const` it would print "10" numerous times.
 
-## `this` in closures ##
+## GObject Properties
+
+::: warning
+These rules only apply to GObject properties!
+:::
+
+GJS provides numerous ways to access properties on GObject classes.we recommend using `camelCase` for getting properties and utilizing the provided setter function instead of setting the property directly.
+
+1. ### Use **lowerCamelCase** when getting or setting a simple property
+
+   #### Getting a property value
+
+   ```js
+   /* incorrect */
+   let a = obj['property-name'];
+
+   /* incorrect */
+   let b = obj.property_name;
+
+   /* correct */
+   let c = obj.propertyName;
+   ```
+
+   #### Setting a property value
+
+   ```js
+   /* incorrect */
+   obj['property-name'] = 10;
+
+   /* incorrect */
+   obj.property_name = 10;
+
+   /* correct */
+   obj.propertyName = 10;
+   ```
+
+2. ### Use the `C` setter function when setting a property *that has side effects*
+
+   If setting the property causes change beyond simply changing the value, prefer the setter function for clarity.
+
+   ```js
+   /* incorrect */
+   obj['property-name-has-side-effects'] = 10;
+
+   /* incorrect */
+   obj.property_name_has_side_effects = 10;
+
+   /* incorrect */
+   obj.propertyNameHasSideEffects = 10;
+
+   /* correct */
+   obj.set_property_name_has_side_effects(10);
+   ```
+
+## JavaScript Properties
+
+Do not use JavaScript's getter and setter syntax if your code has side effects.
+
+For example, the code `foo.bar = 10;` should not do anything other than set `foo.bar` to `10`. If the setting has side effects use a setter method:
+
+```js
+function setBar(value) {
+  this._bar = value;
+}
+```
+
+The same logic applies to getters.
+
+In practice, this means getters are only used to make internal properties public or for creating static properties on the object.
+
+```js
+class Demo {
+    get bar() {
+        return this._bar;
+    }
+
+    /* and */
+
+    static get bar() {
+        return 'bar?';
+    }
+}
+
+const demo = new Demo();
+let staticBar = Demo.bar;
+let bar = demo.bar;
+```
+
+
+## `this` in closures
 
 `this` will not be captured in a closure; `this` is relative to how the closure is invoked, not to the value of this where the closure is created, because `this` is a keyword with a value passed in at function invocation time, it is not a variable that can be captured in closures.
 
-To solve this, use `Function.prototype.bind()` or fat arrow functions:
+To solve this, use [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) or `Function.prototype.bind()`:
 
 ```js
-let closure = function() { this._fnorbate() }.bind(this);
+let closure = () => { 
+  this._fn(); 
+};
 // or
-let closure = () => { this._fnorbate(); };
+let closure = function() { 
+  this._fn();
+}.bind(this);
 ```
 
-A more realistic example would be connecting to a signal on a
-method of a prototype:
+An example of this would be connecting to a signal on a GObject:
 
 ```js
-MyPrototype = {
-    _init : function() {
-       fnorb.connect('frobate', this._onFnorbFrobate.bind(this));
-    },
+const { Gtk } = imports.gi;
 
-    _onFnorbFrobate : function(fnorb) {
-       this._updateFnorb();
-    },
-};
+const button = new Gtk.Button({ label: 'Click Me!' });
+button.connect('clicked', () => {
+  /* do something */
+});
 ```
 
 ## Object literal syntax ##
@@ -121,41 +235,84 @@ If your usage of an object is like an object, then you're defining "member varia
 
 If your usage of an object is like a hash table (and thus conceptually the keys can have special chars in them), don't use quotes, but use brackets, `{ bar: 42 }`, `foo['bar']`.
 
-## Variable naming ##
+## Whitespace
 
-- We use javaStyle variable names, with CamelCase for type names and lowerCamelCase for variable and method names. However, when calling a C method with underscore-based names via introspection, we just keep them looking as they do in C for simplicity.
-- Private variables, whether object member variables or module-scoped variables, should begin with `_`.
-- True global variables (in the global or 'window' object) should be avoided whenever possible. If you do create them, the variable name should have a namespace in it, like `BigFoo`
-- When you assign a module to an alias to avoid typing `imports.foo.bar` all the time, the alias should be `const TitleCase` so `const Bar = imports.foo.bar;`
-- If you need to name a variable something weird to avoid a namespace collision, add a trailing `_` (not leading, leading `_` means private).
-- For GObject constructors, always use the `lowerCamelCase` style for property names instead of dashes or underscores.
-
-## Whitespace ##
+### General Rules
 
 * 4-space indentation (the Java style)
 * No trailing whitespace.
 * No tabs.
-* If you `chmod +x .git/hooks/pre-commit` it will not let you commit with messed-up whitespace (well, it doesn't catch tabs. turn off tabs in your text editor.)
 
-## JavaScript attributes ##
+### No whitespace when calling a function.
+*eslint: func-call-spacing*
 
-Don't use the getter/setter syntax when getting and setting has side effects, that is, the code:
 ```js
-foo.bar = 10;
-```
-should not do anything other than save "10" as a property of `foo`. It's obfuscated otherwise; if the setting has side effects, it's better if it looks like a method.
+/* very incorrect */
+fn
+();
 
-In practice this means the only use of attributes is to create read-only properties:
+/* incorrect */
+fn ();
+
+/* perfect */
+fn();
+```
+
+### No spaces between brackets and elements.
+*eslint: array-bracket-spacing*
+
 ```js
-get bar() {
-    return this._bar;
-}
+/* incorrect */
+let arr = [ 1, 2, 3 ];
+
+/* correct */
+let arr = [1, 2, 3];
 ```
 
-If the property requires a setter, or if getting it has side effects, methods are probably clearer.
+### Spacing in a function signature.
+*eslint: space-before-function-paren, space-before-blocks*
 
-[1] http://developer.mozilla.org/en/docs/index.php?title=New_in_JavaScript_1.7&printable=yes#Block_scope_with_let
+```js
 
-## Tips
+```
 
-- If using Emacs, try js2-mode. It functions as a "lint" by highlighting missing semicolons and the like.
+### Enforce spacing between keys and values in object literal properties.
+*eslint: key-spacing*
+
+```js
+/* incorrect */
+const objA = { foo:42 };
+const objB = { foo : 42 };
+const objC = { foo :42 };
+
+/* correct */
+var obj = { foo: 42 };
+
+/* incorrect */
+const a = function (){};
+const b = function (){};
+const c = function(){};
+
+/* correct */
+const d = function() {};
+const e = function a() {};
+
+/* incorrect */
+const arr = [ 1, 2, 3 ];
+log(arr[ 0 ]);
+
+/* correct */
+const foo = [1, 2, 3];
+log(foo[0]);
+```
+
+### Use spaces inside curly braces.
+*eslint: object-curly-spacing*
+
+```js
+/* incorrect*
+const foo = {clark: 'kent'};
+
+/* correct */
+const foo = { clark: 'kent' };
+```

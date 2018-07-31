@@ -21,17 +21,17 @@ The following variables are used throughout this document:
 
 ##  Runtime API
 
-The following API will be available to applications, through the package.js module.
+The following API is available to applications through the [package module]().
 
- * `window.pkg` (`pkg` on the global object) will provide access to the package module
- * `pkg.name` and `pkg.version` will return the package name and version, as passed to `pkg.init()`
- * `pkg.prefix`, `pkg.datadir`, `pkg.libdir` will return the installed locations of those folders
- * `pkg.pkgdatadir`, `pkg.moduledir`, `pkg.pkglibdir`, `pkg.localedir` will return the respective directories, or the appropriate subdirectory of the current directory if running uninstalled
- * `pkg.initGettext()` will initialize gettext. After calling window._, window.C_ and window.N_ will be available
- * `pkg.initFormat()` will initialize the format module. After calling, String.prototype.format will be available
- * `pkg.initSubmodule(name)` will initialize a submodule named @name. It must be called before accessing the typelibs installed by that submodule
- * `pkg.loadResource(name)` will load and register a GResource named @name. @name is optional and defaults to ${package-name}
- * `pkg.require(deps)` will mark a set of dependencies on GI and standard JS modules. @deps is a object whose keys are repository names and whose values are API versions. If the dependencies are not satisfied, `pkg.require` will print an error message and quit.
+ * `window.pkg` (`pkg` on the global object) provides access to the package module
+ * `pkg.name` and `pkg.version` return the package name and version, as passed to `pkg.init()`
+ * `pkg.prefix`, `pkg.datadir`, `pkg.libdir` returns the installed locations of those folders
+ * `pkg.pkgdatadir`, `pkg.moduledir`, `pkg.pkglibdir`, `pkg.localedir` return the respective directories, or the appropriate subdirectory of the current directory if running uninstalled
+ * `pkg.initGettext()` initializes gettext. After calling window._, window.C_ and window.N_ be available
+ * `pkg.initFormat()` initializes the format module. After calling, String.prototype.format be available
+ * `pkg.initSubmodule(name)` initializes a submodule named @name. It must be called before accessing the typelibs installed by that submodule
+ * `pkg.loadResource(name)` loads and registers a GResource named @name. @name is optional and defaults to ${package-name}
+ * `pkg.require(deps)` marks a set of dependencies on GI and standard JS modules. @deps is a object whose keys are repository names and whose values are API versions. If the dependencies are not satisfied, `pkg.require` print an error message and quit.
 
 ##  Package layout
 
@@ -61,11 +61,11 @@ The following API will be available to applications, through the package.js modu
 
 ## Usage
 
-Applications complying with this specification will have one application script, installed in \${prefix}/share/\${package-name} (aka ${pkgdatadir}), and named as ${entry-point-name}, without any extension or mangling.
+Applications complying with this specification have one application script, installed in \${prefix}/share/\${package-name} (aka ${pkgdatadir}), and named as ${entry-point-name}, without any extension or mangling.
 
-Optionally, one or more symlinks will be placed in ${bindir}, pointing to the appropriate script in ${pkgdatadir} and named in a fashion more suitable for command line usage (usually ${package-tarname}). Alternatively, a script that calls "gapplication launch ${package-name}" can be used.
+Optionally, one or more symlinks be placed in ${bindir}, pointing to the appropriate script in ${pkgdatadir} and named in a fashion more suitable for command line usage (usually ${package-tarname}). Alternatively, a script that calls "gapplication launch ${package-name}" can be used.
 
-The application itself will be DBus activated from a script called src/\${entry-point-name}, generated from configure substitution of the following
+The application itself be DBus activated from a script called src/\${entry-point-name}, generated from configure substitution of the following
 \${entry-point-name}.in:
 
 ```js
@@ -79,7 +79,7 @@ imports.package.init({
 imports.package.run(/* ${main-module} */);
 ```
 
-Where ${main-module} is a module containing `main()` the function that will be invoked to start the process. This function should accept a single argument, an array of command line args. The first element in the array will be the full resolved path to the entry point itself (unlike the global ARGV variable for gjs). Also unlike ARGV, it is safe to modify this array.
+Where ${main-module} is a module containing `main()` the function that be invoked to start the process. This function should accept a single argument, an array of command line args. The first element in the array be the full resolved path to the entry point itself (unlike the global ARGV variable for gjs). Also unlike ARGV, it is safe to modify this array.
 
 `main()` should initialize a GApplication whose id is ${entry-point-name}, and do all the work inside the GApplication vfunc handlers.
 

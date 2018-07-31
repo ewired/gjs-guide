@@ -22,7 +22,7 @@ Welcome to GJS!
 
 <ShowCaseBox title="GTK" subtitle="Gtk Tutorials">
 
-<ShowCase link="gjs-gtk-application-packaging.html" title="Feature Compatibility" subtitle="How do I package my GTK+ application with GJS?" image="" />
+<ShowCase link="gjs-gtk-application-packaging.html" title="GTK+ Application Packaging" subtitle="How do I package my GTK+ application with GJS?" image="" />
 
 </ShowCaseBox>
 
