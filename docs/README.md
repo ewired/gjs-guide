@@ -3,8 +3,8 @@ home: true
 heroText: GJS
 tagline: A Guide to JavaScript for GNOME
 actionText: Get Started →
-actionLink: /tutorials/
-heroImage: /hero.png
+actionLink: /guides/
+heroImage: /logo-alt.svg
 features:
 - title: Flexible
   details: Create Desktop Apps to fit your needs!

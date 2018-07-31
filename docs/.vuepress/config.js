@@ -6,6 +6,7 @@ module.exports = {
   themeConfig: {
     editLinks: true,
     repo: 'https://gitlab.com/gjs-guide/gjs-guide.gitlab.io/',
+    docsBranch: 'gitlab-master',
     logo: '/logo.svg',
     docsDir: 'docs',
     nav: [{
@@ -13,8 +14,12 @@ module.exports = {
         link: '/'
       },
       {
-        text: 'Tutorials',
-        link: '/tutorials/'
+        text: 'About',
+        link: '/about/'
+      },
+      {
+        text: 'Guides',
+        link: '/guides/'
       },
       {
         text: 'Examples',

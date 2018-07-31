@@ -26,9 +26,12 @@ export default {
 
 <style lang="scss">
 .showcase {
-  margin: 2rem;
+  margin: 2rem 0;
   text-decoration: none !important;
+  text-align: center;
   color: black;
+  min-width: 14rem;
+  max-width: 25%;
 
   img {
     margin: 0.5rem;
@@ -40,6 +43,7 @@ export default {
   h2 {
     font-weight: 600;
     margin: 0.5rem 0.5rem 0.25rem;
+    border: none;
   }
 }
 </style>
