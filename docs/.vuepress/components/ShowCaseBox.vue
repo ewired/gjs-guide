@@ -47,7 +47,7 @@ export default {
 
   .showcase-box-inner {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
     width: 100%;
 
