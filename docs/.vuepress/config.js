@@ -49,13 +49,15 @@ module.exports = {
         '07-buttons',
         '08-editing-text',
         '09-images',
-        '10-creating-a-user-interface',
-        '11-building-an-application-gnome-builder',
-        '12-templates',
-        '13-saving-application-data',
-        '14-application-settings',
-        '15-localization',
-        '16-dialogs'
+        '10-building-an-application-gnome-builder',
+        '11-packaging',
+        '12-development-environment',
+        '13-templates',
+        '14-creating-a-user-interface',
+        '15-saving-application-data',
+        '16-application-settings',
+        '17-dialogs',
+        '18-localization'
       ],
       '/': false
     }
