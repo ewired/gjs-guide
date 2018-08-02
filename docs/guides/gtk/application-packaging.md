@@ -4,7 +4,7 @@ date: 2018-07-25 16:10:11
 ---
 # GJS GTK+ Application Packaging Specification
 
-This page details the built-in packaging specifiction for Javascript applications using GJS and GObject Introspection.
+This page details the built-in packaging specification for Javascript applications using GJS and GObject Introspection.
 
 *Users should refer to [the GJS application template](https://github.com/gcampax/gtk-js-app) for a complete, up-to-date example.*
 

@@ -2,6 +2,10 @@
 title: Dialogs
 ---
 
+# Dialogs
+
+WIP
+
 ### Creating a dialog
 
 To create the dialog we'll use `GtkMessageDialog`. GtkMessageDialog 

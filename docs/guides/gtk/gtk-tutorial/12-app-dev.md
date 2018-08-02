@@ -2,19 +2,23 @@
 title: Setting Up Your Application Development Environment
 ---
 
-For developing packaged applications in GJS we highly recommend [GNOME Builder](). GNOME Builder can download the latest GJS version for you and provides support for developing secure, structured GNOME applications.
+For developing packaged applications in GJS we highly recommend [GNOME Builder](https://wiki.gnome.org/Apps/Builder). GNOME Builder can download the latest GJS version for you and provides support for developing secure, structured GNOME applications.
 
-If you do not have GNOME Builder installed you can get it [here]().
+If you do not have GNOME Builder installed you can get it [here](https://flathub.org/apps/details/org.gnome.Builder).
 
 ## Using GNOME Builder
 
 ### Creating a New GJS GTK+ Application Project
 
-Open GNOME Builder's application menu and select `New Project`.
+<img :src="$withBase('/assets/img/builder-01.png')" />
 
-Select JavaScript as the language and GNOME Application as the type.
+First open GNOME Builder and select `New...` to create a new project.
 
-Click Create.
+<img :src="$withBase('/assets/img/builder-02.png')" />
+
+Choose `JavaScript` and `GNOME Application` so GNOME Builder correctly configures and creates a template for you to build your first project from.
+
+<img :src="$withBase('/assets/img/builder-03.png')" />
 
 ### Configuring the Runtime Environment
 
@@ -28,23 +32,24 @@ If you are working in another IDE is possible but more complicated.
 
 ### Download the Template
 
-First, download the application template [here]() (or use git clone [link])
+First, download the application template [here](TODO.localhost) (or use git clone [link])
 
 ### Install GJS
 
 Install GJS from any of the packages below.
 
-- Ubuntu 18.04
-- Debian Stretch
-- Arch Linux
-- more at [pkgs.org]()
+- [Ubuntu 18.04](https://packages.ubuntu.com/bionic/gjs)
+- [Fedora 28](https://fedora.pkgs.org/28/fedora-x86_64/gjs-1.52.2-1.fc28.x86_64.rpm.html)
+- [Debian](https://packages.debian.org/buster/gjs)  *Warning: Out of Date In Stretch*
+- [Arch Linux](https://www.archlinux.org/packages/extra/x86_64/gjs/)
+- more at [pkgs.org](https://pkgs.org/download/gjs)
 
 ### Verifying Your GJS Version
 Verify your system has a recent version of GJS. Type...
 
     gjs --version
     
-...into a terminal. You can see the features your version of GTK+ supports [here](). If your version is below 1.48.x it is recommended you use [GNOME Builder]() or build GJS from source.
+...into a terminal. You can see the features your version of GTK+ supports [here](../../gjs/features-across-versions.html). If your version is below 1.50.x it is recommended you use [GNOME Builder](https://flathub.org/apps/details/org.gnome.Builder) or build GJS from source.
 
 ### Building GJS From Source
 
