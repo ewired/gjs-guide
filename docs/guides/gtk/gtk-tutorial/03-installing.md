@@ -28,7 +28,7 @@ Now, click the `Run` button in the upper right corner.
 
 You can see any program output in the output viewer on the right side of the window.
   
-### Using The Command Line
+## Using The Command Line
 
 Using the command line is possible but can be difficult if your distribution is not running a modern version of GJS by default. Beginning examples may function properly, while more advanced topics fail due to missing features. You can view a list of supported GJS features by version [here]().
 

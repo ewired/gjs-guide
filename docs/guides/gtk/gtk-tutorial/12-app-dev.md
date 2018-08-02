@@ -1,5 +1,5 @@
 ---
-title: Settings Up Your Application Development Environment
+title: Setting Up Your Application Development Environment
 ---
 
 For developing packaged applications in GJS we highly recommend [GNOME Builder](). GNOME Builder can download the latest GJS version for you and provides support for developing secure, structured GNOME applications.
