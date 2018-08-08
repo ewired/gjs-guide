@@ -1,15 +1,15 @@
 <template>
   <a v-if="typeof link !== 'undefined' && link !== null" class="showcase" :href="link">
-    <img :src="image">
+    <img v-if="image" class="showcase-image" :src="image">
     </img>
-    <h2>{{ title }}</h2>
-    <p>{{ subtitle }}</p>
+    <div class="showcase-title">{{ title }}</div>
+    <div class="showcase-description">{{ subtitle }}</div>
   </a>
   <div v-else class="showcase">
-    <img :src="image">
+    <img v-if="image" class="showcase-image" :src="image">
     </img>
-    <h2>{{ title }}</h2>
-    <p>{{ subtitle }}</p>
+    <div class="showcase-title">{{ title }}</div>
+    <div class="showcase-description">{{ subtitle }}</div>
   </div>
 </template>
 <script>
@@ -26,23 +26,34 @@ export default {
 
 <style lang="scss">
 .showcase {
-  margin: 2rem 0;
   text-decoration: none !important;
-  text-align: center;
+  text-align: left;
   color: black;
   min-width: 14rem;
   max-width: 25%;
+  max-height: 23rem;
+  overflow: hidden;
 
-  img {
+  .showcase-image {
     margin: 0.5rem;
+    object-fit: cover;
+    height: 30vh;
+    max-height: 30vh;
+    overflow: hidden;
+    width: 100%;
   }
-  p {
+
+  .showcase-description {
+    font-size: 1rem;
     font-weight: 400;
-    margin: 0.25rem 0.5rem 0.5rem;
+    margin: 0.25rem 0.5rem 0.5rem 0;
+    text-overflow: ellipsis;
   }
-  h2 {
+
+  .showcase-title {
+    font-size: 1.5rem;
     font-weight: 600;
-    margin: 0.5rem 0.5rem 0.25rem;
+    margin: 0.5rem 0.5rem 0.25rem 0;
     border: none;
   }
 }

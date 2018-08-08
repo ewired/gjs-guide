@@ -21,11 +21,13 @@ export default {
 </script>
 
 <style lang="scss">
+$height: 30vh;
+
 .showcase-box {
   padding: 2rem 0;
+  overflow: hidden;
 
   .showcase-box-title-container {
-    border-bottom: 1px solid #eaecef;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -33,7 +35,7 @@ export default {
   }
 
   .showcase-box-title {
-    font-size: 1.65rem;
+    font-size: 3rem;
     padding-bottom: 0.1rem;
     margin: 0.1rem 0 0.2rem;
     border: none !important;
@@ -43,6 +45,7 @@ export default {
     padding: 0;
     margin: 0.1rem 0.5rem 0.2rem;
     border: none !important;
+    font-style: italic;
   }
 
   .showcase-box-inner {
@@ -50,12 +53,10 @@ export default {
     justify-content: flex-start;
     flex-wrap: wrap;
     width: 100%;
+    margin: 0 -3rem;
 
-    & > *:last-child {
-      margin-right: 0 !important;
-    }
-    & > *:first-child {
-      margin-left: 0 !important;
+    & > * {
+      margin: 1rem 3rem;
     }
   }
 }
