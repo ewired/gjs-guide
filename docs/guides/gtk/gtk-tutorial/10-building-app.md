@@ -113,7 +113,7 @@ application.connect('activate', app => {
 ...
 ```
 
-This code creates the window when the application is "activated". An application is "activated" when it is ready to display the user interface. Activation can happen multiple times (what if the application is hidden and then shown, for example -- TODO correct example?) so we first check if there is already an active window. If there is not an active window we create our own. Finally, we "present" the window with `Gtk.Window.prototype.present()` which will show the window and then bring it to focus.
+This code creates the window when the application is "activated". An application is "activated" when it is ready to display the user interface. Activation can happen multiple times (what if the application is hidden and then shown, for example) so we first check if there is already an active window. If there is not an active window we create our own. Finally, we "present" the window with `Gtk.Window.prototype.present()` which will show the window and then bring it to focus.
 
 ```js
 ...

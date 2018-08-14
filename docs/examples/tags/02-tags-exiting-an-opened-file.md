@@ -42,7 +42,7 @@ Now let's actually implement `/* file close code */`. We will essentially be rev
 
 ```js
 this._fileNotesTextView.set_sensitive(false);
-this._fileNotesTextView.set_buffer(null); // TODO 
+this._fileNotesTextView.set_buffer(null);
 this._headerBar.setTitle('Tags');
 ```
 
@@ -52,7 +52,7 @@ Now we should have:
 this._backButton.connect('clicked', () => {
     log('addFileButton has been clicked.');
     this._fileNotesTextView.set_sensitive(false);
-    this._fileNotesTextView.set_buffer(null); // TODO 
+    this._fileNotesTextView.set_buffer(null); 
     this._headerBar.setTitle('Tags');
 });
 ```

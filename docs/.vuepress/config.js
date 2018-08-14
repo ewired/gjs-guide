@@ -56,8 +56,7 @@ module.exports = {
         '14-templates',
         '15-saving-data',
         '16-settings',
-        '17-dialogs',
-        '18-localization'
+        '17-dialogs'
       ],
       '/': false
     }

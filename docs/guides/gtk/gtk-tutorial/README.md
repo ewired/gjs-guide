@@ -21,4 +21,4 @@ Welcome to GTK+ in GJS. This guide will introduce you to both GTK+ and using it 
 - [Saving Application Data](15-saving-data.html)
 - [Application Settings](16-settings.html)
 - [Dialogs](17-dialogs.html)
-- [Localization](18-localization.html)
+<!--- [Localization](18-localization.html)-->

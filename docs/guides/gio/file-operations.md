@@ -40,9 +40,9 @@ let [success, contents] = file.load_contents(null);
 log(contents);
 ```
 
-### Load Part of a File
+<!--### Load Part of a File
 
-*TODO*
+*TODO*-->
 
 
 

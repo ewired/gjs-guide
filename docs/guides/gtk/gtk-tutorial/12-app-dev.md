@@ -51,11 +51,11 @@ Verify your system has a recent version of GJS. Type...
     
 ...into a terminal. You can see the features your version of GTK+ supports [here](../../gjs/features-across-versions.html). If your version is below 1.50.x it is recommended you use [GNOME Builder](https://flathub.org/apps/details/org.gnome.Builder) or build GJS from source.
 
-### Building GJS From Source
+<!--### Building GJS From Source
 
-Use BuildStream of JHBuild
+Use BuildStream or JHBuild
 
-<!--TODO: Finish this documentation-->
+TODO: Finish this documentation-->
 
 ### Building Your Project
 
