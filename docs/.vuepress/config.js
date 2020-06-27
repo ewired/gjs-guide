@@ -27,7 +27,7 @@ module.exports = {
       },
       {
         text: 'API References',
-        link: 'https://devdocs.baznga.org'
+        link: 'https://gjs-docs.gnome.org'
       },
     ],
     sidebar: {

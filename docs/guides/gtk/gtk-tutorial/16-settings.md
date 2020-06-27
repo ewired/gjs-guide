@@ -71,7 +71,7 @@ For example:
 
 `const isRunning = settings.get_boolean('is-running');`
 
-You can find a complete list of getters [here](http://devdocs.baznga.org/gio20~2.50p/gio.settings#method-get).
+You can find a complete list of getters [here](https://gjs-docs.gnome.org/gio20~2.0_api/gio.settings).
 
 # Setting, a setting.
 
