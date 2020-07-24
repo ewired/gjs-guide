@@ -6,19 +6,7 @@ title: Installing GJS and Running The Examples
 
 [[toc]]
 
-This guide is built for running the examples you will encounter in the first half of this guide, for setting up an application development environment go [here]();
-
-## Using GJS Sandbox
-
-GNOME Sandbox is a small application that is built to run all of the tutorials here and let your monkey around in GJS and GTK+ as much as you would like. It will automatically install and run the latest stable GJS version.
-
-### Downloading
-
-You can download GNOME Sandbox [here](). It is distributed as a Flatpak.
-
-### Opening GNOME Sandbox
-
-Run GNOME Sandbox just like any other application on your system.
+This guide is built for running the examples you will encounter in the first half of this guide, for setting up an application development environment go [here](../../gjs/editor-tips.html);
 
 ### Running a Tutorial
 
@@ -30,7 +18,7 @@ You can see any program output in the output viewer on the right side of the win
   
 ## Using The Command Line
 
-Using the command line is possible but can be difficult if your distribution is not running a modern version of GJS by default. Beginning examples may function properly, while more advanced topics fail due to missing features. You can view a list of supported GJS features by version [here]().
+Using the command line is possible but can be difficult if your distribution is not running a modern version of GJS by default. Beginning examples may function properly, while more advanced topics fail due to missing features. You can view a list of supported GJS features by version [here](../gjs/features-across-versions.html).
 
 ### Installing GJS
 
@@ -39,14 +27,14 @@ Install GJS from any of the packages below.
 - Ubuntu 18.04
 - Debian Stretch
 - Arch Linux
-- more at [pkgs.org]()
+- more at [pkgs.org](https://pkgs.org/)
 
 ### Verifying Your GJS Version
 Verify your system has a recent version of GJS. Type...
 
     gjs --version
     
-...into a terminal. You can see the features your version of GTK+ supports [here](). If your version is below 1.48.x it is recommended you use [GNOME Builder]() or build GJS from source.
+...into a terminal. You can see the features your version of GTK+ supports [here](../../gjs/features-across-versions.html). If your version is below 1.48.x it is recommended you use [GNOME Builder](https://wiki.gnome.org/Apps/Builder) or build GJS from source.
 
 ### Running A Tutorial
 

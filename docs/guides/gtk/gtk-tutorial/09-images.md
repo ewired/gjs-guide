@@ -6,7 +6,7 @@ title: Images
 
 ## `Gtk.Image`
 
-`Gtk.Image` is a widget which stores images from a variety of sources. It can display from a file, an [icon name](), or an [array of pixels]().
+`Gtk.Image` is a widget which stores images from a variety of sources. It can display from a file, an icon name, or an array of pixels.
 
 ### Loading from a File
 

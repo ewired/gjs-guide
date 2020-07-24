@@ -7,7 +7,7 @@ date: 2018-07-25 16:10:11
 
 The user interface file you have created, `window.ui`, is a template for your application. To use this template and its widgets we need to load it. 
 
-*Before you continue make sure you've read [Extending GObject Classes in GJS]()*
+*Before you continue make sure you've read [Extending GObject Classes in GJS](../../gjs/transition.html#extending-gobject-classes)*
 
 ## Loading the template
 

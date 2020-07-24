@@ -17,7 +17,7 @@ A GUI toolkit provides the libraries and tools for you, the developer, to build 
 
 ## What is a widget?
 
-A widget is a piece or part of your application which the user interacts with. Examples of widgets include buttons, labels, and images. Learn more about widgets [here]();
+A widget is a piece or part of your application which the user interacts with. Examples of widgets include buttons, labels, and images. Learn more about widgets [here](./02-widgets.html);
 
 ## Event-Driven
 

@@ -4,7 +4,7 @@ title: Widgets and Other GTK+ Objects
 
 # Widgets in GTK+
 
-For a list of all widgets in GTK+ go [here]();
+For a list of all widgets in GTK+ go [here](https://developer.gnome.org/gtk3/stable/ch03.html);
 
 ## Signals
 
@@ -19,13 +19,13 @@ button.connect('clicked', () => {
 ```
 
 In this example we call the `connect()` function on an already created `button` (we'll learn how to create buttons later). `connect()` takes two arguments the signal name - in this case `'clicked'` - and a callback.
-We're using an [arrow function]() to provide the callback. Every time this button is clicked a message will appear in the log saying `'The button was clicked'`.
+We're using an [arrow function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) to provide the callback. Every time this button is clicked a message will appear in the log saying `'The button was clicked'`.
 
-*Concepts utilized in this example: [`this` in Closures](), [Logging in GJS](), [Strings in GJS]()*
+*Concepts utilized in this example: [Logging in GJS](../../gjs/transition.md) and [Strings in GJS](../../gjs/strings.html)*
 
 ## Widget Properties
 
-In GTK+ ever widget has properties. A `Gtk.Button` has a `label` property representing the text inside the button, a `Gtk.Image` has a `iconName` property representing the icon it is showing. You can find a list of the properties of any widget in the *Properties* section of the widget's page on [DevDocs](). 
+In GTK+ ever widget has properties. A `Gtk.Button` has a `label` property representing the text inside the button, a `Gtk.Image` has a `iconName` property representing the icon it is showing. You can find a list of the properties of any widget in the *Properties* section of the widget's page on [DevDocs](https://gjs-docs.gnome.org). 
 
 ### Getting Properties
 

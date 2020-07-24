@@ -15,13 +15,13 @@ The following variables are used throughout this document:
 * **''${package-name}''**: the fully qualified ID of the package, in DBus name format (e.g. ''org.gnome.Weather'')
 * **"${entry-point-name}"**: the fully qualified ID of an entry point, in DBus name format (e.g. ''org.gnome.Weather.Application'')
   * This must be a sub ID of ${package-name}
-* **"${entry-point-path}"**: the entry point ID, converted to a DBus path ([identical to GApplication]())
+* **"${entry-point-path}"**: the entry point ID, converted to a DBus path (identical to GApplication)
 * **"${package-tarname}"**: a short, unambiguous name for the package (e.g. ''gnome-weather'')
 * **"${package-version}"**: the version of the package
 
 ##  Runtime API
 
-The following API is available to applications through the [package module]().
+The following API is available to applications through the [package module](https://gitlab.gnome.org/GNOME/gjs/-/blob/master/doc/Package/Specification.md).
 
  * `window.pkg` (`pkg` on the global object) provides access to the package module
  * `pkg.name` and `pkg.version` return the package name and version, as passed to `pkg.init()`

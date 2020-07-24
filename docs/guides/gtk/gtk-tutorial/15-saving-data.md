@@ -17,7 +17,7 @@ let lastUsedFile = {
 };
 ```
 
-We first need to convert it to [JSON]() for storage. GJS has built-in functions for this:
+We first need to convert it to JSON for storage. GJS has built-in functions for this:
 
 ```js
 let dataJSON = JSON.stringify(lastUsedFile);

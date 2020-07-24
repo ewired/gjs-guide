@@ -22,7 +22,7 @@ One important concept in GTK+ is calculated space. Widgets by default take up th
 
 ## `Gtk.FlowBox`
 
-`Gtk.FlowBox` is similar to HTML5's [Flexbox]() conceptually. `Gtk.FlowBox` fills a row or column with child widgets (depending if it is set to vertical or horizontal) until there is no space left before starting a new row. This makes `Gtk.FlowBox` the most flexible of all the containers as you are not limited by predefined rows, columns, or sizes.
+`Gtk.FlowBox` is similar to HTML5's Flexbox conceptually. `Gtk.FlowBox` fills a row or column with child widgets (depending if it is set to vertical or horizontal) until there is no space left before starting a new row. This makes `Gtk.FlowBox` the most flexible of all the containers as you are not limited by predefined rows, columns, or sizes.
 
 ## `Gtk.ListBox`
 

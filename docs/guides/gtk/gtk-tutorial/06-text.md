@@ -5,12 +5,12 @@ title: Displaying Text
 # Displaying Text
 
 ::: tip
-Read [Strings in GJS]() before starting this page!
+Read [Strings in GJS](../../gjs/strings.html) before starting this page!
 :::
 
 ## `Gtk.Label`
 
-In GTK+ the simplest way to display text is using `Gtk.Label`. A `Gtk.Label` can contain simple, standard text or a variety of text styles using [Markdown]().
+In GTK+ the simplest way to display text is using `Gtk.Label`. A `Gtk.Label` can contain simple, standard text or a variety of text styles using Markdown.
 
 ## Standard Text
 

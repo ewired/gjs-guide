@@ -6,7 +6,7 @@ module.exports = {
   themeConfig: {
     editLinks: true,
     repo: 'https://gitlab.gnome.org/ewlsh/gjs-guide',
-    docsBranch: 'gitlab-master',
+    docsBranch: 'main',
     logo: '/logo.svg',
     docsDir: 'docs',
     nav: [{

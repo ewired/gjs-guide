@@ -38,7 +38,7 @@ The first line indicates that this is a GJS script. You may have seen similar st
 #!/usr/bin/sh
 ```
 
-This statement is called a shebang, you can read more about it [here]().
+This statement is called a shebang.
 
 ```js{3}
 #!/usr/bin/gjs
@@ -60,7 +60,7 @@ const { Gtk } = imports.gi;
 ...
 ```
 
-The second import line actually imports Gtk. This allows use to use all of Gtk's widgets and classes. It is declared with `const` because an import, by convention, should never change values. We are importing from `imports.gi` because GTK+ is part of the `gi` (gobject-introspection) collection. The syntax used here is know as [Quick Object Syntax](). You can read more about this and imports in [Imports in GJS]().
+The second import line actually imports Gtk. This allows use to use all of Gtk's widgets and classes. It is declared with `const` because an import, by convention, should never change values. We are importing from `imports.gi` because GTK+ is part of the `gi` (gobject-introspection) collection.
 
 ```js{3}
 ...
@@ -111,7 +111,7 @@ win.show_all();
 Gtk.main();
 ```
 
-Finally we call `Gtk.main()` to start the event loop we discussed in [The Basics]().
+Finally we call `Gtk.main()` to start the event loop we discussed in [The Basics](./01-basics.html).
 
-*Gtk.main() is the ['gas pedal']() of GTK+!*
+*Gtk.main() is the gas pedal of GTK+!*
 

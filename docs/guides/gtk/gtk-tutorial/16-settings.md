@@ -37,7 +37,7 @@ A typical key looks like this:
 ```
 
 `name=` sets the name of the setting. This is used to retrieve and modify the setting's value.
-`type=` sets the type of the setting. A complete list of types is available [here]().
+`type=` sets the type of the setting. A complete list of types is available [here](https://developer.gnome.org/glib/stable/glib-GVariantType.html#GVariantType).
 `<default>` lists the default value of the setting.
 `<summary>` briefly describes the purpose of the setting.
 `<description>` provides a longer, more detailed explanation of the setting.
