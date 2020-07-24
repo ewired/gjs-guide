@@ -1,15 +1,14 @@
 {
     "author": {
-        "name": "Evan"
+        "name": "Evan Welsh"
     },
     "license": "MIT",
     "scripts": {
-        "docs:dev": "vuepress dev docs",
-        "docs:build": "vuepress build docs",
-        "docs:eject": "vuepress eject gnome"
+        "dev": "vuepress dev docs",
+        "build": "vuepress build docs"
     },
     "dependencies": {
-        "node-sass": "^4.9.2",
+        "node-sass": "^4.14.1",
         "sass-loader": "^7.0.3",
         "vuepress": "^0.12.0"
     }

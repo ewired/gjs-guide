@@ -5,7 +5,7 @@ module.exports = {
   dest: "public",
   themeConfig: {
     editLinks: true,
-    repo: 'https://gitlab.com/gjs-guide/gjs-guide.gitlab.io/',
+    repo: 'https://gitlab.gnome.org/ewlsh/gjs-guide',
     docsBranch: 'gitlab-master',
     logo: '/logo.svg',
     docsDir: 'docs',

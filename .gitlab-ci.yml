@@ -1,15 +1,38 @@
-image: node:9.11.1
+image: node:12.18.2
 
-pages:
+.build: &build
+- yarn
+- yarn build
+
+.setup: &setup
+- npm install -g firebase-tools
+- firebase use gjs-guide --token $FIREBASE_TOKEN
+
+stages:
+- build
+- deploy
+
+build:
+  stage: build
+  allow_failure: false
+  when: always
   cache:
     paths:
     - node_modules/
-
   script:
-  - yarn
-  - yarn docs:build
+  - *build
   artifacts:
     paths:
     - public
+
+production:
+  stage: deploy
+  before_script:
+    - *setup
+    - *build
   only:
-  - gitlab-master
+    - main
+  when: on_success
+  allow_failure: false
+  script:
+    - firebase deploy -m "Pipeline $CI_PIPELINE_ID | Build $CI_BUILD_ID" --non-interactive --only hosting:gjs-guide --token $FIREBASE_TOKEN
