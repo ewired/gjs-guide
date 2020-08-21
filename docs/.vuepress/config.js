@@ -26,6 +26,10 @@ module.exports = {
         link: '/showcase/'
       },
       {
+        text: 'Extensions',
+        link: '/extensions/'
+      },
+      {
         text: 'API References',
         link: 'https://gjs-docs.gnome.org'
       },
