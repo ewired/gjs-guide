@@ -34,9 +34,9 @@ win.show_all();
 Gtk.main();
 ```
 
-## Markdown
+## Markup
 
-To use markdown you must pass `useMarkdown` to the label.
+To use markup you must pass `useMarkup` to the label.
 
 Here is a simple example:
 
@@ -49,7 +49,7 @@ const { Gtk } = imports.gi;
 Gtk.init(null);
 
 let label = new Gtk.Label({
-    useMarkdown: true,
+    useMarkup: true,
     label: '<b>Hello!</b>'
 });
 let win = new Gtk.Window();
