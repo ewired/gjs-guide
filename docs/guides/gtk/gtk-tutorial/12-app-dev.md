@@ -28,7 +28,7 @@ In your application ensure that the runtime environment is set to Gnome Platform
 
 ## Working in Other IDES
 
-If you are working in another IDE is possible but more complicated.
+If you are working in another IDE it is possible but more complicated.
 
 ### Download the Template
 
