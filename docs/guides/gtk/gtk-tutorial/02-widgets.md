@@ -14,7 +14,7 @@ A standard example of listening to a signal would be:
 
 ```js
 button.connect('clicked', () => {
-    log('The button was clicked'!);
+    log('The button was clicked');
 });
 ```
 
