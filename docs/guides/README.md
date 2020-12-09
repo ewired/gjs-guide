@@ -8,6 +8,12 @@ layout: IndexPage
 
     Welcome to GJS!
 
+<ShowCaseBox title="GObject" subtitle="Getting to know GObject">
+<ShowCase link="gobject/basics.html" title="Basics" subtitle="A gentle introduction to GObject" />
+<ShowCase link="gobject/subclassing.html" title="Subclassing" subtitle="How to subclass and extend GObject" />
+<ShowCase link="gobject/interfaces.html" title="Interfaces" subtitle="How to implement GObject Interfaces" />
+</ShowCaseBox>
+
 <ShowCaseBox title="GTK+" subtitle="Looking for help building an application?">
 <ShowCase link="gtk/gtk-tutorial/" title="Getting Started with GTK+" subtitle="New to GTK+ or using it with GJS? This is for you!" />
 <ShowCase link="gtk/application-packaging.html" title="GTK+ Application Packaging" subtitle="How do I package my GTK+ application with GJS?"  />
