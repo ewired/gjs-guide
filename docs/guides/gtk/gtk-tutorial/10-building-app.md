@@ -157,7 +157,7 @@ class ImageViewerWindow {
 
         this._fileChooserButton = Gtk.FileChooserButton.new('Pick An Image', Gtk.FileChooserAction.OPEN);
 
-        this._fileChooserButton.connect('file-set', () => {
+        this._fileChooserButton.connect('file-set', (button) => {
             const fileName = button.get_filename();
             this._image.set_from_file(fileName);
         });
