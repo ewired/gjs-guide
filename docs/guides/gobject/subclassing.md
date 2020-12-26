@@ -139,7 +139,7 @@ let obj = new Example({
 log(obj.example_property);
 
 // Setting the property
-obj = false;
+obj.example_property = false;
 ```
 
 [gparamspec]: https://gjs-docs.gnome.org/gobject20/gobject.paramspec
