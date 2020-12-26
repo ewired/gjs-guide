@@ -61,7 +61,7 @@ if (GLib.mkdir_with_parents(destinationFile.get_parent().get_path(), PERMISSIONS
 }
 ```
 
-This code comes from [GJS Basic File Operations](../../gjs/basic-file-operations.html).
+This code comes from [GIO File Operations](../../gio/file-operations.html).
 
 ***And it is saved!***
 
