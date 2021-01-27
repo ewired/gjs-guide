@@ -19,7 +19,7 @@ let dialog = new Gtk.MessageDialog({
 
 dialog.add_button('Cancel', Gtk.ResponseType.CANCEL);
 dialog.add_button('Close Without Saving', Gtk.ResponseType.NO);
-dialog.add_button('Save Notes', Gtk.ResponseType.NO);
+dialog.add_button('Save Notes', Gtk.ResponseType.YES);
 ```
 
 ### Responding to the dialog
