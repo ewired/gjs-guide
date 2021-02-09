@@ -310,7 +310,7 @@ log(foo[0]);
 *eslint: object-curly-spacing*
 
 ```js
-/* incorrect*
+/* incorrect*/
 const foo = {clark: 'kent'};
 
 /* correct */
