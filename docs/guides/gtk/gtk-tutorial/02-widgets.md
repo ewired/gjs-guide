@@ -25,7 +25,7 @@ We're using an [arrow function](https://developer.mozilla.org/en-US/docs/Web/Jav
 
 ## Widget Properties
 
-In GTK+ ever widget has properties. A `Gtk.Button` has a `label` property representing the text inside the button, a `Gtk.Image` has a `iconName` property representing the icon it is showing. You can find a list of the properties of any widget in the *Properties* section of the widget's page on [DevDocs](https://gjs-docs.gnome.org). 
+In GTK+ every widget has properties. A `Gtk.Button` has a `label` property representing the text inside the button, a `Gtk.Image` has a `iconName` property representing the icon it is showing. You can find a list of the properties of any widget in the *Properties* section of the widget's page on [DevDocs](https://gjs-docs.gnome.org). 
 
 ### Getting Properties
 
