@@ -5,7 +5,7 @@ Throughout this tutorial you will see small examples of GTK+ code in GJS.
 They will usually occur in this format:
 
 ```js
-#!/usr/bin/gjs
+#!/usr/bin/env gjs
 
 imports.gi.versions.Gtk = "3.0";
 const { Gtk } = imports.gi;
@@ -24,7 +24,7 @@ Gtk.main();
 Let's break that down!
 
 ```js{1}
-#!/usr/bin/gjs
+#!/usr/bin/env gjs
 
 imports.gi.versions.Gtk = "3.0";
 const { Gtk } = imports.gi;
@@ -41,7 +41,7 @@ The first line indicates that this is a GJS script. You may have seen similar st
 This statement is called a shebang.
 
 ```js{3}
-#!/usr/bin/gjs
+#!/usr/bin/env gjs
 
 imports.gi.versions.Gtk = "3.0";
 const { Gtk } = imports.gi;
@@ -52,7 +52,7 @@ const { Gtk } = imports.gi;
 Next we have our import statements. The first imports line is a version statement. This tells GJS what version of the import we need. GTK+ has the older GTK+ 2.0 and the newer GTK+ 3.0. To indicate this we pass `"3.0"` to `imports.gi.versions.Gtk`. This works for any other import too, just set the name of the import at `imports.gi.versions` to the version you are importing.
 
 ```js{4}
-#!/usr/bin/gjs
+#!/usr/bin/env gjs
 
 imports.gi.versions.Gtk = "3.0";
 const { Gtk } = imports.gi;
@@ -95,7 +95,7 @@ Gtk.main();
 Now we will create a `Gtk.Window` to store the widget in. We call `Gtk.Window.prototype.add()` to add the widget to the window and finally `Gtk.Window.prototype.show_all()` to make both the window and the widget visible to the user.
 
 ```js{14}
-#!/usr/bin/gjs
+#!/usr/bin/env gjs
 
 imports.gi.versions.Gtk = "3.0";
 const { Gtk } = imports.gi;

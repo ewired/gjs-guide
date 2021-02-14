@@ -9,7 +9,7 @@ title: Buttons
 `Gtk.Button` is the "base" for all buttons in GNOME. It provides an implementation of a button which can contain either text or imagery.
 
 ```js
-#!/usr/bin/gjs
+#!/usr/bin/env gjs
 
 imports.gi.versions.Gtk = "3.0";
 const { Gtk } = imports.gi;
@@ -34,7 +34,7 @@ Gtk.main();
 `Gtk.ToggleButton` is an extension of `Gtk.Button`. It is visually similar but when first pressed stays depressed or *active* to indicate it has been *toggled*. It takes a second press to *toggle* the button back to *inactive*. `Gtk.ToggleButton` thus has two distinct states: active and inactive.
 
 ```js
-#!/usr/bin/gjs
+#!/usr/bin/env gjs
 
 imports.gi.versions.Gtk = "3.0";
 const { Gtk } = imports.gi;
@@ -59,7 +59,7 @@ Gtk.main();
 `Gtk.LinkButton` extends `Gtk.Button` to provide an easy way to add links to an application. It functions identically to a `Gtk.Button` except instead of running a custom action when clicked it opens the provided link in the user's browser or application of choice.
 
 ```js
-#!/usr/bin/gjs
+#!/usr/bin/env gjs
 
 imports.gi.versions.Gtk = "3.0";
 const { Gtk } = imports.gi;
