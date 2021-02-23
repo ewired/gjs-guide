@@ -12,5 +12,5 @@ features:
   details: A fast JavaScript engine backed by all the resources of Mozilla's SpiderMonkey & Firefox development.
 - title: Fully Featured
   details: Complete access to the GNOME stack, all in JavaScript
-footer: MIT Licensed | Copyright © 2018 Evan Welsh | GJS, A GNOME Project 
+footer: MIT Licensed | Copyright © 2021 Evan Welsh | GJS, A GNOME Project 
 ---

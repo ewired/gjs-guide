@@ -1,33 +1,48 @@
 ---
 title: GJS Guides
 date: 2018-07-25 16:10:11
-layout: IndexPage
 ---
 
 # Developer Guides
 
     Welcome to GJS!
 
-<ShowCaseBox title="GObject" subtitle="Getting to know GObject">
-<ShowCase link="gobject/basics.html" title="Basics" subtitle="A gentle introduction to GObject" />
-<ShowCase link="gobject/subclassing.html" title="Subclassing" subtitle="How to subclass and extend GObject" />
-<ShowCase link="gobject/interfaces.html" title="Interfaces" subtitle="How to implement GObject Interfaces" />
-</ShowCaseBox>
+## GObject: Getting to know GObject
 
-<ShowCaseBox title="GTK+" subtitle="Looking for help building an application?">
-<ShowCase link="gtk/gtk-tutorial/" title="Getting Started with GTK+" subtitle="New to GTK+ or using it with GJS? This is for you!" />
-<ShowCase link="gtk/application-packaging.html" title="GTK+ Application Packaging" subtitle="How do I package my GTK+ application with GJS?"  />
-</ShowCaseBox>
+- Basics: [A gentle introduction to GObject](gobject/basics.md)
+- Subclassing: [How to subclass and extend GObject](gobject/subclassing.md)
+- Interfaces: [How to implement GObject Interfaces](gobject/interfaces.md)
 
-<ShowCaseBox title="GJS" subtitle="What sets GJS apart from other JavaScript environments?">
-<ShowCase link="gjs/style-guide.html" title="Style Guide" subtitle="The official style guide for GJS and GNOME projects written in GJS."  />
-<ShowCase link="gjs/transition.html" title="Transition" subtitle="How does GJS compare to other JavaScript environments?"  />
-<ShowCase link="gjs/legacy-class-syntax.html" title="Legacy Classes" subtitle="How do I use the deprecated Lang.Class objects?"  />
-<ShowCase link="gjs/features-across-versions.html" title="Feature Compatibility" subtitle="Which features work in my version of GJS?"  />
-</ShowCaseBox>
+## GTK+: Looking for help building an application?
 
+- [Getting Started with GTK+](gtk/gtk-tutorial/)
 
+New to GTK+ or using it with GJS? This is for you!
 
-<ShowCaseBox title="Gio" subtitle="Looking for help with files or application settings?">
-<ShowCase link="gio/file-operations.html" title="Files in GJS" subtitle="Basic File Operations in GJS"  />
-</ShowCaseBox>
+- [GTK+ Application Packaging](gtk/application-packaging.md)
+
+How do I package my GTK+ application with GJS?
+
+## GJS: What sets GJS apart from other JavaScript environments?
+
+- [Style Guide](gjs/style-guide.md)
+
+The official style guide for GJS and GNOME projects written in GJS.
+
+- [Transition](gjs/transition.md)
+
+How does GJS compare to other JavaScript environments?
+
+- [Legacy Classes](gjs/legacy-class-syntax.md)
+
+How do I use the deprecated Lang.Class objects?
+
+- [Feature Compatibility](gjs/features-across-versions.md)
+
+Which features work in my version of GJS?
+
+## Gio: Looking for help with files or application settings?
+
+[Files in GJS](gio/file-operations.md)
+
+Basic File Operations in GJS
