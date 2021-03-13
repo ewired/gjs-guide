@@ -13,7 +13,7 @@ title: Images
 In this example we've created a simple image viewer.
 
 ```js
-#!/usr/bin/gjs
+#!/usr/bin/env gjs
 
 imports.gi.versions.Gtk = "3.0";
 const { Gtk } = imports.gi;
@@ -52,7 +52,7 @@ To load from an icon name, set the `iconName` property when constructing the ima
 We can use this feature to place icons on buttons:
 
 ```js
-#!/usr/bin/gjs
+#!/usr/bin/env gjs
 
 imports.gi.versions.Gtk = "3.0";
 const { Gtk } = imports.gi;

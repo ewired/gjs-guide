@@ -16,7 +16,7 @@ Let's modify the Image Viewer example from [Image](../../09-images.html) to util
 First we need to import our depedencies...
 
 ```js{6}
-#!/usr/bin/gjs
+#!/usr/bin/env gjs
 
 imports.gi.versions.Gtk = "3.0";
 const { Gio, Gtk } = imports.gi;
@@ -126,7 +126,7 @@ Lastly, we run the application. This line replaces both `Gtk.init(null)` and `Gt
 You should now have: 
 
 ```js
-#!/usr/bin/gjs
+#!/usr/bin/env gjs
 
 imports.gi.versions.Gtk = "3.0";
 const { Gio, Gtk } = imports.gi;

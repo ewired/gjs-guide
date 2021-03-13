@@ -16,7 +16,7 @@ Both `Gtk.Entry` and `Gtk.TextView` rely on *buffers* to store their text for th
 
 
 ```js
-#!/usr/bin/gjs
+#!/usr/bin/env gjs
 
 imports.gi.versions.Gtk = "3.0";
 const { Gtk } = imports.gi;
@@ -54,7 +54,7 @@ Gtk.main();
 `Gtk.TextView` is a multi-line text field that allows the user to enter long amounts of data with formatting if desired.
 
 ```js
-#!/usr/bin/gjs
+#!/usr/bin/env gjs
 
 imports.gi.versions.Gtk = "3.0";
 const { Gtk } = imports.gi;

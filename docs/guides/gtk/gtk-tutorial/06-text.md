@@ -19,7 +19,7 @@ To create a `Gtk.Label` with standard text simply pass the text as a JavaScript 
 Here is a simple example:
 
 ```js
-#!/usr/bin/gjs
+#!/usr/bin/env gjs
 
 imports.gi.versions.Gtk = "3.0";
 const { Gtk } = imports.gi;
@@ -41,7 +41,7 @@ To use markup you must pass `useMarkup` to the label.
 Here is a simple example:
 
 ```js
-#!/usr/bin/gjs
+#!/usr/bin/env gjs
 
 imports.gi.versions.Gtk = "3.0";
 const { Gtk } = imports.gi;
