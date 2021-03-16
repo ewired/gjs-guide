@@ -26,6 +26,10 @@ JavaScript is a prototype-based language, which means that extensions can modify
   <ShowCase link="development/debugging.html" title="Debugging" subtitle="How to debug an extension"/>
 </ShowCaseBox>
 
+<ShowCaseBox title="Upgrading" subtitle="How to upgrade an extension">
+  <ShowCase link="upgrading/gnome-shell-40.html" title="GNOME Shell 40" subtitle="Port Extensions to GNOME Shell 40"/>
+</ShowCaseBox>
+
 
 [gnome-api]: https://gjs-docs.gnome.org
 
