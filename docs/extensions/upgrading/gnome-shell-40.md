@@ -135,8 +135,8 @@ Workspace View has two fit modes ([`ui.workspacesView.FitMode`](https://gitlab.g
 
 | Type                     | Where                                 |
 | ------------------------ | ------------------------------------- |
-| Born In                  | `ui.overviewControls.ControlsManager` |
-| Style Reference          | `.workspaces-view`                    |
+| Created In               | [`ui.overviewControls.ControlsManager`](https://gitlab.gnome.org/GNOME/gnome-shell/-/blob/ec071ae4c2c747cc432839805d0c3754f647d55a/js/ui/overviewControls.js#L356) |
+| Style Class              | `.workspaces-view`                    |
 
 ### Window Preview
 
