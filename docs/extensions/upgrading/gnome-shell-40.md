@@ -1173,6 +1173,22 @@ GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
 
 *prefsWidget* is the main widget you are returning in *buildPrefsWidget()* function.
 
+### Gtk.accelerator_parse()
+
+*Gtk.accelerator_parse()* function in GTK4 returns *three* elements instead of *two*.
+
+For example, if you are doing this:
+
+```js
+let [key, mods] = Gtk.accelerator_parse('<Control>a');
+```
+
+The first element is boolean and means whether the parse result is ok:
+
+```js
+let [ok, key, mods] = Gtk.accelerator_parse('<Control>a');
+```
+
 ### GtkRadiobutton
 
 `Gtk.RadioButton` no longer exist in GTK4. To have the same behavior you can use [`GtkToggleButton`](https://gjs-docs.gnome.org/gtk40/gtk.togglebutton) with `group` property.
