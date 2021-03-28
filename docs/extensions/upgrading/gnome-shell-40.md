@@ -26,15 +26,15 @@ title: Port Extensions to GNOME Shell 40
 
 ## metadata.json
 
-The first thing you should do to make your extension available on GNOME Shell 40 is adding *"40.0"* to the *"shell-version"*.
+The first thing you should do to make your extension available on GNOME Shell 40 is adding *"40"* to the *"shell-version"*.
 
-For example, this *metadata.json* means you are supporting GNOME Shell 40.0 and 3.36:
+For example, this *metadata.json* means you are supporting GNOME Shell 40 and 3.36:
 
 ```json
 {
     "name": "Extension Name",
     "description": "Extension Description",
-    "shell-version": ["3.36", "40.0"],
+    "shell-version": ["3.36", "40"],
     "url": "",
     "uuid": "example@example",
     "version": 1
@@ -46,7 +46,7 @@ There is a difference between GNOME Shell 40 and older versions. While older GNO
 It means if your *metadata.json* is like this:
 
 ```json
-"shell-version": ["40.0"],
+"shell-version": ["40"],
 ```
 
 These GNOME Shell versions are also supported in both local and stable versions:
@@ -67,7 +67,7 @@ const shellVersion = Number.parseInt(major);
 if (shellVersion < 40)
     log('Shell 3.38 or lower');
 else
-    log('Shell 40.0 or higher');
+    log('Shell 40 or higher');
 ```
 
 ### Importing namespace only when exist
