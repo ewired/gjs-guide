@@ -54,7 +54,7 @@ const fileChooserDialog = new Gtk.FileChooserNative({
     parent: this,
     action: Gtk.FileChooserAction.OPEN,
     accept_label: 'Add Notes',
-    transient_for: this
+    transient_for: this,
 });
 ```
 
@@ -70,7 +70,7 @@ if (result === Gtk.Response.ACCEPT) {
 }
 ```
 
-We we'll implement `/* file open code */` in the next section.
+We'll implement `/* file open code */` in the next section.
 
 *For more information on handling files in GJS go to [GJS Basic File Operations]()*
 
@@ -80,12 +80,12 @@ First we'd like to change the window title to reflect the new file. Add this cod
 
 ```js
 let file = fileChooserDialog.get_file();
-let fileInfo = file.query_info(Gio.FILE_ATTRIBUTE_STANDARD_NAME, 0, null);
 
-if (fileInfo !== null) {
+try {
+    let fileInfo = file.query_info(Gio.FILE_ATTRIBUTE_STANDARD_NAME, 0, null);
     let title = fileInfo.get_attribute_as_string(Gio.FILE_ATTRIBUTE_STANDARD_NAME);
     this._headerBar.set_title(title)
-} else {
+} catch {
     // Fallback on the literal file name
     this._headerBar.set_title(file.get_basename());
 }
@@ -188,16 +188,12 @@ Now let's finish up by actually writing to the file.
 ```js
 let destinationFile = Gio.File.new_for_path(destination);
 
-if (GLib.mkdir_with_parents(destinationFile.get_parent().get_path(), PERMISSIONS_MODE) === 0) {
-    let [success, tag] = file.replace_contents(dataJSON, null, false, Gio.FileCreateFlags.REPLACE_DESTINATION, null);
-
-    if(success) {
-        /* it worked! */
-    } else {
-        /* it failed */
-    }
-} else {
-     /* error */
+try {
+    destinationFile.get_parent().make_directory_with_parents(null);
+    destinationFile.replace_contents(dataJSON, null, false, Gio.FileCreateFlags.REPLACE_DESTINATION, null);
+    /* it worked! */
+} catch {
+    /* error */
 }
 ```
 
