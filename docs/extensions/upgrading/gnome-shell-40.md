@@ -475,8 +475,7 @@ If you want to see the template structure for prefs window dialog you can see th
 In GNOME 40 you can get the window like this:
 
 ```js
-const {GLib} = imports.gi;
-GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
+prefsWidget.connect('realize', () => {
     let window = prefsWidget.get_root();
     window.default_width = 700;
     window.default_height = 900;
