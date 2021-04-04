@@ -328,12 +328,12 @@ let label = new Gtk.Label({
 });
 ```
 
-You can use *style_class* property:
+You can use the *css_classes* property:
 
 ```js
 let label = new Gtk.Label({
     label: 'test',
-    style_class: 'my-label',
+    css_classes: ['my-label'],
 });
 ```
 
