@@ -317,7 +317,7 @@ function buildPrefsWidget ()
 
 ### Provide css file for prefs
 
-There isn't any *style* properties on GTK4. You should use *style_class* and css instead.
+There isn't any *style* properties on GTK4. You should use *css_classes* and css instead.
 
 For example, if you are doing this:
 
