@@ -1,3 +1,7 @@
+---
+title: Running GTK in GJS
+---
+
 # Running GTK+ in GJS
 
 Throughout this tutorial you will see small examples of GTK+ code in GJS.

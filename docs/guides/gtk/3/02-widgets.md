@@ -1,5 +1,6 @@
 ---
 title: Widgets and Other GTK+ Objects
+next: 03-installing.md
 ---
 
 # Widgets in GTK+
@@ -21,7 +22,7 @@ button.connect('clicked', () => {
 In this example we call the `connect()` function on an already created `button` (we'll learn how to create buttons later). `connect()` takes two arguments the signal name - in this case `'clicked'` - and a callback.
 We're using an [arrow function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) to provide the callback. Every time this button is clicked a message will appear in the log saying `'The button was clicked'`.
 
-*Concepts utilized in this example: [Logging in GJS](../../gjs/transition.md) and [Strings in GJS](../../gjs/strings.html)*
+*Concepts utilized in this example: [Logging in GJS](../../gjs/intro.md).
 
 ## Widget Properties
 

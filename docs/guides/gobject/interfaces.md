@@ -1,5 +1,5 @@
 ---
-title: GObject Interfaces
+title: Interfaces
 ---
 
 # GObject Interfaces

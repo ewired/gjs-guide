@@ -1,6 +1,3 @@
----
-The Basic of GTK+
----
 # The Basics of GTK+
 
 [[toc]]

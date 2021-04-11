@@ -2,8 +2,10 @@
 home: true
 heroText: GJS
 tagline: A Guide to JavaScript for GNOME
-actionText: Get Started →
-actionLink: /guides/
+actions: 
+- text: Get Started →
+  link: /guides/
+  type: primary
 heroImage: /logo-alt.svg
 features:
 - title: Flexible

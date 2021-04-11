@@ -11,7 +11,7 @@ This page is an overview of GNOME Shell's architecture, from the perspective of 
 
 <img :src="$withBase('/assets/img/gnome-shell-library-architecture.png')" />
 
-## Clutter & St
+## Clutter and St
 
 Unlike most GNOME applications, Mutter and GNOME Shell are both built on the Clutter toolkit which is more abstract than Gtk.
 

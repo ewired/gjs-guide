@@ -1,5 +1,5 @@
 ---
-title: Layouts in GTK+
+title: Layouts in GTK
 ---
 
 # Layouts in GTK+
