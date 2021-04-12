@@ -1,6 +1,5 @@
 ---
 title: Style Guide
-date: 2018-07-25 16:10:11
 ---
 # GJS Style Guide
 

@@ -1,8 +1,8 @@
 ---
-title: GTK+ Application Packaging Specification
-date: 2018-07-25 16:10:11
+title: GTK Application Packaging Specification
+sidebar: 'auto'
 ---
-# GJS GTK+ Application Packaging Specification
+# GTK Application Packaging Specification
 
 This page details the built-in packaging specification for Javascript applications using GJS and GObject Introspection.
 

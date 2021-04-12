@@ -1,8 +1,8 @@
 ---
-title: Imports & Modules
+title: Imports and Modules
 ---
 
-# Imports & Modules
+# Imports and Modules
 
 It's common for larger extensions or extensions with discrete components to separate code into modules. You can put code to be imported into `.js` files and import them in `extension.js`, `prefs.js` or each other.
 

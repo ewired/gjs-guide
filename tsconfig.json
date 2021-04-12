@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "target": "ES2017",
+        "lib": [
+            "DOM",
+            "ES2017"
+        ]
+    },
+    "include": [
+        "docs/.vuepress"
+    ]
+}

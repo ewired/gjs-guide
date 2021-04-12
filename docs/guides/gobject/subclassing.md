@@ -1,5 +1,5 @@
 ---
-title: GObject Subclasses
+title: Subclasses
 ---
 
 # GObject Subclassing

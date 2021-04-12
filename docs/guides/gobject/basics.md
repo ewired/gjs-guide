@@ -1,8 +1,8 @@
 ---
-title: GObject Basics
+title: The Basics
 ---
 
-# GObject Basics
+# The Basics of GObject
 
 GObject is the base upon which most of the GNOME platform is built. This is a gentle introduction to using GObject in GJS, including constructing object, using properties and connecting to signals.
 
