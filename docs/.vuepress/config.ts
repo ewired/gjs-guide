@@ -64,6 +64,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                 '/guides/gjs/features-across-versions.md',
                 '/guides/gjs/legacy-class-syntax.md',
                 '/guides/gjs/style-guide.md',
+                '/guides/gjs/memory-management.md',
               ]
             },
             {
@@ -102,6 +103,7 @@ export default defineUserConfig<DefaultThemeOptions>({
           '/guides/gjs/features-across-versions.md',
           '/guides/gjs/legacy-class-syntax.md',
           '/guides/gjs/style-guide.md',
+          '/guides/gjs/memory-management.md',
         ]
       }],
       '/guides/gobject/': [{

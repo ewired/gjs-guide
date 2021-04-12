@@ -24,6 +24,10 @@ How do I use the deprecated Lang.Class objects?
 
 Which features work in my version of GJS?
 
+### [Tips On Memory Management](gjs/memory-management.md)
+
+Tips on memory management in GJS.
+
 ## GObject
 
     Getting to know GObject
