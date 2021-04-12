@@ -5,6 +5,7 @@ import path from 'path';
 export default defineUserConfig<DefaultThemeOptions>({
   title: 'GNOME Javascript',
   description: 'A Guide To GNOME Javascript!',
+  base: process.env.VUEPRESS_BASE_URL ?? '/',
   dest: 'public',
   plugins: [
     path.resolve(__dirname, './plugins/flexsearch/dist/injectSearch.js'),

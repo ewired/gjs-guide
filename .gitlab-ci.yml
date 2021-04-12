@@ -10,12 +10,16 @@ image: node:12.18.2
 
 stages:
 - build
+- preview
 - deploy
 
 build:
   stage: build
   allow_failure: false
-  when: always
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - when: always
   cache:
     paths:
     - node_modules/
@@ -24,6 +28,27 @@ build:
   artifacts:
     paths:
     - public
+
+
+preview:
+  stage: preview
+  artifacts:
+    paths:
+    - public
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: on_success
+      allow_failure: false
+    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS'
+      when: never
+  variables:
+    VUEPRESS_BASE_URL: '/-/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID/artifacts/public/'
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    url: https://$CI_PROJECT_NAMESPACE.pages.gitlab.gnome.org/-/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID/artifacts/public/index.html
+  script:
+  - *build
+
 
 production:
   stage: deploy
