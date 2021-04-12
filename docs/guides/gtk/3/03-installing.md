@@ -6,7 +6,7 @@ title: Installing GJS and Running The Examples
 
 [[toc]]
 
-This guide is built for running the examples you will encounter in the first half of this guide, for setting up an application development environment go [here](../../gjs/editor-tips.html);
+This guide is built for running the examples you will encounter in the first half of this guide, for setting up an application development environment go [here](../3/12-app-dev.html#using-gnome-builder);
 
 ### Running a Tutorial
 
@@ -18,7 +18,7 @@ You can see any program output in the output viewer on the right side of the win
   
 ## Using The Command Line
 
-Using the command line is possible but can be difficult if your distribution is not running a modern version of GJS by default. Beginning examples may function properly, while more advanced topics fail due to missing features. You can view a list of supported GJS features by version [here](../gjs/features-across-versions.html).
+Using the command line is possible but can be difficult if your distribution is not running a modern version of GJS by default. Beginning examples may function properly, while more advanced topics fail due to missing features. You can view a list of supported GJS features by version [here](../../gjs/features-across-versions.html).
 
 ### Installing GJS
 
