@@ -8,14 +8,6 @@ title: Installing GJS and Running The Examples
 
 This guide is built for running the examples you will encounter in the first half of this guide, for setting up an application development environment go [here](../3/12-app-dev.html#using-gnome-builder);
 
-### Running a Tutorial
-
-Place any code you would like to run in the code viewer on the left side of the window.
-
-Now, click the `Run` button in the upper right corner.
-
-You can see any program output in the output viewer on the right side of the window.
-  
 ## Using The Command Line
 
 Using the command line is possible but can be difficult if your distribution is not running a modern version of GJS by default. Beginning examples may function properly, while more advanced topics fail due to missing features. You can view a list of supported GJS features by version [here](../../gjs/features-across-versions.html).
@@ -38,17 +30,12 @@ Verify your system has a recent version of GJS. Type...
 
 ### Running A Tutorial
 
-Save the tutorial to a file, `file.js`.
+Open a new file and place the code you would like to run in a code viewer of your choosing.
+
+Save the code to a file, `file.js`.
 
 Run this in terminal:
-    
+            
     gjs file.js
-
-
-
-
-
-
-
-
-
+    
+The program output will appear in the terminal.

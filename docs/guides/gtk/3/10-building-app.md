@@ -11,7 +11,7 @@ These problems ensure that user's will have difficulty finding your application 
 
 ## Creating a new application
 
-Let's modify the Image Viewer example from [Image](../../09-images.html) to utilize `Gtk.Application`:
+Let's modify the Image Viewer example from [Image](./09-images.html) to utilize `Gtk.Application`:
 
 First we need to import our depedencies...
 
