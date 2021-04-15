@@ -32,7 +32,7 @@ If you are working in another IDE it is possible but more complicated.
 
 ### Download the Template
 
-First, download the application template [here](TODO.localhost) (or use git clone [link])
+First, download the application template (or use git clone [link])
 
 ### Install GJS
 
