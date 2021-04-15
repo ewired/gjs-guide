@@ -63,3 +63,8 @@ How do I package my GTK application with GJS?
 ### [File IO in GJS](gio/file-operations.md)
 
 Basic File Operations in GJS
+
+### [Subprocesses in GJS](gio/subprocesses.md)
+
+Spawning subprocesses in GJS
+

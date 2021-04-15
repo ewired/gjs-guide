@@ -89,7 +89,8 @@ export default defineUserConfig<DefaultThemeOptions>({
               text: 'Gio',
               isGroup: true,
               children: [
-                '/guides/gio/file-operations.md'
+                '/guides/gio/file-operations.md',
+                '/guides/gio/subprocesses.md',
               ]
             }
 
@@ -128,7 +129,8 @@ export default defineUserConfig<DefaultThemeOptions>({
         text: 'Gio',
         isGroup: true,
         children: [
-          '/guides/gio/file-operations.md'
+          '/guides/gio/file-operations.md',
+          '/guides/gio/subprocesses.md',
         ]
       }],
       '/guides/gtk/3/': [{
