@@ -17,7 +17,7 @@ As GJS' underlying JavaScript engine, [SpiderMonkey](https://developer.mozilla.o
 | [String.prototype.contains](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/contains) | ✔️  | ✔️| ✔️ | ❌ | ❌ |
 | [String.prototype.includes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes) | ❌  | ❌ | ❌ | ✔️ | ✔️ |
 | [String.prototype.padStart](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart) | ❌ | ❌ | ❌ | ✔️ | ✔️ | 
-| [String.prototype.padStart](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd) | ❌ | ❌ | ❌ | ✔️ | ✔️ | 
+| [String.prototype.padEnd](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd) | ❌ | ❌ | ❌ | ✔️ | ✔️ | 
 | [String Templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) | ❌ |  ❌ | ✔️ | ✔️ | ✔️ |
 | <b>Objects</b> |
 | [Object.values()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values) | ❌ | ❌ | ❌ | ✔️ | ✔️ |
