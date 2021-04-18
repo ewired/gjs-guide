@@ -159,6 +159,7 @@ As a simple example, let's add a panel button to show what a working extension m
 
 ```js
 const St = imports.gi.St;
+const Gio = imports.gi.Gio;
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
