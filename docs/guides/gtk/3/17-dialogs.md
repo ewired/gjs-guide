@@ -4,6 +4,18 @@ title: Dialogs
 
 # Dialogs
 
+Dialog boxes are a convenient way to prompt the user for a small amount
+of input, e.g. to display a message, ask a question, or anything else
+that does not require extensive effort on the user’s part.
+
+[Learn More](https://gjs-docs.gnome.org/gtk30/gtk.dialog)
+
+## `Gtk.MessageDialog`
+
+`Gtk.MessageDialog` presents a dialog with some message text. It’s simply a convenience widget; you could construct the equivalent of `Gtk.MessageDialog` from `Gtk.Dialog` without too much effort, but `Gtk.MessageDialog` saves typing.
+
+[Learn More](https://gjs-docs.gnome.org/gtk30/gtk.messagedialog)
+
 ### Creating a dialog
 
 To create the dialog we'll use `GtkMessageDialog`. GtkMessageDialog 

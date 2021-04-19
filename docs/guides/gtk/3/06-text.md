@@ -12,6 +12,8 @@ Read [Strings in GJS](../../gjs/strings.html) before starting this page!
 
 In GTK+ the simplest way to display text is using `Gtk.Label`. A `Gtk.Label` can contain simple, standard text or a variety of text styles using Markdown.
 
+[Learn More](https://gjs-docs.gnome.org/gtk30-label/)
+
 ## Standard Text
 
 To create a `Gtk.Label` with standard text simply pass the text as a JavaScript string to the `label` property of `Gtk.Label` in the constructor or using `Gtk.Label.prototype.set_label()`.

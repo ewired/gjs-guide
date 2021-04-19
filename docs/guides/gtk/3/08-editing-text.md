@@ -14,6 +14,7 @@ Both `Gtk.Entry` and `Gtk.TextView` rely on *buffers* to store their text for th
 
 `Gtk.Entry` is a simple, one-line text field that allows the user to enter short amounts of data.
 
+[Learn More](https://gjs-docs.gnome.org/gtk30-entry/)
 
 ```js
 #!/usr/bin/env gjs
@@ -52,6 +53,8 @@ Gtk.main();
 ## `Gtk.TextView`
 
 `Gtk.TextView` is a multi-line text field that allows the user to enter long amounts of data with formatting if desired.
+
+[Learn More](https://gjs-docs.gnome.org/gtk30-textview/)
 
 ```js
 #!/usr/bin/env gjs
