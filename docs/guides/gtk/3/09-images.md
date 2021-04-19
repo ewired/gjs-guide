@@ -8,6 +8,8 @@ title: Images
 
 `Gtk.Image` is a widget which stores images from a variety of sources. It can display from a file, an icon name, or an array of pixels.
 
+[Learn More](https://gjs-docs.gnome.org/gtk30-image/)
+
 ### Loading from a File
 
 In this example we've created a simple image viewer.
