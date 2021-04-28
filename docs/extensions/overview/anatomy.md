@@ -61,7 +61,7 @@ The topic of GSettings and `schemas/` is explained on the [Preferences](../devel
     "name": "Example",
     "description": "This is an example extension.",
     "version": 1,
-    "shell-version": [ "3.36", "3.38" ],
+    "shell-version": [ "3.38", "40" ],
     "url": "https://gitlab.gnome.org/World/ShellExtensions/example"
 }
 ```
@@ -88,7 +88,11 @@ The first part should be a simple string (possibly a variation of the extension 
 
 ### `shell-version`
 
-`shell-version` is an array of GNOME Shell versions your extension supports and must include at least one version.
+`shell-version` is an array of strings describing which GNOME Shell versions your extension supports. It must include at least one entry or your extension will be uninstallable.
+
+For versions up to and including GNOME 3.38, you should use a major and minor version such as `"3.38"`. Starting with GNOME 40, you should simply use the major version, such as `"40"` or `"41"`.
+
+Note that GNOME Shell has a configuration setting, `disable-extension-version-validation`, which controls whether unsupported extensions can be loaded. Before GNOME 40 this was `true` by default (users could install extensions regardless of the `shell-version`), but because of the major changes it is now `false` by default.
 
 ### `url`
 
