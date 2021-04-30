@@ -75,6 +75,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                 '/guides/gobject/basics.md',
                 '/guides/gobject/interfaces.md',
                 '/guides/gobject/subclassing.md',
+                '/guides/gobject/gtype.md',
               ]
             },
             {
@@ -115,6 +116,7 @@ export default defineUserConfig<DefaultThemeOptions>({
           '/guides/gobject/basics.md',
           '/guides/gobject/interfaces.md',
           '/guides/gobject/subclassing.md',
+          '/guides/gobject/gtype.md',
         ]
       }],
       '/guides/gtk/': [{

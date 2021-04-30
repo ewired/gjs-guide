@@ -44,6 +44,10 @@ How to subclass and extend GObject
 
 How to implement GObject Interfaces
 
+### [GType](gobject/gtype.md)
+
+The foundation of the GObject system
+
 ## GTK
 
     Looking for help building an application?
