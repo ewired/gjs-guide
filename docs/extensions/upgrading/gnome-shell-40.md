@@ -8,7 +8,8 @@ title: Port Extensions to GNOME Shell 40
 1. [metadata.json](#metadata-json)
 2. [Useful Basics](#useful-basics)
    1. [Checking GNOME Shell Version](#checking-gnome-shell-version)
-   2. [Importing namespace only when exist](#importing-namespace-only-when-exist)
+   2. [Checking GTK Version](#checking-gtk-version)
+   3. [Importing namespace only when exist](#importing-namespace-only-when-exist)
 3. [Top Panel](#top-panel)
 4. [Overview Elements](#overview-elements)
    1. [Search Entry](#search-entry)
@@ -68,6 +69,15 @@ if (shellVersion < 40)
     log('Shell 3.38 or lower');
 else
     log('Shell 40 or higher');
+```
+
+### Checking GTK Version
+
+```js
+const {Gtk} = imports.gi;
+const gtkVersion = Gtk.get_major_version();
+
+log(`GTK version is ${gtkVersion}`);
 ```
 
 ### Importing namespace only when exist
