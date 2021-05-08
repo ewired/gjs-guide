@@ -266,9 +266,9 @@ In this case you will have to create a custom `Gtk.BuilderScope` to connect the 
 const {Gtk, GObject} = imports.gi;
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 
-const BuilderScope = GObject.registerClass({
+const MyBuilderScope = GObject.registerClass({
     Implements: [Gtk.BuilderScope],
-}, class BuilderScope extends GObject.Object {
+}, class MyBuilderScope extends GObject.Object {
 
     vfunc_create_closure(builder, handlerName, flags, connectObject) {
         if (flags & Gtk.BuilderClosureFlags.SWAPPED)
@@ -291,7 +291,7 @@ function buildPrefsWidget () {
 
     let builder = new Gtk.Builder();
 
-    builder.set_scope(new BuilderScope());
+    builder.set_scope(new MyBuilderScope());
     builder.set_translation_domain('gettext-domain');
     builder.add_from_file(Me.dir.get_path() + '/prefs.ui');
     
@@ -303,11 +303,13 @@ function buildPrefsWidget () {
 
 - You should set the scope with *builder.set_scope()* before adding the template file.
 
-- *BuilderScope* class contains all the functions related to the handlers.
+- *MyBuilderScope* class contains all the functions related to the handlers.
 
-- When you click on button, *BuilderScope.on_btn_click()* will be called.
+- When you click on button, *MyBuilderScope.on_btn_click()* will be called.
 
-- You should declare all handlers functions in *BuilderScope*. By dropping any of them, GtkBuilder throws an error.
+- You should declare all handlers functions in *MyBuilderScope*. By dropping any of them, GtkBuilder throws an error.
+
+- You should pick a unique name for *BuilderScope* class to avoid overriding other extensions's *BuilderScope*. It's a good practice to use your extension name for that. For example use *ExtensionNameBuilderScope* instead of *MyBuilderScope*.
 
 ### show_all and destroy
 
