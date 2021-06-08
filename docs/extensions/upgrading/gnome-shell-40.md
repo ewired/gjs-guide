@@ -674,8 +674,7 @@ On GTK4, these *GtkHeaderBar* functions have new names:
 For example:
 
 ```js
-const {GLib} = imports.gi;
-GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
+prefsWidget.connect('realize', () => {
     
     let window = prefsWidget.get_root();
     
@@ -898,7 +897,7 @@ You can use toplevel *menu* element with *GtkMenuButton*:
 And now on prefs you can connect the signals like this:
 
 ```js
-GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
+prefsWidget.connect('realize', () => {
     
     let window = prefsWidget.get_root();
     let actionGroup = new Gio.SimpleActionGroup();
@@ -1113,7 +1112,7 @@ For example, if your *prefs.ui* is like this:
 You can add the *GtkEventControllerKey* to the prefs window like this:
 
 ```js
-const {GObject, Gtk, Gdk, GLib} = imports.gi;
+const {GObject, Gtk, Gdk} = imports.gi;
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 
 
@@ -1130,7 +1129,7 @@ const PrefsWidget = GObject.registerClass({
         
         super._init(params);
         
-        GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
+        this.connect('realize', () => {
             let window = this.get_root();
             window.add_controller(this._event_key_controller);
         });
@@ -1159,9 +1158,9 @@ function buildPrefsWidget() {
 *Gtk.EventControllerKey.new()* no longer accepts any parameters. For example, if you are creating *EventControllerKey* in your js file, you need to do this to have the same result:
 
 ```js
-const {Gtk, Gdk, GLib} = imports.gi;
+const {Gtk, Gdk} = imports.gi;
 
-GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
+prefsWidget.connect('realize', () => {
         
     let window = prefsWidget.get_root();
     
