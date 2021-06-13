@@ -118,7 +118,7 @@ var ArrayStore = GObject.registerClass({
 
 Interfaces that require properties to be implemented must have the GParamSpec overridden in the class registration, as well as the JavaScript getter and/or setter implemented.
 
-Below is an example of implementing the [`GtkOrientable`][gtkorientable] interface from Gtk3, which only requires implementing one property. The `orientable` property is a read-write property, so we implement both `get` and `set` functions and register it in the properties dictionary.
+Below is an example of implementing the [`GtkOrientable`][gtkorientable] interface from Gtk3, which only requires implementing one property. The `orientation` property is a read-write property, so we implement both `get` and `set` functions and register it in the properties dictionary.
 
 ```js
 imports.gi.versions.Gtk = '3.0';
@@ -161,7 +161,7 @@ const {Gio, GObject, Gtk} = imports.gi;
 var ListWidget = GObject.registerClass({
     Implements: [Gio.ListModel, Gtk.Orientable],
     Properties: {
-        'orientable': GObject.ParamSpec.override('orientable', Gtk.Orientable),
+        'orientation': GObject.ParamSpec.override('orientation', Gtk.Orientable),
     },
 }, class ListWidget extends Gtk.Widget {
     _init(params = {}) {
@@ -170,19 +170,19 @@ var ListWidget = GObject.registerClass({
         this._children = [];
     }
 
-    get orientable() {
-        if (this._orientable === undefined)
-            this._orientable = Gtk.Orientation.HORIZONTAL;
+    get orientation() {
+        if (this._orientation === undefined)
+            this._orientation = Gtk.Orientation.HORIZONTAL;
 
-        return this._orientable;
+        return this._orientation;
     }
 
-    set orientable(value) {
-        if (this.orientable === value)
+    set orientation(value) {
+        if (this.orientation === value)
             return;
 
-        this._orientable = value;
-        this.notify('orientable');
+        this._orientation = value;
+        this.notify('orientation');
     }
 
     vfunc_get_item_type() {
