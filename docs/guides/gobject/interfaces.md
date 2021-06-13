@@ -128,23 +128,23 @@ const {GObject, Gtk} = imports.gi;
 var ExampleOrientable = GObject.registerClass({
     Implements: [Gtk.Orientable],
     Properties: {
-        'orientable': GObject.ParamSpec.override('orientable', Gtk.Orientable),
+        'orientation': GObject.ParamSpec.override('orientation', Gtk.Orientable),
     },
 }, class ExampleOrientable extends GObject.Object {
 
-    get orientable() {
-        if (this._orientable === undefined)
-            this._orientable = Gtk.Orientation.HORIZONTAL;
+    get orientation() {
+        if (this._orientation === undefined)
+            this._orientation = Gtk.Orientation.HORIZONTAL;
 
-        return this._orientable;
+        return this._orientation;
     }
 
-    set orientable(value) {
-        if (this.orientable === value)
+    set orientation(value) {
+        if (this.orientation === value)
             return;
 
-        this._orientable = value;
-        this.notify('orientable');
+        this._orientation = value;
+        this.notify('orientation');
     }
 });
 ```
