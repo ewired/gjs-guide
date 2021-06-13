@@ -50,7 +50,7 @@ var ExportedClass = class ExportedClass extends _PrivateClass {
 };
 ```
 
-If placed in `example@shell.gnome.org/exampleLib.js` the script above would be available as `Me.imports.extensionLib`. If it was in a subdirectory, such as `example@shell.gnome.org/modules/exampleLib.js`, you would access it as `Me.imports.modules.exampleLib`.
+If placed in `example@shell.gnome.org/exampleLib.js` the script above would be available as `Me.imports.exampleLib`. If it was in a subdirectory, such as `example@shell.gnome.org/modules/exampleLib.js`, you would access it as `Me.imports.modules.exampleLib`.
 
 ```js
 // GJS's Built-in Modules are in the top-level
