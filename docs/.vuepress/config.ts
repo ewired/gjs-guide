@@ -87,6 +87,13 @@ export default defineUserConfig<DefaultThemeOptions>({
               ]
             },
             {
+              text: 'GLib',
+              isGroup: true,
+              children: [
+                '/guides/glib/gvariant.md',
+              ]
+            },
+            {
               text: 'Gio',
               isGroup: true,
               children: [
@@ -125,6 +132,13 @@ export default defineUserConfig<DefaultThemeOptions>({
         children: [
           '/guides/gtk/3/',
           '/guides/gtk/application-packaging/'
+        ]
+      }],
+      '/guides/glib/': [{
+        text: 'GLib',
+        isGroup: true,
+        children: [
+          '/guides/glib/gvariant.md',
         ]
       }],
       '/guides/gio/': [{
