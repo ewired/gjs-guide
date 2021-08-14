@@ -92,8 +92,8 @@ const PopupMenu = imports.ui.popupMenu;
 ```
 
 
-[extension-utils]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/master/js/misc/extensionUtils.js
-[modal-dialog]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/master/js/ui/modalDialog.js
-[panel-menu]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/master/js/ui/panelMenu.js
-[popup-menu]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/master/js/ui/popupMenu.js
+[extension-utils]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/main/js/misc/extensionUtils.js
+[modal-dialog]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/main/js/ui/modalDialog.js
+[panel-menu]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/main/js/ui/panelMenu.js
+[popup-menu]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/main/js/ui/popupMenu.js
 

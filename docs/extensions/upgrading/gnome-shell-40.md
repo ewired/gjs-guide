@@ -482,7 +482,7 @@ On GTK4, *draw-value* property for *GtkScale* is *False* by default. Set *draw-v
 
 ### Get Prefs Window and Resize it
 
-If you want to see the template structure for prefs window dialog you can see the [dbusServices in GNOME Shell source code](https://gitlab.gnome.org/GNOME/gnome-shell/-/blob/master/js/dbusServices/extensions/ui/extension-prefs-dialog.ui).
+If you want to see the template structure for prefs window dialog you can see the [dbusServices in GNOME Shell source code](https://gitlab.gnome.org/GNOME/gnome-shell/-/blob/main/js/dbusServices/extensions/ui/extension-prefs-dialog.ui).
 
 In GNOME 40 you can get the window like this:
 
