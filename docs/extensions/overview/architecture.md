@@ -71,9 +71,9 @@ This means extensions can:
 [shell-global]: https://gjs-docs.gnome.org/#q=Shell.Global
 [st]: https://gjs-docs.gnome.org/#q=st
 
-[gnome-shell-js]: https://gitlab.gnome.org/GNOME/gnome-shell/tree/master/js
-[dialog]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/master/js/ui/dialog.js
-[modal-dialog]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/master/js/ui/modalDialog.js
-[panel-menu]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/master/js/ui/panelMenu.js
-[popup-menu]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/master/js/ui/popupMenu.js
+[gnome-shell-js]: https://gitlab.gnome.org/GNOME/gnome-shell/tree/main/js
+[dialog]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/main/js/ui/dialog.js
+[modal-dialog]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/main/js/ui/modalDialog.js
+[panel-menu]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/main/js/ui/panelMenu.js
+[popup-menu]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/main/js/ui/popupMenu.js
 
