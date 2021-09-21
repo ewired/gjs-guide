@@ -210,7 +210,8 @@ function buildPrefsWidget() {
 
     // At the time buildPrefsWidget() is called, the window is not yet prepared
     // so if you want to access the headerbar you need to use a small trick
-    GLib.timeout_add(0, () => {
+    GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
+        // In GTK4 (GNOME 40), call `get_root()` instead of `get_toplevel()`
         let window = prefsWidget.get_toplevel();
         let headerBar = window.get_titlebar();
         headerbar.title = `${Me.metadata.name} Preferences`;
