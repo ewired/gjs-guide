@@ -192,7 +192,7 @@ App grid is under workspaces view and above the dash. Workspaces view goes to th
 
 GNOME Shell 40 now uses GTK4 for extension preferences. This means you need to upgrade your prefs.js UI to GTK4.
 
-It is highly recommended to create your GTK UI with template files (*.ui*). This structure decouples back-end and front-end code and make s your work easier to upgrade _and_ more maintainable.
+It is highly recommended to create your GTK UI with template files (*.ui*). This structure decouples back-end and front-end code and makes your work easier to upgrade _and_ more maintainable.
 
 If you are not currently using template files, It is easier to move your current UI to a template file and then port it to GTK4. If you are new to template files you can create your template files with Glade (Glade doesn't support GTK4 but you can create your files with Glade and then port them to GTK4. See [Convert and Validate Template Files](#convert-and-validate-template-files) for instructions).
 
