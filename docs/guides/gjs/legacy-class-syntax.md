@@ -22,7 +22,9 @@ var A = new Lang.Class({
 });
 ```
 
-### Comparison between legacy and ES6 implementations
+## Comparison between legacy and ES6
+
+### Implementations
 
 <table> 
 <tr> <td>Legacy</td> <td>ES6</td> </tr>
@@ -54,4 +56,16 @@ var A = new Lang.Class({
  </tr> 
  </table>
  
+### Binding
 
+<table> 
+<tr> <td>Legacy</td> <td>ES6</td> </tr>
+<tr>
+<td>
+<pre><code lang="js">Lang.bind(<b>this</b>, <b>this</b>.myMethod);</code></pre>
+</td>
+<td>
+<pre><code lang="js"><b>this</b>.myMethod.bind(<b>this</b>);</code></pre>
+</td>
+</tr> 
+</table>
