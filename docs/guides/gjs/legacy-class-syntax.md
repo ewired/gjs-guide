@@ -68,4 +68,22 @@ var A = new Lang.Class({
 <pre><code lang="js"><b>this</b>.myMethod.bind(<b>this</b>);</code></pre>
 </td>
 </tr> 
+<tr>
+<td>
+<pre><code lang="js">Lang.bind(<b>this</b>, function () {
+    if (this.x) {
+        /* ... */
+    }
+});
+</code></pre>
+</td>
+<td>
+<pre><code lang="js">() => {
+    if (this.x) {
+        /* ... */
+    }
+}
+</code></pre>
+</td>
+</tr>
 </table>
