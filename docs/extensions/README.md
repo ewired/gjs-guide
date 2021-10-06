@@ -52,5 +52,14 @@ How to upgrade extensions across Shell versions
 
 Porting Extensions to GNOME Shell 40
 
+## Review Guidelines
+
+> Guidelines for developers who would like their extensions distributed on [ego][ego]
+
+### [Review Guidelines](review-guidelines/review-guidelines.md)
+
+GNOME Shell Extensions Review Guidelines
+
+[ego]: https://extensions.gnome.org
 [gnome-api]: https://gjs-docs.gnome.org
 

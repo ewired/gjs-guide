@@ -203,6 +203,13 @@ export default defineUserConfig<DefaultThemeOptions>({
               children: [
                 "/extensions/upgrading/gnome-shell-40.md"
               ]
+            },
+            {
+              text: "Review Guidelines",
+              isGroup: true,
+              children: [
+                "/extensions/review-guidelines/review-guidelines.md"
+              ]
             }
           ]
         }
