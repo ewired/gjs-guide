@@ -68,13 +68,13 @@ const PanelMenu = imports.ui.panelMenu;
 class Extension {
     constructor() {
         this._indicator = null;
-        
-        this.settings = ExtensionUtils.getSettings(
-            'org.gnome.shell.extensions.example');
     }
     
     enable() {
         log(`enabling ${Me.metadata.name}`);
+
+        this.settings = ExtensionUtils.getSettings(
+            'org.gnome.shell.extensions.example');
 
         let indicatorName = `${Me.metadata.name} Indicator`;
         
