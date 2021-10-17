@@ -82,7 +82,7 @@ log(`GTK version is ${gtkVersion}`);
 
 ### Importing namespace only when exist
 
-We have some new namespaces on GNOME Shell 40 ui and some namesapces have been removed. If you only want to import when the namespace exist, you can use *try* and *catch* block:
+We have some new namespaces on GNOME Shell 40 ui and some namespaces have been removed. If you only want to import when the namespace exist, you can use *try* and *catch* block:
 
 ```js
 try {
