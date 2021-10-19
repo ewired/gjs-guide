@@ -1260,17 +1260,3 @@ $ gtk4-builder-tool simplify --3to4 --replace path_to_ui_file
 ```
 
 *While the builder tool simplify can help you to convert gtk3 to gtk4, it cannot convert everything. You need to change some parts manually.*
-
-### Useful Links
-
-- [GTK 4 Reference Manual][gtk4]
-
-- [GTK 4 Reference Manual for gjs][gjs-gtk4]
-
-- [Migrating from GTK 3.x to GTK 4][gtk3to4]
-
-
-
-[gtk4]: https://developer.gnome.org/gtk4/stable/
-[gjs-gtk4]: https://gjs-docs.gnome.org/gtk40/
-[gtk3to4]: https://developer.gnome.org/gtk4/stable/gtk-migrating-3-to-4.html
