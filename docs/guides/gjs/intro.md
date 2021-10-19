@@ -20,6 +20,8 @@ In GJS every file is treated as a "module" and any variable declared as using 'v
 |-----------------|---------------------|
 |<code>const A = imports.a;<br/>let a = new A.A();</code>|<code>const { A } = imports.a;<br/>let a = new A();</code>|
 
+Modules are searched in paths defined in the array `imports.searchPath`. You can modify the value of `imports.searchPath` to include the directories where to look for modules.
+
 ## Import Versioning
 
 ### In A GTK+ Application
