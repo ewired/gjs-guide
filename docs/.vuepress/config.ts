@@ -12,7 +12,11 @@ export default defineUserConfig<DefaultThemeOptions>({
     ['@vuepress/plugin-shiki', {
       langs: [
         'javascript',
-        'typescript'
+        'typescript',
+        'xml',
+        'bash',
+        'css',
+        'json'
       ]
     }]
   ],
