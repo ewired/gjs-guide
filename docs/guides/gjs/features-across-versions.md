@@ -12,7 +12,7 @@ As GJS' underlying JavaScript engine, [SpiderMonkey](https://developer.mozilla.o
 |<b>Classes</b> |
 |[Lang.Interface](./gjs-legacy-class-syntax.html#Interfaces)  | ❌ | ✔️ | ✔️ | ⚠️ | ⚠️ |
 |[Lang.Class](./gjs-legacy-class-syntax.html) | ✔️ | ✔️ | ✔️ | ⚠️ | ⚠️ |
-|[ES6 Classes](./gjs-transition.html#extending-gobject-classes) | ❌ | ❌ | ❌ | ✔️ | ✔️ |
+|[ES6 Classes](../gjs/intro.html#extending-gobject-classes) | ❌ | ❌ | ❌ | ✔️ | ✔️ |
 |<b>Strings</b>|
 | [String.prototype.contains](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/contains) | ✔️  | ✔️| ✔️ | ❌ | ❌ |
 | [String.prototype.includes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes) | ❌  | ❌ | ❌ | ✔️ | ✔️ |
