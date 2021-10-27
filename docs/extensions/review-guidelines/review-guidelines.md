@@ -164,7 +164,8 @@ function disable() {
 }
 ```
 
-You **MUST** remove the main loop source even if the callback function returns `false` or `GLib.SOURCE_REMOVE`.
+You **MUST** remove all active main loop sources in `disable()`, even if the callback function will eventually return `false` or `GLib.SOURCE_REMOVE`.
+
 
 ### No excessive logging
 
