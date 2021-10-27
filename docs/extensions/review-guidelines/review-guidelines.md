@@ -166,7 +166,6 @@ function disable() {
 
 You **MUST** remove all active main loop sources in `disable()`, even if the callback function will eventually return `false` or `GLib.SOURCE_REMOVE`.
 
-
 ### No excessive logging
 
 Extension **MUST NOT** print excessively to the log. The log should only be used for important messages and errors.
