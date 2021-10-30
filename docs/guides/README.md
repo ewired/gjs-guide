@@ -6,7 +6,7 @@ title: Guides
 
 ## GJS
 
-    Welcome to GJS!
+> Welcome to GJS!
 
 ### [Introduction](gjs/intro.md)
 
@@ -30,7 +30,7 @@ Tips on memory management in GJS.
 
 ## GObject
 
-    Getting to know GObject
+> Getting to know GObject
 
 ### [The Basics](gobject/basics.md)
 
@@ -50,7 +50,7 @@ The foundation of the GObject system
 
 ## GTK
 
-    Looking for help building an application?
+> Looking for help building an application?
 
 ### [Building an Application](gtk/3/)
 
@@ -62,7 +62,7 @@ How do I package my GTK application with GJS?
 
 ## Gio
 
-    Looking for help with files or application settings?
+> Looking for help with files or application settings?
 
 ### [File IO in GJS](gio/file-operations.md)
 

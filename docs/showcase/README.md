@@ -4,13 +4,7 @@ title: GJS Showcase
 
 # GJS Showcase
 
-    Many amazing apps have been built in GJS. Check them out below!
-
-## GNOME Documents
-
-![GNOME Documents](/showcase/gnome-documents.png)
-
-A document manager application designed to work with GNOME 3. [Go To Project](https://wiki.gnome.org/Apps/Documents)
+> Many amazing apps have been built in GJS. Check them out below!
 
 ## GNOME Weather
 
@@ -20,7 +14,7 @@ An application that allows you to monitor the current weather conditions for you
 
 ## GNOME Maps
 
-![GNOME Maps](/showcase/gnome-maps.jpg)
+![GNOME Maps](/showcase/gnome-maps.png)
 
 Maps gives you quick access to maps all across the world.
 

@@ -30,28 +30,35 @@ var A = new Lang.Class({
 <tr> <td>Legacy</td> <td>ES6</td> </tr>
 <tr>
 <td>
-<pre><code lang="js">var A = new Lang.Class({
-   GTypeName: '<b>A</b>',
-   Name: '<b>A</b>',
-   Extends: <b>GObject.Object</b>,
-   _init(<b>a</b>, <b>b</b>) {
-       this.parent(<b>a</b>);
-       <b>this.b = </b>b;
+
+```js
+var A = new Lang.Class({
+   GTypeName: 'A',
+   Name: 'A',
+   Extends: GObject.Object,
+   _init(a, b) {
+       this.parent(a);
+       this.b = b;
    }
  });
- </code></pre>
+```
+
  </td>
  <td>
- <pre><code lang="js">var A = GObject.registerClass({
-       GTypeName: '<b>A</b>',
-   }, class <b>A</b> /* ... */
-      /* ... */ extends <b>GObject.Object</b> { 
-          _init(<b>a</b>, <b>b</b>) {
-             super._init(<b>a</b>);
-             <b>this.b = b;</b>
+
+```js
+var A = GObject.registerClass({
+       GTypeName: 'A',
+   }, class A /* ... */
+      /* ... */ extends GObject.Object { 
+          _init(a, b) {
+             super._init(a);
+             this.b = b;
          }
    }
-);</code></pre>
+);
+```
+
  </td>
  </tr> 
  </table>
@@ -62,28 +69,42 @@ var A = new Lang.Class({
 <tr> <td>Legacy</td> <td>ES6</td> </tr>
 <tr>
 <td>
-<pre><code lang="js">Lang.bind(<b>this</b>, <b>this</b>.myMethod);</code></pre>
+
+```js
+Lang.bind(this, this.myMethod);
+```
+
 </td>
 <td>
-<pre><code lang="js"><b>this</b>.myMethod.bind(<b>this</b>);</code></pre>
+
+```js
+this.myMethod.bind(this);
+```
+
 </td>
 </tr> 
 <tr>
 <td>
-<pre><code lang="js">Lang.bind(<b>this</b>, function () {
+
+```js
+Lang.bind(this, function () {
     if (this.x) {
         /* ... */
     }
 });
-</code></pre>
+```
+
 </td>
 <td>
-<pre><code lang="js">() => {
+
+```js
+() => {
     if (this.x) {
         /* ... */
     }
 }
-</code></pre>
+```
+
 </td>
 </tr>
 </table>
