@@ -1,11 +1,9 @@
-import type { Index } from 'flexsearch';
-import type FlexSearchType from 'flexsearch';
-import { h, watchEffect, defineComponent, computed, ref, onMounted, PropType } from "vue";
+import type { Index } from "flexsearch";
+import { h, watchEffect, defineComponent, computed, ref, onMounted } from "vue";
 import { usePagesData } from "@vuepress/client";
 import { useRouter } from "vue-router";
 import type { PageData } from "@vuepress/shared";
-
-const FlexSearch = require('flexsearch') as typeof FlexSearchType;
+import FlexSearch from "flexsearch";
 
 const SEARCH_HOTKEYS = ["."];
 
@@ -16,18 +14,14 @@ type SearchPageData = PageData<{
 }>;
 
 export default defineComponent({
-  name: 'Docsearch',
+  name: "Docsearch",
   props: {
     placeholder: {
       type: String,
-      default: ""
-    }
+      default: "",
+    },
   },
-  setup({
-    placeholder
-  }: {
-    placeholder: string
-  }) {
+  setup({ placeholder }: { placeholder: string }) {
     const index = ref(null as Index<SearchPageData> | null);
     const query = ref("");
     const focusIndex = ref(-1);
@@ -35,7 +29,6 @@ export default defineComponent({
     const input = ref(null as HTMLInputElement | null);
     const searchId = ref(0);
     const currentSearch = ref("");
-
 
     const $router = useRouter();
     const $pages = usePagesData();
@@ -60,22 +53,21 @@ export default defineComponent({
       });
 
       loadAll().then((pages) => {
-        pages.forEach((page) => index.value?.add({
-          ...page,
-          header1: page.headers[0]?.title,
-          header2: page.headers[1]?.title,
-          header3: page.headers[2]?.title
-        }));
+        pages.forEach((page) =>
+          index.value?.add({
+            ...page,
+            header1: page.headers[0]?.title,
+            header2: page.headers[1]?.title,
+            header3: page.headers[2]?.title,
+          })
+        );
       });
     });
 
     const suggestions = ref([] as { link: string; value: SearchPageData }[]);
 
     function onHotkey(event: KeyboardEvent) {
-      if (
-        event.srcElement === document.body &&
-        SEARCH_HOTKEYS.includes(event.key)
-      ) {
+      if (event.srcElement === document.body && SEARCH_HOTKEYS.includes(event.key)) {
         input.value?.focus();
         event.preventDefault();
       }
@@ -125,10 +117,7 @@ export default defineComponent({
       return page.title;
     }
 
-    function querySearchAsync(
-      queryString: string,
-      cb: (links: { value: PageData; link: string }[]) => void
-    ) {
+    function querySearchAsync(queryString: string, cb: (links: { value: PageData; link: string }[]) => void) {
       const query = queryString.trim().toLowerCase();
       const maxResults = 10;
 
@@ -139,7 +128,7 @@ export default defineComponent({
       index.value.search(
         query,
         {
-          limit: maxResults
+          limit: maxResults,
         },
         (result) => {
           if (result.length > 0) {
@@ -194,44 +183,45 @@ export default defineComponent({
           ref="input"
           aria-label="Search"
           value={query.value}
-          class={focused.value ? 'focused' : ''}
+          class={focused.value ? "focused" : ""}
           placeholder={placeholder}
           autocomplete="off"
           spellcheck="false"
-          onInput={$event => {
+          onInput={($event) => {
             // @ts-expect-error
-            query.value = $event.target.value
+            query.value = $event.target.value;
           }}
-          onFocus={() => focused.value = true}
-          onBlur={() => focused.value = false}
-          onKeyup={$event => $event.key == 'enter' && go(focusIndex.value)}
+          onFocus={() => (focused.value = true)}
+          onBlur={() => (focused.value = false)}
+          onKeyup={($event) => $event.key == "enter" && go(focusIndex.value)}
           onKeydown={() => onDown()}
         />
-        {showSuggestions.value &&
-          <ul
-            class={'suggestions'}
-            onMouseleave={() => unfocus()}
-          >
-            {suggestions.value.map(
-              ({ value: s }, i) => (
-                <li
-                  key={i}
-
-                  class={i === focusIndex.value ? 'suggestion focused' : 'suggestion'}
-                  onMousedown={() => go(i)}
-                  onMouseenter={() => focus(i)}
-                >
-                  <a href={s.path} onClick={evt => evt.preventDefault()}>
-                    <span class="page-title">{s.title || s.path}</span>
-                    {s.header1 && s.header1?.toLowerCase().includes(query.value?.toLowerCase()) && <span class="header">&gt; {s.header1}</span>}
-                    {s.header2 && s.header2?.toLowerCase().includes(query.value?.toLowerCase()) && <span class="header">&gt; {s.header2}</span>}
-                    {s.header3 && s.header3?.toLowerCase().includes(query.value?.toLowerCase()) && <span class="header">&gt; {s.header3}</span>}
-                  </a>
-                </li>
-              )
-            )}
-          </ul >}
-      </div >
+        {showSuggestions.value && (
+          <ul class={"suggestions"} onMouseleave={() => unfocus()}>
+            {suggestions.value.map(({ value: s }, i) => (
+              <li
+                key={i}
+                class={i === focusIndex.value ? "suggestion focused" : "suggestion"}
+                onMousedown={() => go(i)}
+                onMouseenter={() => focus(i)}
+              >
+                <a href={s.path} onClick={(evt) => evt.preventDefault()}>
+                  <span class="page-title">{s.title || s.path}</span>
+                  {s.header1 && s.header1?.toLowerCase().includes(query.value?.toLowerCase()) && (
+                    <span class="header">&gt; {s.header1}</span>
+                  )}
+                  {s.header2 && s.header2?.toLowerCase().includes(query.value?.toLowerCase()) && (
+                    <span class="header">&gt; {s.header2}</span>
+                  )}
+                  {s.header3 && s.header3?.toLowerCase().includes(query.value?.toLowerCase()) && (
+                    <span class="header">&gt; {s.header3}</span>
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     );
-  }
+  },
 });
