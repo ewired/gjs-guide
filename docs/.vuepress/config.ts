@@ -28,6 +28,7 @@ export default defineUserConfig<DefaultThemeOptions>({
     repo: 'https://gitlab.gnome.org/ewlsh/gjs-guide',
     docsBranch: 'main',
     logo: '/logo.svg',
+    logoDark: '/logo-dark.svg',
     docsDir: 'docs',
     navbar: [
       {

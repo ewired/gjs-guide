@@ -1,3 +1,11 @@
+:root, html.dark {
+  --c-brand: #4a86cf;
+  --c-brand-light: #4a86cf;
+  --c-tip: #4a86cf;
+
+  --content-width: 960px;
+}
+
 .navbar {
   .site-name {
     display: none;
