@@ -77,17 +77,19 @@
 </style>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, onUnmounted, ref } from "vue";
-import { useRouter } from "vue-router";
-import { usePageData, usePageFrontmatter } from "@vuepress/client";
+import { computed, defineComponent, onMounted, onUnmounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { usePageData, usePageFrontmatter } from '@vuepress/client';
 import {
   useSidebarItems,
   useScrollPromise,
-} from "@vuepress/theme-default/lib/composables";
-import NavLink from "@vuepress/theme-default/lib/components/NavLink.vue";
-import Layout from "@vuepress/theme-default/lib/layouts/Layout.vue";
+} from '@vuepress/theme-default/lib/client/composables';
+import Navbar from '@vuepress/theme-default/lib/client/components/Navbar.vue';
+import NavLink from '@vuepress/theme-default/lib/client/components/NavLink.vue';
+import Sidebar from '@vuepress/theme-default/lib/client/components/Sidebar.vue';
+import Layout from '@vuepress/theme-default/lib/client/layouts/Layout.vue';
 
-import { isArray } from "@vuepress/shared";
+import { isArray } from '@vuepress/shared';
 
 export interface GuideFrontmatter {
   heroText?: string | null;
@@ -95,17 +97,19 @@ export interface GuideFrontmatter {
   actions?: {
     text: string;
     link: string;
-    type?: "primary" | "secondary";
+    type?: 'primary' | 'secondary';
   }[];
   footer?: string;
   footerHtml?: boolean;
 }
 
 export default defineComponent({
-  name: "Guide",
+  name: 'Guide',
   extends: Layout,
   components: {
+    Navbar,
     NavLink,
+    Sidebar,
   },
   setup() {
     const page = usePageData();
@@ -114,7 +118,7 @@ export default defineComponent({
     const sidebarItems = useSidebarItems();
     const isSidebarOpen = ref(false);
     const toggleSidebar = (to?: boolean): void => {
-      isSidebarOpen.value = typeof to === "boolean" ? to : !isSidebarOpen.value;
+      isSidebarOpen.value = typeof to === 'boolean' ? to : !isSidebarOpen.value;
     };
     const touchStart = { x: 0, y: 0 };
     const onTouchStart = (e: TouchEvent): void => {
@@ -135,8 +139,8 @@ export default defineComponent({
 
     // classes
     const containerClass = computed(() => ({
-      "no-sidebar": !sidebarItems.value.length,
-      "sidebar-open": isSidebarOpen.value,
+      'no-sidebar': !sidebarItems.value.length,
+      'sidebar-open': isSidebarOpen.value,
     }));
 
     // close sidebar after navigation
@@ -160,21 +164,21 @@ export default defineComponent({
       if (frontmatter.value.heroText === null) {
         return null;
       }
-      return frontmatter.value.heroText || "";
+      return frontmatter.value.heroText || '';
     });
 
     const tagline = computed(() => {
       if (frontmatter.value.tagline === null) {
         return null;
       }
-      return frontmatter.value.tagline || "";
+      return frontmatter.value.tagline || '';
     });
     const actions = computed(() => {
       if (!isArray(frontmatter.value.actions)) {
         return [];
       }
       return frontmatter.value.actions.map(
-        ({ text, link, type = "primary" }) => ({
+        ({ text, link, type = 'primary' }) => ({
           text,
           link,
           type,

@@ -1,5 +1,5 @@
-import { defineUserConfig } from 'vuepress'
-import type { DefaultThemeOptions } from 'vuepress'
+import { defineUserConfig } from 'vuepress';
+import type { DefaultThemeOptions } from 'vuepress';
 import path from 'path';
 
 export default defineUserConfig<DefaultThemeOptions>({
@@ -9,16 +9,12 @@ export default defineUserConfig<DefaultThemeOptions>({
   dest: 'public',
   plugins: [
     path.resolve(__dirname, './plugins/flexsearch/dist/injectSearch.js'),
-    ['@vuepress/plugin-shiki', {
-      langs: [
-        'javascript',
-        'typescript',
-        'xml',
-        'bash',
-        'css',
-        'json'
-      ]
-    }]
+    [
+      '@vuepress/plugin-shiki',
+      {
+        langs: ['javascript', 'typescript', 'xml', 'bash', 'css', 'json'],
+      },
+    ],
   ],
 
   theme: path.resolve(__dirname, './theme/index.ts'),
@@ -33,219 +29,211 @@ export default defineUserConfig<DefaultThemeOptions>({
     navbar: [
       {
         text: 'Home',
-        link: '/'
+        link: '/',
       },
       {
         text: 'About',
-        link: '/about/'
+        link: '/about/',
       },
       {
         text: 'Guides',
-        link: '/guides/'
+        link: '/guides/',
       },
       {
         text: 'Showcase',
-        link: '/showcase/'
+        link: '/showcase/',
       },
       {
         text: 'Extensions',
-        link: '/extensions/'
+        link: '/extensions/',
       },
       {
         text: 'API References',
-        link: 'https://gjs-docs.gnome.org'
-      }
+        link: 'https://gjs-docs.gnome.org',
+      },
     ],
     sidebar: {
       '/guides/': [
         {
-          isGroup: true,
           text: 'Guides',
           children: [
             {
               text: 'GJS',
-              isGroup: true,
               children: [
                 '/guides/gjs/intro.md',
                 '/guides/gjs/features-across-versions.md',
                 '/guides/gjs/legacy-class-syntax.md',
                 '/guides/gjs/style-guide.md',
                 '/guides/gjs/memory-management.md',
-              ]
+              ],
             },
             {
               text: 'GObject',
-              isGroup: true,
               children: [
                 '/guides/gobject/basics.md',
                 '/guides/gobject/interfaces.md',
                 '/guides/gobject/subclassing.md',
                 '/guides/gobject/gtype.md',
-              ]
+              ],
             },
             {
               text: 'GTK',
-              isGroup: true,
               children: [
                 '/guides/gtk/3/',
-                '/guides/gtk/application-packaging.md'
-              ]
+                '/guides/gtk/application-packaging.md',
+              ],
             },
             {
               text: 'GLib',
-              isGroup: true,
-              children: [
-                '/guides/glib/gvariant.md',
-              ]
+              children: ['/guides/glib/gvariant.md'],
             },
             {
               text: 'Gio',
-              isGroup: true,
               children: [
                 '/guides/gio/file-operations.md',
                 '/guides/gio/subprocesses.md',
-              ]
-            }
-
-          ]
-        }
+              ],
+            },
+          ],
+        },
       ],
-      '/guides/gjs/': [{
-        text: 'GJS',
-        isGroup: true,
-        children: [
-          '/guides/gjs/intro.md',
-          '/guides/gjs/features-across-versions.md',
-          '/guides/gjs/legacy-class-syntax.md',
-          '/guides/gjs/style-guide.md',
-          '/guides/gjs/memory-management.md',
-        ]
-      }],
-      '/guides/gobject/': [{
-        text: 'GObject',
-        isGroup: true,
-        children: [
-          '/guides/gobject/basics.md',
-          '/guides/gobject/interfaces.md',
-          '/guides/gobject/subclassing.md',
-          '/guides/gobject/gtype.md',
-        ]
-      }],
-      '/guides/gtk/': [{
-        text: 'GTK',
-        isGroup: true,
-        children: [
-          '/guides/gtk/3/',
-          '/guides/gtk/application-packaging/'
-        ]
-      }],
-      '/guides/glib/': [{
-        text: 'GLib',
-        isGroup: true,
-        children: [
-          '/guides/glib/gvariant.md',
-        ]
-      }],
-      '/guides/gio/': [{
-        text: 'Gio',
-        isGroup: true,
-        children: [
-          '/guides/gio/file-operations.md',
-          '/guides/gio/subprocesses.md',
-        ]
-      }],
-      '/guides/gtk/3/': [{
-        isGroup: true,
-        text: 'GTK3',
-        children: [
-          '/guides/gtk/3/README.md',
-          '/guides/gtk/3/01-basics.md',
-          '/guides/gtk/3/02-widgets.md',
-          '/guides/gtk/3/03-installing.md',
-          '/guides/gtk/3/04-running-gtk.md',
-          '/guides/gtk/3/05-layouts.md',
-          '/guides/gtk/3/06-text.md',
-          '/guides/gtk/3/07-buttons.md',
-          '/guides/gtk/3/08-editing-text.md',
-          '/guides/gtk/3/09-images.md',
-          '/guides/gtk/3/10-building-app.md',
-          '/guides/gtk/3/11-packaging.md',
-          '/guides/gtk/3/12-app-dev.md',
-          '/guides/gtk/3/13-ui.md',
-          '/guides/gtk/3/14-templates.md',
-          '/guides/gtk/3/15-saving-data.md',
-          '/guides/gtk/3/16-settings.md',
-          '/guides/gtk/3/17-dialogs.md',
-        ]
-      }],
+      '/guides/gjs/': [
+        {
+          text: 'GJS',
+
+          children: [
+            '/guides/gjs/intro.md',
+            '/guides/gjs/features-across-versions.md',
+            '/guides/gjs/legacy-class-syntax.md',
+            '/guides/gjs/style-guide.md',
+            '/guides/gjs/memory-management.md',
+          ],
+        },
+      ],
+      '/guides/gobject/': [
+        {
+          text: 'GObject',
+
+          children: [
+            '/guides/gobject/basics.md',
+            '/guides/gobject/interfaces.md',
+            '/guides/gobject/subclassing.md',
+            '/guides/gobject/gtype.md',
+          ],
+        },
+      ],
+      '/guides/gtk/': [
+        {
+          text: 'GTK',
+          children: ['/guides/gtk/3/', '/guides/gtk/application-packaging/'],
+        },
+      ],
+      '/guides/glib/': [
+        {
+          text: 'GLib',
+          children: ['/guides/glib/gvariant.md'],
+        },
+      ],
+      '/guides/gio/': [
+        {
+          text: 'Gio',
+          children: [
+            '/guides/gio/file-operations.md',
+            '/guides/gio/subprocesses.md',
+          ],
+        },
+      ],
+      '/guides/gtk/3/': [
+        {
+          text: 'GTK3',
+          children: [
+            '/guides/gtk/3/README.md',
+            '/guides/gtk/3/01-basics.md',
+            '/guides/gtk/3/02-widgets.md',
+            '/guides/gtk/3/03-installing.md',
+            '/guides/gtk/3/04-running-gtk.md',
+            '/guides/gtk/3/05-layouts.md',
+            '/guides/gtk/3/06-text.md',
+            '/guides/gtk/3/07-buttons.md',
+            '/guides/gtk/3/08-editing-text.md',
+            '/guides/gtk/3/09-images.md',
+            '/guides/gtk/3/10-building-app.md',
+            '/guides/gtk/3/11-packaging.md',
+            '/guides/gtk/3/12-app-dev.md',
+            '/guides/gtk/3/13-ui.md',
+            '/guides/gtk/3/14-templates.md',
+            '/guides/gtk/3/15-saving-data.md',
+            '/guides/gtk/3/16-settings.md',
+            '/guides/gtk/3/17-dialogs.md',
+          ],
+        },
+      ],
       '/extensions/': [
         {
-          isGroup: true,
           text: 'Extensions',
           children: [
             {
-              text: "Development",
-              isGroup: true,
+              text: 'Development',
+
               children: [
-                "/extensions/development/creating.md",
-                "/extensions/development/debugging.md",
-                "/extensions/development/preferences.md",
-                "/extensions/development/translations.md",
-              ]
+                '/extensions/development/creating.md',
+                '/extensions/development/debugging.md',
+                '/extensions/development/preferences.md',
+                '/extensions/development/translations.md',
+              ],
             },
             {
-              text: "Overview",
-              isGroup: true,
+              text: 'Overview',
+
               children: [
-                "/extensions/overview/anatomy.md",
-                "/extensions/overview/architecture.md",
-                "/extensions/overview/imports-and-modules.md",
-              ]
+                '/extensions/overview/anatomy.md',
+                '/extensions/overview/architecture.md',
+                '/extensions/overview/imports-and-modules.md',
+              ],
             },
             {
-              text: "Upgrading",
-              isGroup: true,
-              children: [
-                "/extensions/upgrading/gnome-shell-40.md"
-              ]
+              text: 'Upgrading',
+
+              children: ['/extensions/upgrading/gnome-shell-40.md'],
             },
             {
-              text: "Review Guidelines",
-              isGroup: true,
-              children: [
-                "/extensions/review-guidelines/review-guidelines.md"
-              ]
-            }
-          ]
-        }
+              text: 'Review Guidelines',
+
+              children: ['/extensions/review-guidelines/review-guidelines.md'],
+            },
+          ],
+        },
       ],
-      '/extensions/development/': [{
-        text: "Development",
-        isGroup: true,
-        children: [
-          "/extensions/development/creating.md",
-          "/extensions/development/debugging.md",
-          "/extensions/development/preferences.md",
-          "/extensions/development/translations.md",
-        ]
-      }],
+      '/extensions/development/': [
+        {
+          text: 'Development',
+
+          children: [
+            '/extensions/development/creating.md',
+            '/extensions/development/debugging.md',
+            '/extensions/development/preferences.md',
+            '/extensions/development/translations.md',
+          ],
+        },
+      ],
       '/extensions/overview/': [
         {
-          text: "Overview",
-          isGroup: true,
+          text: 'Overview',
+
           children: [
-            "/extensions/overview/anatomy.md",
-            "/extensions/overview/architecture.md",
-            "/extensions/overview/imports-and-modules.md",
-          ]
-        }],
-      '/extensions/upgrading/': [{
-        text: "Upgrading",
-        isGroup: true,
-        children: [
-          "/extensions/upgrading/gnome-shell-40.md"
-        ]
-      }]
+            '/extensions/overview/anatomy.md',
+            '/extensions/overview/architecture.md',
+            '/extensions/overview/imports-and-modules.md',
+          ],
+        },
+      ],
+      '/extensions/upgrading/': [
+        {
+          text: 'Upgrading',
+
+          children: ['/extensions/upgrading/gnome-shell-40.md'],
+        },
+      ],
     },
-  }
+  },
 });

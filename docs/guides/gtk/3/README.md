@@ -8,7 +8,7 @@ actions:
   link: 01-basics.md
   type: primary
 - text: C Edition
-  link: https://developer.gnome.org/gtk3/stable/
+  link: https://docs.gtk.org/gtk3/
   type: secondary
 ---
 
