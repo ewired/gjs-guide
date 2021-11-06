@@ -106,31 +106,21 @@ function disable() {
 Any signal connections made by an extension **MUST** be disconnected in `disable()`:
 
 ```js
-const St = imports.gi.St;
-
-let widget = null;
 let handlerId = null;
 
 function init() {
 }
 
 function enable() {
-    widget = new St.Widget();
-
-    handlerId = object.connect('notify::visible', () => {
-        log('visibility changed');
+    handlerId = global.settings.connect('changed::favorite-apps', () => {
+        log('app favorites changed');
     });
 }
 
 function disable() {
-    if (widget) {
-        if (handlerId) {
-            widget.disconnect(handlerId);
-            handlerId = null;
-        }
-
-        widget.destroy();
-        widget = null;
+    if (handlerId) {
+        global.settings.disconnect(handlerId);
+        handlerId = null;
     }
 }
 ```
