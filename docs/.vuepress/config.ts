@@ -189,6 +189,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                 '/extensions/overview/anatomy.md',
                 '/extensions/overview/architecture.md',
                 '/extensions/overview/imports-and-modules.md',
+                '/extensions/overview/updates-and-breakage.md',
               ],
             },
             {
@@ -224,6 +225,7 @@ export default defineUserConfig<DefaultThemeOptions>({
             '/extensions/overview/anatomy.md',
             '/extensions/overview/architecture.md',
             '/extensions/overview/imports-and-modules.md',
+            '/extensions/overview/updates-and-breakage.md',
           ],
         },
       ],

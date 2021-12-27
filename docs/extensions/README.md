@@ -26,6 +26,10 @@ How to use imports and modules
 
 GNOME Shell Architecture
 
+### [Updates and Breakage](overview/updates-and-breakage.md)
+
+GNOME Shell updates and how they affect extensions
+
 ## Development
 
 ### [Creating](development/creating.md)
