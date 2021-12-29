@@ -79,7 +79,7 @@ if (variantInt64.get_int64() === -42)
 const variantString = GLib.Variant.new_string('a string');
 const [strValue, strLength] = variantString.get_string();
 
-if (variantBool.get_type_string() === 's')
+if (variantString.get_type_string() === 's')
     print('Variant is a string!');
 
 if (variantString.get_string()[0] === 'a string')
@@ -406,8 +406,8 @@ settings.set_value('complex-setting', newComplexValue);
 
 [gsettings]: https://developer.gnome.org/gio/stable/GSettings.html
 [gvariant]: https://gjs-docs.gnome.org/#q=glib.variant
-[gvariant-format]: https://developer.gnome.org/glib/stable/gvariant-format-strings.html
-[gvariant-text]: https://developer.gnome.org/glib/stable/gvariant-text.html
-[gvariant-type]: https://developer.gnome.org/glib/stable/glib-GVariantType.html
+[gvariant-format]: https://docs.gtk.org/glib/gvariant-format-strings.html
+[gvariant-text]: https://docs.gtk.org/glib/gvariant-text.html
+[gvariant-type]: https://gjs-docs.gnome.org/glib20/glib.varianttype
 [dbus-null]: https://gitlab.freedesktop.org/dbus/dbus/issues/25
 
