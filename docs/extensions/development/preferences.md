@@ -31,7 +31,7 @@ Then using your edit, create a schema describing the settings for your extension
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
   <schema id="org.gnome.shell.extensions.example" path="/org/gnome/shell/extensions/example/">
-    <!-- See also: https://developer.gnome.org/glib/stable/gvariant-format-strings.html -->
+    <!-- See also: https://docs.gtk.org/glib/gvariant-format-strings.html -->
     <key name="show-indicator" type="b">
       <default>true</default>
     </key>
@@ -206,6 +206,6 @@ The extension should be kept up to date with any changes that happen, because of
 
 
 [gsettings]: https://gjs-docs.gnome.org/gio20-settings/
-[gvariant-format]: https://developer.gnome.org/glib/stable/gvariant-format-strings.html
+[gvariant-format]: https://docs.gtk.org/glib/gvariant-format-strings.html
 [gtk]: https://gjs-docs.gnome.org/gtk30/
 
