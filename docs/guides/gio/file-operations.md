@@ -27,9 +27,9 @@ const {Gio, GLib} = imports.gi;
 
 // This is a useful method for building file paths from GLib. It will use the
 // correct path separator for the current operating system (eg. `/` or `\`)
-const filepath = GLib.build_filenamev([GLib.get_home_dir(), "test-file.txt"]);
+const filepath = GLib.build_filenamev([GLib.get_home_dir(), 'test-file.txt']);
 
-const file = Gio.File.new_for_path(path);
+const file = Gio.File.new_for_path(filepath);
 ```
 
 You can also create a `Gio.File` instance from a URI, such as `file://` URIs.
@@ -211,8 +211,9 @@ To write contents to a file, you can use
 [`Gio.File.replace_contents()`][gfilereplacecontents]
 
 Note that when writing contents asynchronously, it is strongly advised that you
-use `Gio.File.replace_contents_bytes_async()`. Not doing so may lead to file
-corruption if you are not very careful with the lifetime of the data.
+use [`Gio.File.replace_contents_bytes_async()`][gfilereplacecontentsbytesasync].
+Not doing so may lead to file corruption if you are not very careful with the
+lifetime of the data.
 
 ```js
 const {GLib, Gio} = imports.gi;
@@ -243,6 +244,8 @@ const [, etag] = await new Promise((resolve, reject) => {
 ```
 
 [gfilereplacecontents]: https://gjs-docs.gnome.org/gio20/gio.file#method-replace_contents
+[gfilereplacecontentsbytesasync]: https://gjs-docs.gnome.org/gio20~2.66p/gio.file#method-replace_contents_bytes_async
+
 
 
 ## Opening File Streams
