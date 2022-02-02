@@ -64,6 +64,10 @@ How do I package my GTK application with GJS?
 
 > Looking for help with files or application settings?
 
+### [D-Bus](gio/dbus.md)
+
+D-Bus inter-process communication in GJS
+
 ### [File IO in GJS](gio/file-operations.md)
 
 Basic File Operations in GJS

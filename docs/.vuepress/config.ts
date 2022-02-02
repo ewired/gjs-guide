@@ -91,6 +91,7 @@ export default defineUserConfig<DefaultThemeOptions>({
             {
               text: 'Gio',
               children: [
+                '/guides/gio/dbus.md',
                 '/guides/gio/file-operations.md',
                 '/guides/gio/subprocesses.md',
               ],
@@ -140,6 +141,7 @@ export default defineUserConfig<DefaultThemeOptions>({
         {
           text: 'Gio',
           children: [
+            '/guides/gio/dbus.md',
             '/guides/gio/file-operations.md',
             '/guides/gio/subprocesses.md',
           ],
