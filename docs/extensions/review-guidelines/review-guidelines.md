@@ -168,9 +168,10 @@ Use of external scripts and binaries is strongly discouraged. In cases where thi
 
 - Extensions **MUST NOT** include binary executables or libraries
 - Processes **MUST** be spawned carefully and exit cleanly
+- Scripts must be written in GJS, unless absolutely necessary
 - Scripts must be short, simple and distributed under an OSI approved license
 
-Reviewing Python modules, HTML, and web [JavaScript][javascript] dependencies is out of scope for extensions.gnome.org.
+Reviewing Python modules, HTML, and web [JavaScript][javascript] dependencies is out of scope for extensions.gnome.org. Unless required functionality is only available in another scripting language, scripts must be written in GJS.
 
 Extensions may install modules from well-known services such as `pip`, `npm` or `yarn` but **MUST** require explicit user action. For example, the extension preferences may include a page which describes the modules to be installed with a button.
 
