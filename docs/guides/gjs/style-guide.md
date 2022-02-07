@@ -92,14 +92,14 @@ See [What's new in JavaScript 1.7][1]
 
 A common case where this matters is when you have a closure inside a loop:
 ```js
-for (const i = 0; i < 10; ++i) {
+for (let i = 0; i < 10; ++i) {
   mainloop.idle_add(() => {
     log(`Printing i: ${i}`);
   });
 }
 ```
 
-If you used `var` instead of `const` it would print "10" numerous times.
+If you used `var` instead of `let` it would print "10" numerous times.
 
 ## GObject Properties
 
