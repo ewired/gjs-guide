@@ -7,7 +7,7 @@ title: Anatomy of an Extension
 
 1. [Extension Zip](#extension-zip)
 2. [`metadata.json` (Required)](#metadata-json-required)
-3. [`extensions.js` (Required)](#extension-js-required)
+3. [`extension.js` (Required)](#extension-js-required)
 4. [`prefs.js`](#prefs-js)
 5. [`stylesheet.css`](#stylesheet-css)
 
