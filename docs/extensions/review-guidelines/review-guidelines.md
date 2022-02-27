@@ -199,6 +199,7 @@ The _metadata.json_ file that ships with every extension should be well-formed a
 | version | This must be a whole number like `2`, not a string like `"2"` or semantic version like `2.1`.  |
 | shell-version | This **MUST** only contain stable releases and up to one development release. Extensions must not claim to support future GNOME Shell versions. As of GNOME 40, an entry may simply be a major version like `40` to cover the entire release. |
 | url | This should be a link to a Github or [GitLab][gitlab] repository where users can report problems and learn more about your extension. |
+| session-modes | This **MUST** be dropped if you are only using `user` mode. The only valid values are `user` and `unlock-dialog`. |
 
 Example:
 
@@ -209,9 +210,18 @@ Example:
     "description": "ColorButton adds a colored button to the panel.\n\nIt is a fork of MonochromeButton.",
     "version": 1,
     "shell-version": [ "3.38", "40", "41.alpha" ],
-    "url": "https://github.com/my-account/color-button"
+    "url": "https://github.com/my-account/color-button",
+    "session-modes":  [ "unlock-dialog", "user" ]
 }
 ```
+
+### Session Modes
+
+In rare cases, it is necessary for an extension to continue running while the screen is locked. In order to be approved to use the `unlock-dialog` session mode:
+
+- It **MUST** be necessary for the extension to operate correctly.
+- All signals related to keyboard events **MUST** be disconnected in `unlock-dialog` session mode.
+- The disable() function **MUST** have a comment explaining why you are using `unlock-dialog`.
 
 ## Legal Restrictions
 
