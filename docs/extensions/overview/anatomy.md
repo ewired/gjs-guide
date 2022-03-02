@@ -398,7 +398,8 @@ function fillPreferencesWindow(window) {
     prefsGroup.add(showIndicatorRow);
     
     const showIndicatorSwitch = new Gtk.Switch();
-    showIndicatorRow.set_activatable_widget(showIndicatorSwitch)
+    showIndicatorRow.add_suffix(showIndicatorSwitch);
+    showIndicatorRow.set_activatable_widget(showIndicatorSwitch);
 }
 ```
 
