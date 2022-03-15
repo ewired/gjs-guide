@@ -52,6 +52,10 @@ How to debug an extension
 
 How to upgrade extensions across Shell versions
 
+### [GNOME Shell 42](upgrading/gnome-shell-42.md)
+
+Porting Extensions to GNOME Shell 42
+
 ### [GNOME Shell 40](upgrading/gnome-shell-40.md)
 
 Porting Extensions to GNOME Shell 40

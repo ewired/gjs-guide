@@ -199,7 +199,10 @@ export default defineUserConfig<DefaultThemeOptions>({
             {
               text: 'Upgrading',
 
-              children: ['/extensions/upgrading/gnome-shell-40.md'],
+              children: [
+              	'/extensions/upgrading/gnome-shell-42.md',
+              	'/extensions/upgrading/gnome-shell-40.md',
+              ],
             },
             {
               text: 'Review Guidelines',
