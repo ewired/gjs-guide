@@ -273,6 +273,7 @@ function fillPreferencesWindow(window) {
     window.set_default_size(800, 600);
     // ...
 }
+```
 
 ### Enable Search in Preferences Window
 
