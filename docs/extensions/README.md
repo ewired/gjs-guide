@@ -48,6 +48,10 @@ How add multi-lingual support an extension
 
 How to debug an extension
 
+### [Targeting Older GNOME Versions](development/targeting-older-gnome.md)
+
+Making the extension work on multiple versions of GNOME
+
 ## Upgrading
 
 How to upgrade extensions across Shell versions
@@ -70,4 +74,3 @@ GNOME Shell Extensions Review Guidelines
 
 [ego]: https://extensions.gnome.org
 [gnome-api]: https://gjs-docs.gnome.org
-

@@ -11,6 +11,7 @@ Our preferences dialog will be written in [Gtk][gtk], which gives us a lot of op
   - [Compiling the Schema](#compiling-the-schema)
   - [Integrating GSettings](#integrating-gsettings)
 - [Preferences Window](#preferences-window)
+- [Debugging](#debugging)
 
 ## GSettings
 
@@ -43,7 +44,11 @@ In the case of GSchema IDs, it is convention to use the above `id` and `path` fo
 
 ### Compiling the schema
 
-Once you are done defining you schema, you must compile it before it can be used:
+Once you are done defining you schema, you must compile it before it can be used.
+
+If you use `gnome-extension pack` to package your extension, the schemas in the `schemas` directory will automatically be compiled.
+
+To manually compile your schema:
 
 ```sh
 $ glib-compile-schemas schemas/
@@ -128,13 +133,12 @@ Now that we have GSettings for our extension, we will give the use some control 
 $ gedit prefs.js
 ```
 
-Then we'll create a simple grid with a title, label and button for resetting our saved settings:
+Then we'll create a simple preferences row with a switch to control our settings:
 
 ```js
 'use strict';
 
-const Gio = imports.gi.Gio;
-const Gtk = imports.gi.Gtk;
+const { Adw, Gio, Gtk } = imports.gi;
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
@@ -143,54 +147,38 @@ const Me = ExtensionUtils.getCurrentExtension();
 function init() {
 }
 
-function buildPrefsWidget() {
-
-    // Copy the same GSettings code from `extension.js`
-    this.settings = ExtensionUtils.getSettings(
+function fillPreferencesWindow(window) {
+    // Use the same GSettings schema as in `extension.js`
+    const settings = ExtensionUtils.getSettings(
         'org.gnome.shell.extensions.example');
+    
+    // Create a preferences page and group
+    const page = new Adw.PreferencesPage();
+    const group = new Adw.PreferencesGroup();
+    page.add(group);
 
-    // Create a parent widget that we'll return from this function
-    let prefsWidget = new Gtk.Grid({
-        margin: 18,
-        column_spacing: 12,
-        row_spacing: 12,
-        visible: true
+    // Create a new preferences row
+    const row = new Adw.ActionRow({ title: 'Show Extension Indicator' });
+    group.add(row);
+
+    // Create the switch and bind its value to the `show-indicator` key
+    const toggle = new Gtk.Switch({
+        active: settings.get_boolean ('show-indicator'),
+        valign: Gtk.Align.CENTER,
     });
-
-    // Add a simple title and add it to the prefsWidget
-    let title = new Gtk.Label({
-        label: `<b>${Me.metadata.name} Preferences</b>`,
-        halign: Gtk.Align.START,
-        use_markup: true,
-        visible: true
-    });
-    prefsWidget.attach(title, 0, 0, 2, 1);
-
-    // Create a label & switch for `show-indicator`
-    let toggleLabel = new Gtk.Label({
-        label: 'Show Extension Indicator:',
-        halign: Gtk.Align.START,
-        visible: true
-    });
-    prefsWidget.attach(toggleLabel, 0, 1, 1, 1);
-
-    let toggle = new Gtk.Switch({
-        active: this.settings.get_boolean ('show-indicator'),
-        halign: Gtk.Align.END,
-        visible: true
-    });
-    prefsWidget.attach(toggle, 1, 1, 1, 1);
-
-    // Bind the switch to the `show-indicator` key
-    this.settings.bind(
+    settings.bind(
         'show-indicator',
         toggle,
         'active',
         Gio.SettingsBindFlags.DEFAULT
     );
 
-    // Return our widget which will be added to the window
-    return prefsWidget;
+    // Add the switch to the row
+    row.add_suffix(toggle);
+    row.activatable_widget = toggle;
+
+    // Add our page to the window
+    window.add(page);
 }
 ```
 
@@ -205,7 +193,15 @@ $ gnome-extensions prefs example@shell.gnome.org
 The extension should be kept up to date with any changes that happen, because of the binding in `extension.js` watching for changes.
 
 
+## Debugging
+
+Because preferences are not run within `gnome-shell` but in a separate process, the logs will appear in the `gjs` process:
+
+```sh
+journalctl -f -o cat /usr/bin/gjs
+```
+
+
 [gsettings]: https://gjs-docs.gnome.org/gio20-settings/
 [gvariant-format]: https://docs.gtk.org/glib/gvariant-format-strings.html
 [gtk]: https://gjs-docs.gnome.org/gtk30/
-

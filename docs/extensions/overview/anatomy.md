@@ -365,7 +365,13 @@ function buildPrefsWidget() {
         visible: true,
     });
 
-    return prefsWidget;
+    // Add a widget to the group. This could be any GtkWidget subclass,
+    // although usually you would choose preferences rows such as AdwActionRow,
+    // AdwComboRow or AdwRevealerRow.
+    const label = new Gtk.Label({ label: `${Me.metadata.name}` });
+    group.add(label);
+
+    window.add(page);
 }
 
 /**
@@ -479,4 +485,4 @@ ExampleLabel {
 [clutter]: https://gjs-docs.gnome.org/#q=clutter
 [st]: https://gjs-docs.gnome.org/st10/
 [gtk]: https://gjs-docs.gnome.org/gtk30/
-
+[adwpreferenceswindow]: https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/class.PreferencesWindow.html

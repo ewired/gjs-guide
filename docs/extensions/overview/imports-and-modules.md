@@ -59,7 +59,7 @@ const Gettext = imports.gettext;
 const Cairo = imports.cairo;
 
 // GNOME APIs are under the `gi` namespace (except Cairo)
-// See: http://devdocs.baznga.org/
+// See: https://gjs-docs.gnome.org/
 const GLib = imports.gi.GLib;
 const Gtk = imports.gi.Gtk;
 
@@ -96,4 +96,3 @@ const PopupMenu = imports.ui.popupMenu;
 [modal-dialog]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/main/js/ui/modalDialog.js
 [panel-menu]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/main/js/ui/panelMenu.js
 [popup-menu]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/main/js/ui/popupMenu.js
-

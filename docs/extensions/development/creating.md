@@ -88,7 +88,7 @@ Populate `extension.js` and `metadata.json` with the basic requirements, remembe
     "name": "Example",
     "description": "This extension puts an icon in the panel with a simple dropdown menu.",
     "version": 1,
-    "shell-version": [ "3.36", "3.38" ],
+    "shell-version": [ "42" ],
     "url": "https://gitlab.gnome.org/World/ShellExtensions/gnome-shell-extension-example"
 }
 ```
@@ -211,4 +211,3 @@ function init() {
 ```
 
 Now save `extension.js` and reload the extension see the button in the panel.
-

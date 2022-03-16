@@ -184,6 +184,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                 '/extensions/development/debugging.md',
                 '/extensions/development/preferences.md',
                 '/extensions/development/translations.md',
+                '/extensions/development/targeting-older-gnome.md',
               ],
             },
             {
@@ -221,6 +222,7 @@ export default defineUserConfig<DefaultThemeOptions>({
             '/extensions/development/debugging.md',
             '/extensions/development/preferences.md',
             '/extensions/development/translations.md',
+            '/extensions/development/targeting-older-gnome.md',
           ],
         },
       ],
