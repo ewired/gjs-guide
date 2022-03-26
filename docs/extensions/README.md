@@ -52,6 +52,12 @@ How to debug an extension
 
 Making the extension work on multiple versions of GNOME
 
+## Topics
+
+### [Session Modes](topics/session-modes.md)
+
+How to work with session modes in GNOME Shell
+
 ## Upgrading
 
 How to upgrade extensions across Shell versions

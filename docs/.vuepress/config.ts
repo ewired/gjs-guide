@@ -198,6 +198,13 @@ export default defineUserConfig<DefaultThemeOptions>({
               ],
             },
             {
+              text: 'Topics',
+
+              children: [
+              	'/extensions/topics/session-modes.md',
+              ],
+            },
+            {
               text: 'Upgrading',
 
               children: [
@@ -235,6 +242,15 @@ export default defineUserConfig<DefaultThemeOptions>({
             '/extensions/overview/architecture.md',
             '/extensions/overview/imports-and-modules.md',
             '/extensions/overview/updates-and-breakage.md',
+          ],
+        },
+      ],
+      '/extensions/topics/': [
+        {
+          text: 'Topics',
+
+          children: [
+            '/extensions/topics/session-modes.md',
           ],
         },
       ],
