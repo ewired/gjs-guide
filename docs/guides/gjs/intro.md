@@ -3,13 +3,13 @@ title: Intro
 date: 2018-07-25 16:10:11
 ---
 
-# GNOME Javascript Introduction
+# GNOME JavaScript Introduction
 
-Welcome to GNOME Javascript (GJS)! This first page details key differences from other Javascript frameworks you've used in the past.
+Welcome to GNOME JavaScript (GJS)! This first page details key differences from other JavaScript frameworks you've used in the past.
 
 ## Imports and Modules
 
-In GJS every file is treated as a "module" and any variable declared as using 'var' (or global scope) is exported. Each "module" is imported using the 'imports' object using the pattern imports.[fileName] where the file's literal name is fileName.js. If your fileName contains a character that is not a valid Javascript identifier you can access it using the object+key syntax: object['fileName'].
+In GJS every file is treated as a "module" and any variable declared as using 'var' (or global scope) is exported. Each "module" is imported using the 'imports' object using the pattern imports.[fileName] where the file's literal name is fileName.js. If your fileName contains a character that is not a valid JavaScript identifier you can access it using the object+key syntax: object['fileName'].
 
 #### a.js:
 

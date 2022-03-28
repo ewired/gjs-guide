@@ -3,8 +3,8 @@ import type { DefaultThemeOptions } from 'vuepress';
 import path from 'path';
 
 export default defineUserConfig<DefaultThemeOptions>({
-  title: 'GNOME Javascript',
-  description: 'A Guide To GNOME Javascript!',
+  title: 'GNOME JavaScript',
+  description: 'A Guide To GNOME JavaScript!',
   base: process.env.VUEPRESS_BASE_URL ?? '/',
   dest: 'public',
   plugins: [
