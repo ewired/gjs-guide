@@ -3,28 +3,6 @@ title: Port Extensions to GNOME Shell 40
 ---
 # Port Extensions to GNOME Shell 40
 
-## Contents
-
-1. [metadata.json](#metadata-json)
-2. [Useful Basics](#useful-basics)
-   1. [Checking GNOME Shell Version](#checking-gnome-shell-version)
-   2. [Checking GTK Version](#checking-gtk-version)
-   3. [Importing namespace only when exist](#importing-namespace-only-when-exist)
-3. [Top Panel](#top-panel)
-4. [Overview Elements](#overview-elements)
-   1. [Search Entry](#search-entry)
-   2. [Workspace Thumbnails](#workspace-thumbnails)
-   3. [Workspace View](#workspace-view)
-   4. [Window Preview](#window-preview)
-   5. [Window Preview Icon](#window-preview-icon)
-   6. [Dash](#dash)
-   7. [Applications Grid](#applications-grid)
-5. [Prefs](#prefs)
-   1. [Template Classes](#new-to-using-template-files-in-prefs-js)
-   2. [Migrating from Gtk3 to Gtk4](#provide-css-file-for-prefs)
-   3. [Convert and Validate Template Files](#convert-and-validate-template-files)
-   4. [Useful Links](#useful-links)
-
 ## metadata.json
 
 The first thing you should do to make your extension available on GNOME Shell 40 is adding *"40"* to the *"shell-version"*.
