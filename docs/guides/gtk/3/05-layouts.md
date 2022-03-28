@@ -2,15 +2,15 @@
 title: Layouts in GTK
 ---
 
-# Layouts in GTK+
+# Layouts in GTK
 
-GTK+ utilizes a layout system that differs from many other desktop toolkits. While other toolkit's may prefer users to place widgets on a specific pixel point (a button at [50, 50]), GTK+ uses a flexible container-based system similar to HTML5 on the web. Containers in GTK+ are widgets that can "hold" other widgets. Each container uses a slightly different method to display its children (the widgets it is "holding").
+GTK utilizes a layout system that differs from many other desktop toolkits. While other toolkit's may prefer users to place widgets on a specific pixel point (a button at [50, 50]), GTK uses a flexible container-based system similar to HTML5 on the web. Containers in GTK are widgets that can "hold" other widgets. Each container uses a slightly different method to display its children (the widgets it is "holding").
 
 [[toc]]
 
 ## Calculated Space
 
-One important concept in GTK+ is calculated space. Widgets by default take up the space that they are calculated to need to display their content and nothing more. This behavior can be overriden using containers and individual settings within the widgets.
+One important concept in GTK is calculated space. Widgets by default take up the space that they are calculated to need to display their content and nothing more. This behavior can be overriden using containers and individual settings within the widgets.
 
 ## `Gtk.Box`
 

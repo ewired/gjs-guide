@@ -12,4 +12,4 @@ actions:
   type: secondary
 ---
 
-    Welcome to GTK in GJS. This guide will introduce you to both GTK+ and using it in GJS.
+    Welcome to GTK in GJS. This guide will introduce you to both GTK and using it in GJS.

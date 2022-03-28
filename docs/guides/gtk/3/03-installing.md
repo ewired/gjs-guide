@@ -26,7 +26,7 @@ Verify your system has a recent version of GJS. Type...
 
     gjs --version
     
-...into a terminal. You can see the features your version of GTK+ supports [here](../../gjs/features-across-versions.html). If your version is below 1.48.x it is recommended you use [GNOME Builder](https://wiki.gnome.org/Apps/Builder) or build GJS from source.
+...into a terminal. You can see the features your version of GTK supports [here](../../gjs/features-across-versions.html). If your version is below 1.48.x it is recommended you use [GNOME Builder](https://wiki.gnome.org/Apps/Builder) or build GJS from source.
 
 ### Running A Tutorial
 

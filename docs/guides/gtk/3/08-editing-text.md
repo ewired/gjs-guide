@@ -4,7 +4,7 @@ title: Editing Text
 
 # Editing Text
 
-There are two primary widgets that allow the user to edit text in GTK+: `Gtk.Entry` and `Gtk.TextView`. While they are quite similar the general rule is `Gtk.Entry` is built for short, simple text input while `Gtk.TextView` is built for multi-line or formatted text.
+There are two primary widgets that allow the user to edit text in GTK: `Gtk.Entry` and `Gtk.TextView`. While they are quite similar the general rule is `Gtk.Entry` is built for short, simple text input while `Gtk.TextView` is built for multi-line or formatted text.
 
 ## Buffers
 

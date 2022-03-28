@@ -2,9 +2,9 @@
 title: Running GTK in GJS
 ---
 
-# Running GTK+ in GJS
+# Running GTK in GJS
 
-Throughout this tutorial you will see small examples of GTK+ code in GJS.
+Throughout this tutorial you will see small examples of GTK code in GJS.
 
 They will usually occur in this format:
 
@@ -53,7 +53,7 @@ const { Gtk } = imports.gi;
 ...
 ```
 
-Next we have our import statements. The first imports line is a version statement. This tells GJS what version of the import we need. GTK+ has the older GTK+ 2.0 and the newer GTK+ 3.0. To indicate this we pass `"3.0"` to `imports.gi.versions.Gtk`. This works for any other import too, just set the name of the import at `imports.gi.versions` to the version you are importing.
+Next we have our import statements. The first imports line is a version statement. This tells GJS what version of the import we need. GTK has the older GTK 2.0 and the newer GTK 3.0. To indicate this we pass `"3.0"` to `imports.gi.versions.Gtk`. This works for any other import too, just set the name of the import at `imports.gi.versions` to the version you are importing.
 
 ```js{4}
 #!/usr/bin/env gjs
@@ -64,7 +64,7 @@ const { Gtk } = imports.gi;
 ...
 ```
 
-The second import line actually imports Gtk. This allows use to use all of Gtk's widgets and classes. It is declared with `const` because an import, by convention, should never change values. We are importing from `imports.gi` because GTK+ is part of the `gi` (gobject-introspection) collection.
+The second import line actually imports Gtk. This allows use to use all of Gtk's widgets and classes. It is declared with `const` because an import, by convention, should never change values. We are importing from `imports.gi` because GTK is part of the `gi` (gobject-introspection) collection.
 
 ```js{3}
 ...
@@ -78,7 +78,7 @@ let win = new Gtk.Window();
 ...
 ```
 
-Now we have to *initialize* GTK+. If GTK+ is not initialized your application will not run.
+Now we have to *initialize* GTK. If GTK is not initialized your application will not run.
 
 *Imagine trying to adjust the radio before you have started the car.*
 
@@ -117,5 +117,5 @@ Gtk.main();
 
 Finally we call `Gtk.main()` to start the event loop we discussed in [The Basics](./01-basics.html).
 
-*Gtk.main() is the gas pedal of GTK+!*
+*Gtk.main() is the gas pedal of GTK!*
 

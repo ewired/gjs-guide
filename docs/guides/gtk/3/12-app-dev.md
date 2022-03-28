@@ -8,7 +8,7 @@ If you do not have GNOME Builder installed you can get it [here](https://flathub
 
 ## Using GNOME Builder
 
-### Creating a New GJS GTK+ Application Project
+### Creating a New GJS GTK Application Project
 
 <img :src="$withBase('/assets/img/builder-01.png')" />
 
@@ -49,7 +49,7 @@ Verify your system has a recent version of GJS. Type...
 
     gjs --version
     
-...into a terminal. You can see the features your version of GTK+ supports [here](../../gjs/features-across-versions.html). If your version is below 1.50.x it is recommended you use [GNOME Builder](https://flathub.org/apps/details/org.gnome.Builder) or build GJS from source.
+...into a terminal. You can see the features your version of GTK supports [here](../../gjs/features-across-versions.html). If your version is below 1.50.x it is recommended you use [GNOME Builder](https://flathub.org/apps/details/org.gnome.Builder) or build GJS from source.
 
 <!--### Building GJS From Source
 

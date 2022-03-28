@@ -1,13 +1,13 @@
-# Building a GTK+ Application
+# Building a GTK Application
 
 ## Using `Gtk.Application`
 
-So far we have only worked with small examples of GTK+ widgets. The way we displayed these widgets, adding them to a window and starting GTK+, works but has several limitations:
+So far we have only worked with small examples of GTK widgets. The way we displayed these widgets, adding them to a window and starting GTK, works but has several limitations:
 
 - No ability to name your application
 - No system integration for applications
 
-These problems ensure that user's will have difficulty finding your application and using it. To solve these problems GTK+ provides `Gtk.Application`. `Gtk.Application` handles creating an application on the system and does much of the heavy-lifting to link together your advanced widgets.
+These problems ensure that user's will have difficulty finding your application and using it. To solve these problems GTK provides `Gtk.Application`. `Gtk.Application` handles creating an application on the system and does much of the heavy-lifting to link together your advanced widgets.
 
 ## Creating a new application
 

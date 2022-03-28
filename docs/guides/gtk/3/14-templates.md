@@ -23,7 +23,7 @@ var X = GObject.registerClass({
 }
 ```
 
-You will find the above code in your project's `window.js` file. This code tells GTK+ to register the class and apply a GTK+ user interface template to it.
+You will find the above code in your project's `window.js` file. This code tells GTK to register the class and apply a GTK user interface template to it.
 
 ## Registering template widgets
 
@@ -35,7 +35,7 @@ Before we had variables like this:
 const button = new Button();
 button.do_something();
 ```
-So it was easy to call functions and manipulate the button. To achieve a similar system with templates you have to tell GTK+ what widgets you want to use by passing a list of their IDs to `InternalChildren`.
+So it was easy to call functions and manipulate the button. To achieve a similar system with templates you have to tell GTK what widgets you want to use by passing a list of their IDs to `InternalChildren`.
 
 ```js
 /* imports */

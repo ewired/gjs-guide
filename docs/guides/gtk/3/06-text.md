@@ -10,7 +10,7 @@ Read [Strings in GJS](../../gjs/strings.html) before starting this page!
 
 ## `Gtk.Label`
 
-In GTK+ the simplest way to display text is using `Gtk.Label`. A `Gtk.Label` can contain simple, standard text or a variety of text styles using Markdown.
+In GTK the simplest way to display text is using `Gtk.Label`. A `Gtk.Label` can contain simple, standard text or a variety of text styles using Markdown.
 
 [Learn More](https://gjs-docs.gnome.org/gtk30-label/)
 

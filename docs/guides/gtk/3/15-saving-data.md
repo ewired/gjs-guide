@@ -4,7 +4,7 @@ title: Saving Application Data
 
 # Saving Application Data
 
-We now have a full GTK+ application working! For many applications, though, storing user data is critical for functionality. A common example might be reopening the data or file that was in use before the application previously exited.
+We now have a full GTK application working! For many applications, though, storing user data is critical for functionality. A common example might be reopening the data or file that was in use before the application previously exited.
 
 ## Converting Data
 
