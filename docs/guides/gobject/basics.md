@@ -186,7 +186,7 @@ myLabel.connect('activate-link', (label, uri) => {
     // We'll return the success boolean returned by `Gtk.show_uri_on_window()`
     if (uri.includes('gnome.org')) {
         return Gtk.show_uri_on_window(label.get_toplevel(), uri,
-            Gdk.get_current_time());
+            Gdk.CURRENT_TIME);
     }
 
     // If we're not trying handling this link at all, we'll just return `false`
