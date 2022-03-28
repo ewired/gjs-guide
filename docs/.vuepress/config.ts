@@ -31,5 +31,15 @@ export default defineUserConfig<DefaultThemeOptions>({
     docsDir: 'docs',
     navbar,
     sidebar,
+    bundlerConfig: {
+      configureWebpack() {
+        // Workaround for https://github.com/webpack/webpack/issues/14532
+        return {
+          output: {
+            hashFunction: 'xxhash64'
+          }
+        }
+      }
+    }
   }
 });
