@@ -1,6 +1,5 @@
 ---
 title: GTK Application Packaging Specification
-sidebar: 'auto'
 ---
 # GTK Application Packaging Specification
 
