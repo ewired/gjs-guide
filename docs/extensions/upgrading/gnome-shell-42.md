@@ -25,7 +25,7 @@ For example:
 
 - Only system extensions (located in _/usr/share/gnome-shell/extensions/_) can use *"gdm"* in their session mode.
 
-- Extensions with *"session-modes"* can only pass the EGO reviews if they meet the review guidelines requirements related to the session modes.
+- Extensions with *"session-modes"* can only pass the EGO reviews if they meet [the review guidelines requirements related to the session modes][session-modes-rg].
 
 ## GNOME Shell UI
 
@@ -297,3 +297,4 @@ function fillPreferencesWindow(window) {
 
 `Adw.PreferencesPage` has buit-in `Gtk.ScrolledWindow`. If you are using `Gtk.ScrolledWindow` in your preferences window, remove it.
 
+[session-modes-rg]: https://gjs.guide/extensions/review-guidelines/review-guidelines.html#session-modes
