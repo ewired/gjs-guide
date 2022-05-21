@@ -223,13 +223,14 @@ In rare cases, it is necessary for an extension to continue running while the sc
 - All signals related to keyboard events **MUST** be disconnected in `unlock-dialog` session mode.
 - The disable() function **MUST** have a comment explaining why you are using `unlock-dialog`.
 
-### Schemas
+### GSettings Schemas
 
-In case you want to use your own schema:
+For extensions that include a GSettings Schema:
 
-- Shema id **MUST** start with `org.gnome.shell.extensions.`.
-- Include schema's XML file alongside `gschemas.compiled`.
-- The XML file name **MUST** start with schema id and end with `.gschema.xml`.
+- The Schema ID **MUST** use `org.gnome.shell.extensions` as a base ID.
+- The Schema path **MUST** use `/org/gnome/shell/extensions` as a base path.
+- The Schema XML file **MUST** be included in the extension ZIP file.
+- The Schema XML filename **MUST** follow pattern of `<schema-id>.gschema.xml`.
 
 ## Legal Restrictions
 
