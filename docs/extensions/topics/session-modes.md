@@ -17,7 +17,8 @@ documentation.
 
 Here is an example of a `metadata.json` for an extension that can run in the
 regular `user` mode and continue running in the `unlock-dialog` mode, when the
-screen is locked.
+screen is locked. Pay attention that the shell may use custom user modes that
+are not named `user`, so we need to ensure this by also checking the parent mode.
 
 ```js
 {
@@ -76,7 +77,7 @@ class Extension {
     // When the session mode changes, we will either add or remove our indicator
     // so it is not visible on the lock screen.
     _onSessionModeChanged(session) {
-        if (session.currentMode === 'user') {
+        if (session.currentMode === 'user' || session.parentMode === 'user') {
             this._addIndicator();
         } else if (session.currentMode === 'unlock-dialog') {
             this._removeIndicator();
