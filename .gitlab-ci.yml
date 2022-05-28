@@ -1,4 +1,4 @@
-image: node:12.18.2
+image: node:16
 
 .build: &build
 - yarn
