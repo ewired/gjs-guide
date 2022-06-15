@@ -227,10 +227,23 @@ const pspec = GObject.param_spec_variant(
 );
 ```
 
+Since GJS 1.68 (GNOME 40), there is also support for JavaScript types that derive from the native [`Object`][js-object] type:
+
+```js
+const pspec = GObject.ParamSpec.jsobject(
+    'jsobject-property',
+    'JSObject Property',
+    'A property holding a JavaScript object',
+    GObject.ParamFlags.READWRITE,
+    ''
+);
+```
+
 [bigint]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/BigInt
 [number]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 [number-min]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number/MIN_SAFE_INTEGER
 [number-max]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
+[js-object]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
 ### Property Flags
 

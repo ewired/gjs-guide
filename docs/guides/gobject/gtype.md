@@ -116,4 +116,57 @@ if (GObject.TYPE_INT === Number.$gtype &&
 | `GObject.TYPE_PARAM`     | `GParam`         | `GObject.ParamSpec` |
 | `GObject.TYPE_VARIANT`   | `GVariant`       | `GLib.Variant`      |
 | `GObject.TYPE_GTYPE`     | `GType`          | `GObject.Type`      |
+| `GObject.TYPE_JSOBJECT`  | `GBoxed`         | `Object`            |
+
+
+### JavaScript Types
+
+`GObject.TYPE_JSOBJECT` is a special `GType` in GJS, created so that JavaScript types that inherit from [`Object`][js-object] can be used with the GObject framework. This allows you to use them as [properties][gobject-properties] and [signals][gobject-signals] in your GObject subclasses, and in some cases pass it to functions that take a `GType`.
+
+In particular, this means that you may use `Object` (ie. `{}`) and `Array` (ie. `[]`) types, but also more complex types such as `Date` and `Function`. Note that `GObject.TYPE_JSOBJECT` is a boxed type (`GObject.TYPE_BOXED`), so it may not be used where a GObject (`GObject.TYPE_OBJECT`) is expected such as with [`Gio.ListModel`][glistmodel].
+
+```js
+// A GObject subclass with JavaScript Object properties and signals
+const Example = GObject.registerClass({
+    Properties: {
+        'example-property': GObject.ParamSpec.jsobject(
+            'example-property',
+            'Example Property',
+            'A property that holds a JavaScript Object',
+            GObject.ParamFlags.READWRITE,
+            ''
+        ),
+    },
+    Signals: {
+        'example-signal': {
+            param_types: [GObject.TYPE_JSOBJECT],
+        },
+    },
+}, class Example extends GObject.Object {
+    get example_property() {
+        if (this._example_property === undefined)
+            this._example_property = {};
+            
+        return this._example_property;
+    }
+    
+    set example_property(obj) {
+        if (this.example_property === obj)
+            return;
+            
+        this._example_property = obj;
+        this.notify('example-object');
+    }
+    
+    emitExampleSignal(obj) {
+        this.emit('example-signal', obj);
+    }
+});
+```
+
+
+[js-object]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[glistmodel]: https://gjs-docs.gnome.org/gio20/gio.listmodel
+[gobject-properties]: https://gjs.guide/guides/gobject/subclassing.html#properties
+[gobject-signals]: https://gjs.guide/guides/gobject/subclassing.html#signals
 
