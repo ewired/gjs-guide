@@ -121,7 +121,7 @@ if (GObject.TYPE_INT === Number.$gtype &&
 
 ### JavaScript Types
 
-`GObject.TYPE_JSOBJECT` is a special `GType` in GJS, created so that JavaScript types that inherit from [`Object`][js-object] can be used with the GObject framework. This allows you to use them as [properties][gobject-properties] and [signals][gobject-signals] in your GObject subclasses, and in some cases pass it to functions that take a `GType`.
+`GObject.TYPE_JSOBJECT` is a special `GType` in GJS, created so that JavaScript types that inherit from [`Object`][js-object] can be used with the GObject framework. This allows you to use them as [properties][gobject-properties] and in [signal parameters][gobject-signals] in your GObject subclasses, and in some cases pass it to functions that take a `GType`.
 
 In particular, this means that you may use `Object` (ie. `{}`) and `Array` (ie. `[]`) types, but also more complex types such as `Date` and `Function`. Note that `GObject.TYPE_JSOBJECT` is a boxed type (`GObject.TYPE_BOXED`), so it may not be used where a GObject (`GObject.TYPE_OBJECT`) is expected such as with [`Gio.ListModel`][glistmodel].
 
