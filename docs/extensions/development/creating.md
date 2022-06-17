@@ -4,16 +4,7 @@ title: Creating
 
 # Creating
 
-To get clean view of how your extension functions, you should restart GNOME Shell after making changes to the code. For this reason, most extension development happens in Xorg/X11 sessions rather than Wayland, which requires you to logout and login to restart .
-
-To restart GNOME Shell in X11, pressing `Alt`+`F2` to open the *Run Dialog* and enter `restart` (or just `r`).
-
-To run new extensions on Wayland you can run a nested gnome-shell using `dbus-run-session -- gnome-shell --nested --wayland`.
-
-- [GNOME Extensions Tool](#gnome-extensions-tool)
-- [Manual Creation](#manual-creation)
-- [Enabling the Extension](#enabling-the-extension)
-- [A Working Extension](#a-working-extension)
+This page will guide you through creating a new GNOME Shell extension. If this is your first extension, you will probably want to use the `gnome-extensions` tool.
 
 ## GNOME Extensions Tool
 
@@ -121,29 +112,35 @@ function disable() {
 
 ## Enabling the Extension
 
-Firstly, we want to ensure we're watching the journal for any errors or mistakes we might have made. As described in the [Debugging](../development/debugging.html) page, most users can run `journalctl` in a terminal to watch the output of GNOME Shell and extensions:
+Depending on whether you are running an X11 session or a Wayland session, we will prepare a simple debugging environment. For more information about debugging GNOME Shell extensions, see the [Debugging](debugging.html) page.
 
-```sh
-$ journalctl -f -o cat /usr/bin/gnome-shell
-```
+For either session type, start by opening a new terminal, such as GNOME Terminal or GNOME Console.
 
-Next we'll enable the extension using `gnome-extensions enable`:
+- **X11 Sessions**
+
+    Start by executing the following command, which will monitor the output of GNOME Shell:
+
+    ```sh
+    $ journalctl -f -o cat /usr/bin/gnome-shell
+    ```
+    
+    Then press `Alt`+`F2` to open the *Run a Command* dialog, then run the built-in command `restart` to have GNOME Shell load your extension.
+    
+- **Wayland Sessions**
+
+    Execute the following command, which will start a nested instance of GNOME Shell:
+
+    ```sh
+    dbus-run-session -- gnome-shell --nested --wayland
+    ```
+    
+    Once the new process start, any output from the nested session will be printed in the same terminal.
+
+Now that you're prepared to debug any problems with your extension, use the `gnome-extensions` tool to enable your extension by running the following command:
 
 ```sh
 $ gnome-extensions enable example@shell.gnome.org
 ```
-
-To get clean view of how your extension functions after making changes, you should either restart GNOME Shell or run a nested session.
-
-- **X11**
-  In X11 sessions, you can restart GNOME Shell by pressing `Alt`+`F2` to open the *Run Dialog* and then enter `restart` (or just `r`).
-  
-- **Wayland**
-  On Wayland, the easiest way to test the new extension is by running a nested gnome-shell:
-
-  ```sh
-  dbus-run-session -- gnome-shell --nested --wayland
-  ```
 
 After this is done you should see something like the following in the log:
 
