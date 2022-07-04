@@ -32,7 +32,25 @@ In an X11 session, GNOME Shell can be completely restarted by pressing `Alt`+`F2
 Some distributions may require you to be part of a `systemd` user group to access logs. On systems that are not using `systemd`, logs may be written to `~/.xsession-errors`.
 :::
 
-GJS has a number of built in logging functions, although not all of them are useful for extensions.
+GJS has a number of logging facilities, some particular to GJS, others inherited from JavaScript and a few that are provided by GLib. There is more complete documentation available for these in the GJS repository at [`doc/Logging.md`][logging-md].
+
+GNOME Shell extensions have a special feature available that can be used with `journald`. By passing an extension's UUID with the `GNOME_SHELL_EXTENSION_UUID` variable, you can filter out all messages except those that your extension logs:
+
+```sh
+$ journalctl -f -o cat GNOME_SHELL_EXTENSION_UUID=example@shell.gnome.org
+```
+
+Note that you will not get messages from the `gnome-shell` process itself, which may mean you miss errors and warnings still relevant to your extension.
+
+### `console` Functions
+
+As of GJS 1.70 (GNOME 41), the `console` collection of functions are available as described in the WHATWG [Console Standard][console-standard]. The `console` object is available globally and should be familiar to those that have used JavaScript in web development.
+
+Note that the `console` functions do not work with the `GNOME_SHELL_EXTENSION_UUID` feature, so if you rely on this you should use the built-in functions instead.
+
+### Built-in Functions
+
+GJS also has a number of built in logging functions, although not all of them are useful for extensions.
 
 ```js
 // Log a string, usually to `journalctl`
@@ -104,3 +122,6 @@ If you fail to diagnose the problem, or you find it easier to review your code i
 $ mv ~/.local/share/gnome-shell/extensions/example@shell.gnome.org ~/.local/share/gnome-shell/
 ```
 
+
+[console-standard]: https://console.spec.whatwg.org/
+[logging-md]: https://gitlab.gnome.org/GNOME/gjs/-/blob/master/doc/Logging.md
