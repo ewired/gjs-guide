@@ -6,24 +6,6 @@ title: Subclasses
 
 Subclassing is a convenient way to extend most GObject classes, allowing you to define additional methods, properties and signals. If you haven't read the [GObject Basics](basics.md) guide already some of the concepts in this guide may be unfamiliar to you, so consider reading that first.
 
-## Contents
-
-* [Subclassing GObject](#subclassing-gobject)
-* [GTypeName](#gtypename)
-* [Properties](#properties)
-  * [Declaring Properties](#declaring-properties)
-  * [Property Types](#property-types)
-  * [Property Flags](#property-flags)
-  * [Property Change Notification](#property-change-notification)
-* [Signals](#signals)
-  * [Declaring Signals](#declaring-signals)
-  * [Default Signal Handler](#default-signal-handler)
-  * [Signal Parameters](#signal-parameters)
-  * [Signal Flags](#signal-flags)
-  * [Signal Return Values](#signal-return-values)
-  * [Signal Accumulators](#signal-accumulator)
-
-
 ## Subclassing GObject
 
 Every class of GObject has a globally unique [GType](#gtype) and so each subclass must be registered using the `GObject.registerClass()` function. This function takes a dictionary of GObject attributes as the first argument, and a JavaScript class declaration as its second argument.

@@ -14,16 +14,6 @@ Take for example the [`GIcon`][gicon] interface, which is implemented by [`GFile
 [gthemedicon]: https://gjs-docs.gnome.org/gio20/gio.themedicon
 [gtkimage]: https://gjs-docs.gnome.org/gtk30/gtk.image
 
-## Contents
-
-* [Implementing Interfaces](#implementing-interfaces)
-  * [Methods](#methods)
-  * [Properties](#properties)
-  * [Mutliple Interfaces](#multiple-interfaces)
-* [Defining Interfaces](#defining-interfaces)
-  * [A Simple Interface](#a-simple-interface)
-  * [A Complex Interface](#a-complex-interface)
-
 ## Implementing Interfaces
 
 Implementing an interface involves providing working implementations for class methods and properties defined by the interface.

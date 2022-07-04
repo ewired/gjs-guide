@@ -6,18 +6,6 @@ title: The Basics
 
 GObject is the base upon which most of the GNOME platform is built. This is a gentle introduction to using GObject in GJS, including constructing object, using properties and connecting to signals.
 
-## Contents
-
-* [GObject Construction](#gobject-construction)
-* [Properties](#properties)
-  * [Accessing Properties](#accessing-properties)
-  * [Property Change Notification](#property-change-notification)
-  * [Property Bindings](#property-bindings)
-* [Signals](#signals)
-  * [Connecting Signals](#connecting-signals)
-  * [Callback Arguments](#callback-arguments)
-  * [Callback Return Values](#callback-return-values)
-
 ## GObject Construction
 
 The most common way to create a new GObject is using the `new` keyword. When constructing a GObject this way, you can pass a dictionary of properties:
