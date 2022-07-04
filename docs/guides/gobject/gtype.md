@@ -168,5 +168,5 @@ const Example = GObject.registerClass({
 [js-object]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 [glistmodel]: https://gjs-docs.gnome.org/gio20/gio.listmodel
 [gobject-properties]: https://gjs.guide/guides/gobject/subclassing.html#properties
-[gobject-signals]: https://gjs.guide/guides/gobject/subclassing.html#signals
+[gobject-signals]: https://gjs.guide/guides/gobject/subclassing.html#signal-parameters
 
