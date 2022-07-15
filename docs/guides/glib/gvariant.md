@@ -278,7 +278,7 @@ should take note of:
 Below are a few example of working with `GLib.Variant` with DBus:
 
 ```js
-const {GLib, Gio} = imports.gi.GLib;
+const {GLib, Gio} = imports.gi;
 
 
 // This method takes three arguments. Remember that JavaScript has no tuple
@@ -286,7 +286,7 @@ const {GLib, Gio} = imports.gi.GLib;
 const parameters = new GLib.Variant('(ssa{sv})', [
     'some-extension@someone.github.io',
     '',
-    new GLib.Variant('a{sv}', {}),
+    {},
 ]);
 
 // This method has no return value, so the reply variant will be an empty tuple.
