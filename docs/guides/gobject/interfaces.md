@@ -34,8 +34,8 @@ const {Gio, GObject} = imports.gi;
 var ArrayStore = GObject.registerClass({
     Implements: [Gio.ListModel],
 }, class ArrayStore extends GObject.Object {
-    _init() {
-        super._init();
+    constructor() {
+        super();
 
         /* A native Array as internal storage for the list model */
         this._items = [];
@@ -154,8 +154,8 @@ var ListWidget = GObject.registerClass({
         'orientation': GObject.ParamSpec.override('orientation', Gtk.Orientable),
     },
 }, class ListWidget extends Gtk.Widget {
-    _init(params = {}) {
-        super._init(params);
+    constructor(params = {}) {
+        super(params);
 
         this._children = [];
     }

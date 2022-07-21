@@ -51,8 +51,8 @@ var A = GObject.registerClass({
        GTypeName: 'A',
    }, class A /* ... */
       /* ... */ extends GObject.Object { 
-          _init(a, b) {
-             super._init(a);
+          constructor(a, b) {
+             super(a);
              this.b = b;
          }
    }

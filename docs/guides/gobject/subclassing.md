@@ -8,9 +8,13 @@ Subclassing is a convenient way to extend most GObject classes, allowing you to 
 
 ## Subclassing GObject
 
+::: warning
+Note that prior to GJS 1.72 (GNOME 42), it was required to override `_init()` and chain-up with `super._init()` instead of the standard `constructor()`.
+:::
+
 Every class of GObject has a globally unique [GType](#gtype) and so each subclass must be registered using the `GObject.registerClass()` function. This function takes a dictionary of GObject attributes as the first argument, and a JavaScript class declaration as its second argument.
 
-Below is an example of a GObject class declaration with [`GTypeName`](#gtypename), [`Properties`](#properties) and [`Signals`](#signals) defined. Notice that GObject subclasses use `_init()` as the constructor function instead of `constructor()` that is normally used with native classes.
+Below is an example of a GObject class declaration with [`GTypeName`](#gtypename), [`Properties`](#properties) and [`Signals`](#signals) defined.
 
 ```js
 const GObject = imports.gi.GObject;
@@ -30,8 +34,8 @@ const SubclassExample = GObject.registerClass({
         'example-signal': {},
     },
 }, class SubclassExample extends GObject.Object {
-    _init(constructProperties = {}) {
-        super._init(constructProperties);
+    constructor(constructProperties = {}) {
+        super(constructProperties);
     }
 
     get example_property() {
