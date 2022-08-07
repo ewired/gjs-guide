@@ -662,9 +662,9 @@ const {Gio, GLib} = imports.gi;
 
 const directory = Gio.File.new_for_path('.');
 
-const fileMonitor = file.monitor(Gio.FileMonitorFlags.WATCH_MOVES, null);
+const fileMonitor = directory.monitor(Gio.FileMonitorFlags.WATCH_MOVES, null);
 
-fileMonitor.connect('changed', (file, otherFile, eventType) => {
+fileMonitor.connect('changed', (fileMonitor, file, otherFile, eventType) => {
     switch (eventType) {
         case Gio.FileMonitorEvent.CHANGED:
             log(`${otherFile.get_basename()} was changed`);
