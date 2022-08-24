@@ -5,7 +5,7 @@ title: Quick Settings
 # Quick Settings
 
 Quick settings is a new user-interface pattern for the GNOME Shell
-[System Menu][systemmenu], available in GNOME 43 and later.
+[System Menu][shell-systemmenu], available in GNOME 43 and later.
 
 This provides a simple, but flexible method that extensions can use to add
 indicators, toggles and entry points for settings to the System Menu.
@@ -55,7 +55,7 @@ class FeatureToggle extends QuickSettings.QuickToggle {
 ```
 
 You may also want your extension to show a panel indicator when the feature is
-enabled. The [`QuickSettings.SystemIndicator`][gs-systemindicator] class is used
+enabled. The [`QuickSettings.SystemIndicator`][js-systemindicator] class is used
 to display an icon and also manages quick setting items:
 
 ```js
@@ -124,14 +124,15 @@ function init() {
 }
 ```
 
-[gs-quicksettings]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/main/js/ui/quickSettings.js
+[js-systemindicator]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/main/js/ui/quickSettings.js
 
 
 ### Toggle Menu
 
 For features with a few more settings or options, you may want to add a submenu
-to the toggle. The [`QuickSettings.QuickMenuToggle`][gs-quicksettings] includes
-a built-in [Popup Menu][popupmenu], that supports the standard menu functions:
+to the toggle. The [`QuickSettings.QuickMenuToggle`][js-quickmenutoggle]
+includes a built-in [Popup Menu][js-popupmenu], that supports the standard menu
+functions:
 
 ```js
 const {Gio, GObject, St} = imports.gi;
@@ -212,5 +213,6 @@ class FeatureIndicator extends QuickSettings.SystemIndicator {
 });
 ```
 
-[popupmenu]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/main/js/ui/popupMenu.js
+[js-quickmenutoggle]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/main/js/ui/quickSettings.js
+[js-popupmenu]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/main/js/ui/popupMenu.js
 
