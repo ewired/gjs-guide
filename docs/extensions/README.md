@@ -62,13 +62,9 @@ How to work with session modes in GNOME Shell
 
 How to upgrade extensions across Shell versions
 
-### [GNOME Shell 42](upgrading/gnome-shell-42.md)
-
-Porting Extensions to GNOME Shell 42
-
-### [GNOME Shell 40](upgrading/gnome-shell-40.md)
-
-Porting Extensions to GNOME Shell 40
+- [GNOME Shell 43](upgrading/gnome-shell-43.md)
+- [GNOME Shell 42](upgrading/gnome-shell-42.md)
+- [GNOME Shell 40](upgrading/gnome-shell-40.md)
 
 ## Review Guidelines
 

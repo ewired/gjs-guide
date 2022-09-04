@@ -173,6 +173,7 @@ const upgrading = {
     collapsible: true,
 
     children: [
+        '/extensions/upgrading/gnome-shell-43.md',
         '/extensions/upgrading/gnome-shell-42.md',
         '/extensions/upgrading/gnome-shell-40.md',
     ],
