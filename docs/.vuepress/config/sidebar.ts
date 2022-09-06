@@ -159,6 +159,7 @@ const topics = {
     collapsible: true,
 
     children: [
+        '/extensions/topics/popup-menu.md',
         '/extensions/topics/quick-settings.md',
         '/extensions/topics/session-modes.md',
     ],
