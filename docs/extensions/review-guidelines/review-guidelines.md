@@ -156,6 +156,16 @@ function disable() {
 
 You **MUST** remove all active main loop sources in `disable()`, even if the callback function will eventually return `false` or `GLib.SOURCE_REMOVE`.
 
+### Code must not be obfuscated
+
+Extension code **MUST** be readable and reviewable JavaScript.
+
+Although a specific code-style is not enforced during review, it is expected that your code is formatted in a way that can be understood by reviewers. Specifically, the following rules **MUST** be adhered to:
+
+- JavaScript code must be legible and reasonably structured
+- JavaScript code must not be minified or obfuscated
+- TypeScript must be transpiled to well-formatted JavaScript
+
 ### No excessive logging
 
 Extension **MUST NOT** print excessively to the log. The log should only be used for important messages and errors.
