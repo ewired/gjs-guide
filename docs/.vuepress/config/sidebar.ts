@@ -40,6 +40,16 @@ const gobject = {
  * GTK3 sub-section
  */
 
+const gtk4 = {
+    text: 'GTK4',
+    children: [
+        {
+            text: 'GTK4 Book',
+            link: 'https://rmnvgr.gitlab.io/gtk4-gjs-book/',
+        },
+    ],
+}
+
 const gtk3 = {
     text: 'GTK3',
     children: [
@@ -83,6 +93,7 @@ const gtk = {
     text: 'GTK',
     collapsible: true,
     children: [
+        { ...gtk4 },
         { ...gtk3 },
         { ...applicationPackaging }
     ],
