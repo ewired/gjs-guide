@@ -381,7 +381,11 @@ await new Promise((resolve, reject) => {
         target,
         Gio.FileCopyFlags.NONE,
         GLib.PRIORITY_DEFAULT,
-        null,
+        // Gio.FileProgressCallback
+        (nWritten, nTotal) => {
+            const percent = Math.floor(nWritten / nTotal);
+            log(`Progress: ${percent}%`);
+        },
         (file_, result) => {
             try {
                 resolve(file.copy_finish(result));
