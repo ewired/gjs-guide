@@ -213,7 +213,7 @@ This menu item is like `PopupMenuItem`, with a switch placed after the label.
 
 #### Signals
 
-* `toggle(item, state)` — Emitted when the switch state changes
+* `toggled(item, state)` — Emitted when the switch state changes
     * item (`PopupMenu.PopupSwitchMenuItem`) — The emitting object
     * state (`Boolean`) — The new switch state
 
