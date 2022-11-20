@@ -140,7 +140,7 @@ const {Gio, GObject, St} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Extension = ExtensionUtils.getCurrentExtension();
 
-const Main = imports.ui.Main;
+const Main = imports.ui.main;
 const PopupMenu = imports.ui.popupMenu;
 const QuickSettings = imports.ui.quickSettings;
 
