@@ -1,4 +1,4 @@
-﻿---
+---
 title: File Operations
 sidebar: "auto"
 ---
@@ -383,7 +383,7 @@ await new Promise((resolve, reject) => {
         GLib.PRIORITY_DEFAULT,
         // Gio.FileProgressCallback
         (nWritten, nTotal) => {
-            const percent = Math.floor(nWritten / nTotal);
+            const percent = Math.floor(100 * (nWritten / nTotal));
             log(`Progress: ${percent}%`);
         },
         (file_, result) => {
