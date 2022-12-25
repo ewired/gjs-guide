@@ -33,6 +33,7 @@ const gobject = {
         '/guides/gobject/interfaces.md',
         '/guides/gobject/subclassing.md',
         '/guides/gobject/gtype.md',
+        '/guides/gobject/gvalue.md',
     ],
 };
 
