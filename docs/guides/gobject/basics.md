@@ -109,7 +109,28 @@ if (myBox.visible === myLabel.visible)
     log('properties are equal!');
 ```
 
+If you need to transform the value between the source and target, you can use [`bind_property_full`][bind-property-full].
+
+```js
+const {GObject, Gtk} = imports.gi;
+
+let button = new Gtk.Button({
+    label: 'go';
+});
+let entry = new Gtk.Entry({});
+
+entry.bind_property_full(
+    "text",
+    button,
+    "sensitive",
+    GObject.BindingFlags.DEFAULT,
+    (binding, value) => [true, !!value],
+    null,
+);
+```
+
 [gobject-binding-flags]: https://gjs-docs.gnome.org/gobject20/gobject.bindingflags
+[bind-property-full]: https://gjs-docs.gnome.org/gobject20/gobject.object#method-bind_property_with_closures
 
 ## Signals
 
