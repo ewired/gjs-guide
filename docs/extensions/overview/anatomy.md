@@ -360,18 +360,15 @@ function init(meta) {
 function buildPrefsWidget() {
     // This could be any GtkWidget subclass, although usually you would choose
     // something like a GtkGrid, GtkBox or GtkNotebook
-    const prefsWidget = new Gtk.Label({
-        label: Me.metadata.name,
-        visible: true,
-    });
+    const prefsWidget = new Gtk.Box();
 
     // Add a widget to the group. This could be any GtkWidget subclass,
     // although usually you would choose preferences rows such as AdwActionRow,
     // AdwComboRow or AdwRevealerRow.
     const label = new Gtk.Label({ label: `${Me.metadata.name}` });
-    group.add(label);
-
-    window.add(page);
+    prefsWidget.append(label);
+    
+    return prefsWidget;
 }
 
 /**
