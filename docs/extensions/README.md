@@ -54,6 +54,14 @@ Making the extension work on multiple versions of GNOME
 
 ## Topics
 
+### [PopupMenus](topics/popup-menu.md)
+
+Documentation for popup menus in GNOME Shell
+
+### [Quick Settings](topics/quick-settings.md)
+
+How to add quick settings to an extension.
+
 ### [Session Modes](topics/session-modes.md)
 
 How to work with session modes in GNOME Shell
