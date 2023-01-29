@@ -339,6 +339,6 @@ class FeatureButton extends QuickSettings.QuickSettingsItem {
 });
 
 
-SystemItem.child.add_child(new FeatureButton();
+SystemItem.child.add_child(new FeatureButton());
 ```
 
