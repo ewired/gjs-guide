@@ -481,7 +481,7 @@ async function exampleAsyncFunction() {
 ```
 
 The important thing to notice is that by using the `async`/`await` pattern, you
-can maintain a simple, synchronous programming style while taking advantage of
+can maintain a simple, synchronous-like programming style while taking advantage of
 asynchronous execution.
 
 With a wrapper function prepared, you can even run many of these operations in
@@ -534,7 +534,7 @@ Gio._promisify(Gio.InputStream.prototype, 'read_bytes_async',
 ```
 
 The function may then be used like any other `Promise` without the need for a
-customer wrapper, simply by leaving out the callback argument:
+custom wrapper, simply by leaving out the callback argument:
 
 ```js
 try {

@@ -351,7 +351,8 @@ obj.emit('example-signal');
 obj.disconnect(handlerId);
 ```
 
-A default or **object handler** can be defined in the class, and the following attributes can also be changed in the signal declaration.
+A default signal handler (**object handler**) can be defined in the class, and
+the following attributes can also be changed in the signal declaration.
 
 | Key           | Default                         | Description                |
 |---------------|---------------------------------|----------------------------|
@@ -430,7 +431,7 @@ const Example = GObject.registerClass({
 });
 ```
 
-The signal above can be connected to with and optional detail appended to the signal name. In that case, the handler will only be run if the emission detail matches the handler detail.
+The signal above can be connected to with an optional "detail" appended to the signal name. In that case, the handler will only be run if the emission detail matches the handler detail.
 
 Since the `RUN_LAST` flag is used, the **object handler** will run after a **user handler** connected with `GObject.Object.connect()`, but before a **user handler** connected with `GObject.Object.connect_after()`.
 
@@ -438,15 +439,15 @@ Since the `RUN_LAST` flag is used, the **object handler** will run after a **use
 let obj = new Example();
 
 obj.connect('example-signal', (obj) => {
-    log('first-signal: user handler');
+    log('example-signal: user handler');
 });
 
 obj.connect('example-signal::example-detail', (obj) => {
-    log('first-signal: user handler (detailed)');
+    log('example-signal: user handler (detailed)');
 });
 
 obj.connect_after('example-signal', (obj) => {
-    log('first-signal: user handler (after)');
+    log('example-signal: user handler (after)');
 });
 
 /* Expected output:

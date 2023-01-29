@@ -93,8 +93,7 @@ as the base path for objects belonging to the service.
 At the third level we have interfaces and that's what we're really interested
 in. Just like a GObject these can have methods, properties and signals.
 
-Like object paths, the convention is to use the well-known name as the base for
-base for the interface name. Each path will also have a set of common
+Like object paths, the convention is to use the well-known name as the base for the interface name. Each path will also have a set of common
 interfaces, those beginning with `org.freedesktop.DBus`, for introspecting
 the service and property management.
 
@@ -117,8 +116,8 @@ be a client to a service.
 
 The session bus is far more common to use and many user applications and desktop
 services are exported here. Some examples include notification servers, search
-providers for GNOME Shell, or or even regular applications such as the file
-browser that want to expose actions like `EmptyTrash()`.
+providers for GNOME Shell, or even regular applications such as the file
+browser that wants to expose actions like `EmptyTrash()`.
 
 You can get a bus connection using the convenience properties in GJS:
 
@@ -133,7 +132,7 @@ const systemConnection = Gio.DBus.system;
 ### Interface Definitions
 
 Most projects declare interface definitions in XML, either as files or inline in
-the code. In GJS describing interfaces that you export in XML is mandatory. GJS
+the code. In GJS, describing exported interfaces in XML is mandatory. GJS
 includes convenience functions for creating client proxies directly from an XML
 string, which is covered in the [High-Level Proxies](#high-level-proxies)
 section.
@@ -209,7 +208,7 @@ const { Gio } = imports.gi;
 // when you first start watching a name.
 
 // This will be called when a process takes ownership of the name, which is to
-// say the service actually become active.
+// say the service actually became active.
 function onNameAppeared(connection, name, name_owner) {
     log(`The well-known name ${name} has been owned by ${name_owner}`);
 }
@@ -262,7 +261,7 @@ steps:
 const { GLib, Gio } = imports.gi;
 
 
-// All the operations in these examples will be on the sesson bus
+// All the operations in these examples will be on the session bus
 const connection = Gio.DBus.session;
 
 /* 1. Packing the method arguments
@@ -310,10 +309,10 @@ connection.call(
             const reply = connection.call_finish(res);
 
             // Our method call has a reply, so we will extract it by getting the
-            // fist child of the tuple, which is the actual method return value.
+            // first child of the tuple, which is the actual method return value.
             const value = reply.get_child_value(0);
 
-            // The return type of this method is 32-bit unsigned integer or `u`,
+            // The return type of this method is a 32-bit unsigned integer or `u`,
             // although the JavaScript type will be `Number`.
             const id = value.get_uint32();
 
@@ -338,7 +337,7 @@ connection.call(
 
 #### Properties
 
-Getting or setting the value of properties are also just method calls, just
+Getting or setting the value of properties are also just method calls,
 made to the standard `org.freedesktop.DBus.Properties` interface. The name of
 the interface holding the property is passed as the first argument of the method
 arguments.
@@ -473,7 +472,7 @@ proxy.connect('g-properties-changed', (proxy, changed, invalidated) => {
     
     // These properties have been marked as changed, but not cached. A service
     // might do this for performance reasons, but you can override this
-    // behaviour with Gio.DBusProxyFlags.GET_INVALIDATED_PROPERTIES in which
+    // behavior with Gio.DBusProxyFlags.GET_INVALIDATED_PROPERTIES in which
     // case this will always be an empty.
     for (const name of invalidated)
         log(`Property ${name} changed`);
@@ -534,7 +533,7 @@ const { Gio } = imports.gi;
 
 
 // We'll use our XML definition from earlier as an example
-const ifaceXml = `
+const interfaceXml = `
 <node>
   <interface name="guide.gjs.Test">
     <method name="SimpleMethod"/>
@@ -553,10 +552,10 @@ const ifaceXml = `
 
 
 // Pass the XML string to create a proxy class for that interface
-const TestProxy = Gio.DBusProxy.makeProxyWrapper(ifaceXml);
+const TestProxy = Gio.DBusProxy.makeProxyWrapper(interfaceXml);
 ```
 
-Now that we have create a re-usable class, we can easily create client proxies
+Now that we have created a reusable class, we can easily create client proxies
 for an interface. The proxy will be created synchronously or asynchronously
 depending on whether a callback is passed in the constructor arguments.
 
@@ -621,7 +620,7 @@ try {
 }
 
 
-// Properties work just like regular JavaScript properties:
+// Properties work just like regular JavaScript object properties:
 log(`ReadOnlyProperty: ${proxy.ReadOnlyProperty}`);
 log(`ReadWriteProperty: ${proxy.ReadWriteProperty}`);
 
@@ -685,8 +684,7 @@ a language agnostic entry point for your application.
 
 ### Owning a Name
 
-The first thing we're going to cover is how to acquire a well-known name on a
-on a bus connection and at what point you will want to actually export your
+The first thing we're going to cover is how to acquire a well-known name on a bus connection and at what point you will want to actually export your
 service. This is similar to watching a name:
 
 ```js
@@ -740,7 +738,7 @@ const { Gio } = imports.gi;
 
 
 // We'll use our XML definition from earlier as an example
-const ifaceXml = `
+const interfaceXml = `
 <node>
   <interface name="guide.gjs.Test">
     <method name="SimpleMethod"/>
@@ -796,7 +794,7 @@ let serviceInterface = null;
 
 function onBusAcquired(connection, name) {
     serviceImplementation = new Service();
-    serviceInterface = Gio.DBusExportedObject.wrapJSObject(ifaceXml,
+    serviceInterface = Gio.DBusExportedObject.wrapJSObject(interfaceXml,
         serviceImplementation);
     serviceInterface.export(connection, '/guide/gjs/Test');
 }
@@ -847,7 +845,7 @@ hold some kind of value.
 
 `Gio.Action` objects are usually added to objects that implement the 
 [`Gio.ActionGroup`][gactiongroup] and [`Gio.ActionMap`][gactionmap] interfaces.
-The [`Gio.SimpleActionGroup`][gsimpleactiongroup] implementation provided
+The [`Gio.SimpleActionGroup`][gsimpleactiongroup] implementation
 supports both of these.
 
 Below are a few examples of how to create each type of action:
@@ -952,7 +950,7 @@ remoteGroup.change_action_state('stateAction', new GLib.Variant('b', false));
 ```
 
 What makes `Gio.Action` even more convenient, is that GTK already knows how to
-do all of this for you. Simple insert the `Gio.ActionGroup` into any
+do all of this for you. Simply insert the `Gio.ActionGroup` into any
 `Gtk.Widget` and that widget or any of its children that implement the
 [`Gtk.Actionable`][gtkactionable] interface can activate or set the state of the
 action.

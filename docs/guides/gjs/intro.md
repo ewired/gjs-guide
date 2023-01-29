@@ -55,13 +55,13 @@ GJS has a number of logging facilities, some particular to GJS, others inherited
 
 ### `console` Functions
 
-As of GJS 1.70 (GNOME 41), the `console` collection of functions are available as described in the WHATWG [Console Standard][console-standard]. The `console` object is available globally and should be familiar to those that have used JavaScript in web development.
+As of GJS 1.70 (GNOME 41), the `console` collection of functions are available as described in the [WHATWG Console Standard][console-standard]. The `console` object is available globally and should be familiar to those that have used JavaScript in web development.
 
 Note that the `console` functions do not work with the `GNOME_SHELL_EXTENSION_UUID` feature, so if you rely on this you should use the built-in functions instead.
 
 ### Built-in Functions
 
-GJS also has a number of built in logging functions:
+GJS also has a number of built-in logging functions:
 
 ```js
 // Log a string, usually to `journalctl`

@@ -165,7 +165,7 @@ const Gtk = imports.gi.Gtk;
 let myLabel = Gtk.Label.new('Example');
 
 myLabel.connect('populate-popup', (label, menu) => {
-    log('populate-popup emitted!);
+    log('populate-popup emitted!');
 
     if (myLabel === label)
         log('myLabel emitted the signal!');
