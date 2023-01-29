@@ -189,7 +189,11 @@ function disable() {
 }
 ```
 
-Although the principle of the code below is sound, we are leaking a reference to a GObject we are responsible for (and thus memory). The leak below is fairly easy to spot; what's important is how and why that reference was leaked. Mistakes like these are often easier to make and harder to track down.
+Here's another example. Although the principle of the code below is
+sound, we are leaking a reference to a GObject we are responsible for (and thus
+memory). The leak below is fairly easy to spot; what's important is how and why
+that reference was leaked. Mistakes like these are often easier to make and
+harder to track down.
 
 ```js
 'use strict';
@@ -220,6 +224,15 @@ function disable() {
     indicators = {};
 }
 ```
+
+::: details Having trouble to find the leak? 
+Even though the author of the code above had an intention of storing references
+to all the indicators in the `indicators` object, they made a small mistake. The
+line 17 stores the reference to `indicator2` at `indicators['MyIndicator1']`,
+overwriting the reference to `indicator1`! With that, the reference to the
+object under `indicator1` is lost, and the object cannot be freed in
+`disable()`.
+:::
 
 ### Main Loop Sources
 
