@@ -173,6 +173,7 @@ const topics = {
     children: [
         '/extensions/topics/popup-menu.md',
         '/extensions/topics/quick-settings.md',
+        '/extensions/topics/search-provider.md',
         '/extensions/topics/session-modes.md',
     ],
 }

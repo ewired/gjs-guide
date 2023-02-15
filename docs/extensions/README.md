@@ -62,6 +62,10 @@ Documentation for popup menus in GNOME Shell
 
 How to add quick settings to an extension.
 
+### [Search Provider](topics/search-provider.md)
+
+How to add a [Search Provider](search-provider) to an extension.
+
 ### [Session Modes](topics/session-modes.md)
 
 How to work with session modes in GNOME Shell
@@ -84,3 +88,4 @@ GNOME Shell Extensions Review Guidelines
 
 [ego]: https://extensions.gnome.org
 [gnome-api]: https://gjs-docs.gnome.org
+[search-provider]: https://developer.gnome.org/documentation/tutorials/search-provider.html
