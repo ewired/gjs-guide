@@ -24,6 +24,11 @@ Shell, which can be referenced in the [`js/ui/status/`][gs-status] directory.
 
 ### Basic Toggle
 
+::: warning
+Note that in GNOME 44, the `label` property was renamed to `title`. The `label`
+property will continue to work, except as a construct property.
+:::
+
 Here is an example of a simple on/off toggle, similar to what the Night Light
 uses in GNOME Shell:
 
@@ -37,10 +42,14 @@ const FeatureToggle = GObject.registerClass(
 class FeatureToggle extends QuickSettings.QuickToggle {
     _init() {
         super._init({
-            label: 'Feature Name',
+            title: 'Feature Name',
             iconName: 'selection-mode-symbolic',
             toggleMode: true,
         });
+        
+        // NOTE: In GNOME 44, the `label` property must be set after
+        // construction. The newer `title` property can be set at construction.
+        this.label = 'Feature Name';
 
         // Binding the toggle to a GSettings key
         this._settings = new Gio.Settings({
@@ -129,6 +138,11 @@ function init() {
 
 ### Toggle Menu
 
+::: warning
+Note that in GNOME 44, the `label` property was renamed to `title`. The `label`
+property will continue to work, except as a construct property.
+:::
+
 For features with a few more settings or options, you may want to add a submenu
 to the toggle. The [`QuickSettings.QuickMenuToggle`][js-quickmenutoggle]
 includes a built-in [Popup Menu][js-popupmenu], that supports the standard menu
@@ -149,7 +163,7 @@ const FeatureMenuToggle = GObject.registerClass(
 class FeatureMenuToggle extends QuickSettings.QuickMenuToggle {
     _init() {
         super._init({
-            label: 'Feature Name',
+            title: 'Feature Name',
             iconName: 'selection-mode-symbolic',
             toggleMode: true,
         });

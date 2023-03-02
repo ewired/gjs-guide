@@ -26,7 +26,19 @@ Each item has a close button that can quit the app via D-Bus or sending SIGKILL 
 
 ## QuickToggle and QuickMenuToggle
 
-Use of `label` for `QuickToggle` and `QuickMenuToggle` is deprecated. You should use `title` property instead.
+Use of `label` for `QuickToggle` and `QuickMenuToggle` is deprecated in favour of `title` and will print a warning when accessed. Additionally, it can not be used as a construct property:
+
+```js
+// GNOME 43
+const toggle43 = new QuickToggle({ label: 'Feature' });
+
+// GNOME 44
+const toggle44 = new QuickToggle({ title: 'Feature' });
+
+// GNOME 43 & 44
+const toggle = new QuickToggle();
+toggle.label = 'Feature';
+```
 
 In addition to title, there is new `subtitle` property that you can use for showing sub title.
 
