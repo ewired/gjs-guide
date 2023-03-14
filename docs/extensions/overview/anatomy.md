@@ -244,7 +244,7 @@ class Extension {
      * This function is called when your extension is uninstalled, disabled in
      * GNOME Extensions, when you log out or when the screen locks.
      *
-     * Anything you created, modifed or setup in enable() MUST be undone here.
+     * Anything you created, modified or setup in enable() MUST be undone here.
      * Not doing so is the most common reason extensions are rejected in review!
      */
     disable() {
