@@ -57,3 +57,19 @@ Also, the _switch user button_ is using different style class:
 | ------------------------------------------------- | ----------------------------------------- |
 | `.modal-dialog-button.switch-user-button .button` | `.login-dialog-button.switch-user-button` |
 
+## Gtk.IconTheme
+
+If you are using `Gtk.IconTheme` in _extension.js_ you should use [`St.IconTheme`](https://gjs-docs.gnome.org/st12~12/st.icontheme) instead.
+
+For example:
+
+```js
+const {St} = imports.gi;
+
+const iconTheme = new St.IconTheme();
+if (!iconTheme.get_search_path().includes(ICONS_FOLDER_PATH)) {
+    iconTheme.append_search_path(ICONS_FOLDER_PATH);
+}
+iconTheme.rescan_if_needed();
+```
+
