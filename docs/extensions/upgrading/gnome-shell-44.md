@@ -42,6 +42,26 @@ toggle.label = 'Feature';
 
 In addition to title, there is new `subtitle` property that you can use for showing sub title.
 
+GNOME Shell 44 features a new *Background Apps* menu in the quick settings menu,
+which looks different from other quick settings tiles. If you want your toggle
+above the *Background Apps* menu, you can move it after adding it with the
+built-in function:
+
+```js
+const QuickSettingsMenu = imports.ui.main.panel.statusArea.quickSettings;
+
+function addQuickSettingsItems(items) {
+    // Add the items with the built-in function
+    QuickSettingsMenu._addItems(items);
+
+    // Ensure the tile(s) are above the background apps menu
+    for (const item of items) {
+        QuickSettingsMenu.menu._grid.set_child_below_sibling(item,
+            QuickSettingsMenu._backgroundApps.quickSettingsItems[0]);
+    }
+}
+```
+
 ## Unlock dialog
 
 GNOME Shell 44 changed the blur values for unlock dialog (`ui.unlockDialog`):

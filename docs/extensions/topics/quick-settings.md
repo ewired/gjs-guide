@@ -106,6 +106,17 @@ class FeatureIndicator extends QuickSettings.SystemIndicator {
         QuickSettingsMenu._indicators.add_child(this);
         QuickSettingsMenu._addItems(this.quickSettingsItems);
     }
+    
+    // To add your toggle above another item, such as Background Apps, add it
+    // using the built-in function, then move them afterwards.
+    _addItems(items) {
+        QuickSettingsMenu._addItems(items);
+
+        for (const item of items) {
+            QuickSettingsMenu.menu._grid.set_child_below_sibling(item,
+                QuickSettingsMenu._backgroundApps.quickSettingsItems[0]);
+        }
+    }
 });
 ```
 
