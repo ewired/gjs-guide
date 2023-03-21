@@ -382,7 +382,7 @@ const Example = GObject.registerClass({
 });
 ```
 
-The order the default handler is invoked is controlled by whether it has the flag `RUN_FIRST`, `RUN_LAST` or `RUN_CLEANUP`. The signal emission phases are described in the [Signals Documentation](https://developer.gnome.org/gobject/stable/gobject-Signals.html).
+The order the default handler is invoked is controlled by whether it has the flag `RUN_FIRST`, `RUN_LAST` or `RUN_CLEANUP`. The signal emission phases are described in the [Signals Documentation](https://docs.gtk.org/gobject/concepts.html#signal-emission).
 
 ```js
 let obj = new Example();
