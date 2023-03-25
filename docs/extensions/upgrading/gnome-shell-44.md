@@ -93,3 +93,6 @@ if (!iconTheme.get_search_path().includes(ICONS_FOLDER_PATH)) {
 iconTheme.rescan_if_needed();
 ```
 
+## Meta.later_add and Meta.later_remove
+
+`Meta.later_add` and `Meta.later_remove` are now `Meta.Laters.add` and `Meta.Laters.remove`, respectively. Refer to [Meta.Laters](https://gjs-docs.gnome.org/meta12~12/meta.laters).
