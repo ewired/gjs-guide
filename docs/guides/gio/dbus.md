@@ -10,14 +10,13 @@ GTK applications. If you're already familiar with D-Bus or you just want to get
 started the quickest way possible, you can jump to the high-level code examples
 for [Clients](#high-level-proxies) and [Services](#exporting-interfaces). 
 
-While working with D-Bus you can use [D-Feet][dfeet], [D-Spy][dspy] or the
+While working with D-Bus you can use [D-Spy][dspy] or the
 built-in inspector in [GNOME Builder][gnome-builder] to introspect D-Bus on your
 desktop. [The guide for `GLib.Variant` values](/guides/glib/gvariant.html) will
 also be useful while learning how to use D-Bus.
 
 [dbus]: https://dbus.freedesktop.org/
 [gvariant]: https://gjs-docs.gnome.org/glib20/glib.variant
-[dfeet]: https://flathub.org/apps/details/org.gnome.dfeet
 [dspy]: https://flathub.org/apps/details/org.gnome.dspy
 [gnome-builder]: https://flathub.org/apps/details/org.gnome.Builder
 
@@ -267,7 +266,7 @@ const connection = Gio.DBus.session;
 /* 1. Packing the method arguments
  *
  *    Note that calling methods directly in this way will require you to find
- *    documentation or introspect the interface. D-Feet and D-Spy can help here.
+ *    documentation or introspect the interface. D-Spy can help here.
  */
 const notification = new GLib.Variant('(susssasa{sv}i)', [
     'GJS D-Bus Tutorial',
