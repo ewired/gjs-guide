@@ -72,8 +72,8 @@ allows the D-Bus server to automatically start services when they are accessed
 at a well-known name. Once the process starts it will "own the name", and thus
 become the name owner.
 
-[app-id]: https://developer.gnome.org/DBusApplicationLaunching/documentation/tutorials/application-id.html
-[dbus-activation]: https://developer.gnome.org/DBusApplicationLaunching/documentation/guidelines/maintainer/integrating.html#d-bus-activation
+[app-id]: https://developer.gnome.org/documentation/tutorials/application-id.html
+[dbus-activation]: https://developer.gnome.org/documentation/guidelines/maintainer/integrating.html#d-bus-activation
 
 
 #### Object Paths
