@@ -6,11 +6,11 @@ title: Anatomy of an Extension
 This document details the files and structure of a GNOME Shell extension. It may
 be used as a reference
 
-Whether you're downloading from a repository (eg. GitHub, GitLab) or installing
+Whether you're downloading from a repository (e.g. GitHub, GitLab) or installing
 from the [GNOME Extensions Website][ego], extensions are distributed as Zip
 files with only two required files: `metadata.json` and `extension.js`.
 
-Once unpacked and installed the extension will be in one of two places:
+Once unpacked and installed, the extension will be in one of two places:
 
 ```sh
 # User Extension
@@ -154,7 +154,7 @@ versions with this.
 #### `gettext-domain`
 
 This field is a Gettext translation domain, used by the
-`ExtensionUtils.initTranslations()` convenience method to create a object with
+`ExtensionUtils.initTranslations()` convenience method to create an object with
 methods for marking and retrieving string translations in an extension.
 
 The domain should be unique to your extension and the easiest choice is to use
@@ -411,7 +411,7 @@ Something that's important to understand:
 * The code in `extension.js` is executed in the same process as `gnome-shell`
  
   Here you **will** have access to live code running in GNOME Shell, but fatal
-  errors or mistakes will affect the stablity of the desktop. It also means you
+  errors or mistakes will affect the stability of the desktop. It also means you
   will be using the [Clutter][clutter] and [St][st] toolkits, although you may
   still use utility functions and classes from Gtk.
   

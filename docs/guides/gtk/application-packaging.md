@@ -30,7 +30,7 @@ The following API is available to applications through the [package module](http
  * `pkg.initFormat()` initializes the format module. After calling, String.prototype.format be available
  * `pkg.initSubmodule(name)` initializes a submodule named @name. It must be called before accessing the typelibs installed by that submodule
  * `pkg.loadResource(name)` loads and registers a GResource named @name. @name is optional and defaults to ${package-name}
- * `pkg.require(deps)` marks a set of dependencies on GI and standard JS modules. @deps is a object whose keys are repository names and whose values are API versions. If the dependencies are not satisfied, `pkg.require` print an error message and quit.
+ * `pkg.require(deps)` marks a set of dependencies on GI and standard JS modules. @deps is an object whose keys are repository names and whose values are API versions. If the dependencies are not satisfied, `pkg.require` print an error message and quit.
 
 ##  Package layout
 

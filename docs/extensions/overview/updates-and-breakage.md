@@ -185,7 +185,7 @@ to statically analyze your code. These can do much more than just keep your code
 pretty like identifying logical errors, races in asynchronous code and a large
 number of other mistakes commonly made in JavaScript.
 
-A number of extensions have also started using TypeScript to make developement
+A number of extensions have also started using TypeScript to make development
 quicker and less error-prone. As GJS gains better support for modern JavaScript
 standards like ESM (ECMAScript Modules) and other features, more related tooling
 will become available.
