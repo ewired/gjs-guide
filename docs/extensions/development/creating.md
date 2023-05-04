@@ -16,7 +16,11 @@ Instead of passing options on the command line, you can start creating an extens
 $ gnome-extensions create --interactive
 ```
 
-1. **First choose a name:**
+Note that the current directiory of your shell does not matter in this case
+since the extension files will be created in the
+`~/.local/share/gnome-shell/extensions` directory.
+
+1. **Choose a name:**
 
    ```sh
    Name should be a very short (ideally descriptive) string.
@@ -24,7 +28,7 @@ $ gnome-extensions create --interactive
    Name: Example Extension
    ```
 
-2. **Second choose a description:**
+2. **Choose a description:**
 
    ```sh
    Description is a single-sentence explanation of what your extension does.
@@ -32,13 +36,22 @@ $ gnome-extensions create --interactive
    Description: An extension serving as an example
    ```
 
-3. **The last step is to choose a UUID for your extension:**
+3. **Choose a UUID for your extension:**
 
    ```sh
    UUID is a globally-unique identifier for your extension.
    This should be in the format of an email address (clicktofocus@janedoe.example.com)
    UUID: example@shell.gnome.org
    ```
+
+4. **Choose the starting template:**
+
+    ```sh
+    Choose one of the available templates:
+    1) Plain       –  An empty extension
+    2) Indicator   –  Add an icon to the top bar
+    Template [1-2]: 1
+    ```
 
 The whole process looks like this on the command line:
 
@@ -47,18 +60,24 @@ $ gnome-extensions create --interactive
 Name should be a very short (ideally descriptive) string.
 Examples are: “Click To Focus”, “Adblock”, “Shell Window Shrinker”
 Name: Example Extension
+
 Description is a single-sentence explanation of what your extension does.
 Examples are: “Make windows visible on click”, “Block advertisement popups”, “Animate windows shrinking on minimize”
-Description: An extension serving as an example            
+Description: An extension serving as an example
+
 UUID is a globally-unique identifier for your extension.
 This should be in the format of an email address (clicktofocus@janedoe.example.com)
 UUID: example@shell.gnome.org
+
+Choose one of the available templates:
+1) Plain       –  An empty extension
+2) Indicator   –  Add an icon to the top bar
+Template [1-2]: 1
 ```
 
 Once you finish the last step, the extension template will be created and opened in an editor:
 
 <img :src="$withBase('/assets/img/gnome-extensions-create-editor.png')" />
-
 
 ## Manual Creation
 
@@ -112,20 +131,10 @@ function disable() {
 
 ## Enabling the Extension
 
-Depending on whether you are running an X11 session or a Wayland session, we will prepare a simple debugging environment. For more information about debugging GNOME Shell extensions, see the [Debugging](debugging.html) page.
+Depending on whether you are running a Wayland session or an X11 session, we will prepare a simple debugging environment. For more information about debugging GNOME Shell extensions, see the [Debugging](debugging.html) page.
 
 For either session type, start by opening a new terminal, such as GNOME Terminal or GNOME Console.
 
-- **X11 Sessions**
-
-    Start by executing the following command, which will monitor the output of GNOME Shell:
-
-    ```sh
-    $ journalctl -f -o cat /usr/bin/gnome-shell
-    ```
-    
-    Then press `Alt`+`F2` to open the *Run a Command* dialog, then run the built-in command `restart` to have GNOME Shell load your extension.
-    
 - **Wayland Sessions**
 
     Execute the following command, which will start a nested instance of GNOME Shell:
@@ -136,11 +145,25 @@ For either session type, start by opening a new terminal, such as GNOME Terminal
     
     Once the new process start, any output from the nested session will be printed in the same terminal.
 
+- **X11 Sessions**
+
+    Start by executing the following command, which will monitor the output of GNOME Shell:
+
+    ```sh
+    $ journalctl -f -o cat /usr/bin/gnome-shell
+    ```
+    
+    Then press `Alt`+`F2` to open the *Run a Command* dialog, then run the built-in command `restart` to have GNOME Shell load your extension.
+
 Now that you're prepared to debug any problems with your extension, use the `gnome-extensions` tool to enable your extension by running the following command:
 
 ```sh
 $ gnome-extensions enable example@shell.gnome.org
 ```
+
+In case of Wayland, execute the above command in a terminal started from within
+the nested Gnome Shell instance. The extension will not be visible in a shell
+started from your host session, unless you log out and log in first.
 
 After this is done you should see something like the following in the log:
 
@@ -149,6 +172,9 @@ GNOME Shell started at Sat Aug 22 2020 07:14:35 GMT-0800 (PST)
 initializing Example Extension version 1
 enabling Example Extension version 1
 ```
+
+Note that there might be lots of other logs from Gnome Shell as well, and the
+messages from your extension might be buried within them.
 
 ## A Working Extension
 
@@ -207,4 +233,7 @@ function init() {
 }
 ```
 
-Now save `extension.js` and reload the extension see the button in the panel.
+Now, save the `extension.js` file and reload the extension, by repeating the
+steps in the [Enabling the Extension](#enabling-the-extension) section.
+
+You should see a new button in the panel.
