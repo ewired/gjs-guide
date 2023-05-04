@@ -233,6 +233,8 @@ In rare cases, it is necessary for an extension to continue running while the sc
 - All signals related to keyboard events **MUST** be disconnected in `unlock-dialog` session mode.
 - The disable() function **MUST** have a comment explaining why you are using `unlock-dialog`.
 
+Extensions **MUST NOT** disable selectively.
+
 ### GSettings Schemas
 
 For extensions that include a GSettings Schema:
