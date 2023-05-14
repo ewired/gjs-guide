@@ -96,3 +96,10 @@ iconTheme.rescan_if_needed();
 ## Meta.later_add and Meta.later_remove
 
 `Meta.later_add` and `Meta.later_remove` are now `Meta.Laters.add` and `Meta.Laters.remove`, respectively. Refer to [Meta.Laters](https://gjs-docs.gnome.org/meta12~12/meta.laters).
+
+You can get the `Meta.Laters` from compositor with:
+
+```js
+const laters = global.compositor.get_laters();
+```
+
