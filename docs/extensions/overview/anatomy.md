@@ -3,8 +3,11 @@ title: Anatomy of an Extension
 ---
 # Anatomy of an Extension
 
-This document details the files and structure of a GNOME Shell extension. It may
-be used as a reference
+This document details the files and structure of a GNOME Shell extension. For
+documentation on how to create and develop your first extension, see the
+[Development](../#development) section of the extensions guide.
+
+## Extension ZIP
 
 Whether you're downloading from a repository (e.g. GitHub, GitLab) or installing
 from the [GNOME Extensions Website][ego], extensions are distributed as Zip
@@ -80,8 +83,6 @@ Below is a complete example, demonstrating all current possible fields:
     "version": 1,
 }
 ```
-
-These fields should be pretty self-explanatory, with some simple rules:
 
 ### Required Fields
 
@@ -217,6 +218,10 @@ release versions with this.
 extension and contains the function hooks `init()`, `enable()` and `disable()`
 used by GNOME Shell to load, enable and disable your extension.
 
+There are two ways `extension.js` can be implemented. The first approach
+requires a top-level `init()` function that returns a class instance with
+with `enable()` and `disable()` methods.
+
 ```js
 // This is a handy import we'll use to grab our extension's object
 const ExtensionUtils = imports.misc.extensionUtils;
@@ -235,7 +240,7 @@ class Extension {
      * widgets, connect signals or modify GNOME Shell's behaviour.
      */
     enable() {
-        log(`enabling ${Me.metadata.name}`);
+        console.debug(`enabling ${Me.metadata.name}`);
     }
     
 
@@ -247,7 +252,7 @@ class Extension {
      * Not doing so is the most common reason extensions are rejected in review!
      */
     disable() {
-        log(`disabling ${Me.metadata.name}`);
+        console.debug(`disabling ${Me.metadata.name}`);
     }
 }
 
@@ -263,14 +268,14 @@ class Extension {
  * @returns {Object} an object with enable() and disable() methods
  */
 function init(meta) {
-    log(`initializing ${meta.metadata.name}`);
+    console.debug(`initializing ${meta.metadata.name}`);
     
     return new Extension();
 }
 ```
 
-There is an alternate pattern which uses top-level functions instead of an
-`Extension()` object. You are welcome use whichever pattern best suits you.
+The second approach requires `init()`, `enable()` and `disable()` as top-level
+functions. You are welcome use whichever pattern best suits you.
 
 ```js
 const ExtensionUtils = imports.misc.extensionUtils;
@@ -278,17 +283,17 @@ const Me = ExtensionUtils.getCurrentExtension();
 
 
 function init(meta) {
-    log(`initializing ${meta.metadata.name}`);
+    console.debug(`initializing ${meta.metadata.name}`);
 }
 
 
 function enable() {
-    log(`enabling ${Me.metadata.name}`);
+    console.debug(`enabling ${Me.metadata.name}`);
 }
 
 
 function disable() {
-    log(`disabling ${Me.metadata.name}`);
+    console.debug(`disabling ${Me.metadata.name}`);
 }
 ```
 
@@ -323,15 +328,18 @@ loaded and can be retrieved by calling `ExtensionUtils.getCurrentExtension()`.
 
 ## `prefs.js`
 
-`prefs.js` is used to build a Gtk widget that will be inserted into a window and
-be used as the preferences dialog for your extension. If this file is not
-present, there will simply be no preferences button in GNOME Extensions or on
-https://extensions.gnome.org/local/.
+::: tip
+As of GNOME 40, extension preferences depend on GTK4 and will not work with
+GTK3 or libraries that depend on it like libhandy.
+:::
+
+`prefs.js` is used to build the preferences for an extensions. If this file is
+not present, there will simply be no preferences button in GNOME Extensions or
+the [GNOME Extensions Website](https://extensions.gnome.org/local/).
 
 ```js
 const {Adw, GLib, Gtk} = imports.gi;
 
-// It's common practice to keep GNOME API and JS imports in separate blocks
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 
@@ -342,7 +350,7 @@ const Me = ExtensionUtils.getCurrentExtension();
  * @param {ExtensionMeta} meta - An extension meta object, described below.
  */
 function init(meta) {
-    log(`initializing ${meta.metadata.name} Preferences`);
+    console.debug(`initializing ${meta.metadata.name} Preferences`);
 }
 
 
@@ -350,20 +358,19 @@ function init(meta) {
  * This function is called when the preferences window is first created to build
  * and return a GTK widget.
  *
- * As of GNOME 42, the preferences window will be a `Adw.PreferencesWindow`.
- * Intermediate `Adw.PreferencesPage` and `Adw.PreferencesGroup` widgets will be
- * used to wrap the returned widget if necessary.
+ * As of GNOME 42, the preferences window will be a `Adw.PreferencesWindow`. The
+ * widget returned by this function will be added to an `Adw.PreferencesPage` or
+ * `Adw.PreferencesGroup` if necessary.
  *
  * @returns {Gtk.Widget} the preferences widget
  */
 function buildPrefsWidget() {
-    // This could be any GtkWidget subclass, although usually you would choose
-    // something like a GtkGrid, GtkBox or GtkNotebook
+    // This may be any GtkWidget, although usually you would choose a container
+    // container like a GtkBox, GtkGrid or GtkNotebook
     const prefsWidget = new Gtk.Box();
 
-    // Add a widget to the group. This could be any GtkWidget subclass,
-    // although usually you would choose preferences rows such as AdwActionRow,
-    // AdwComboRow or AdwRevealerRow.
+    // Add a widget to the container, usually a preference row such as
+    // AdwActionRow, AdwComboRow or AdwRevealerRow
     const label = new Gtk.Label({ label: `${Me.metadata.name}` });
     prefsWidget.append(label);
     
@@ -375,7 +382,7 @@ function buildPrefsWidget() {
  * the `Adw.PreferencesWindow`.
  *
  * This function will only be called by GNOME 42 and later. If this function is
- * present, `buildPrefsWidget()` will never be called.
+ * present, `buildPrefsWidget()` will NOT be called.
  *
  * @param {Adw.PreferencesWindow} window - The preferences window
  */
@@ -429,8 +436,13 @@ $ gnome-extensions prefs example@gjs.guide
 
 ## `stylesheet.css`
 
-`stylesheet.css` is CSS stylesheet which can apply custom styles to your St
-widgets in `extension.js` or GNOME Shell as a whole. For example, if you had the
+::: tip
+The CSS in this file will only apply to GNOME Shell and extensions, not the
+extension preferences or any other application.
+:::
+
+`stylesheet.css` is CSS stylesheet which can apply custom styles to your widgets
+in `extension.js` or GNOME Shell as a whole. For example, if you had the
 following widgets:
 
 ```js
