@@ -4,21 +4,26 @@ title: Creating
 
 # Creating
 
-This page will guide you through creating a new GNOME Shell extension. If this is your first extension, you will probably want to use the `gnome-extensions` tool.
+This page will guide you through creating a new GNOME Shell extension. If this
+is your first extension, you will probably want to use the `gnome-extensions`
+tool.
 
 ## GNOME Extensions Tool
 
-GNOME Shell ships with a program you can use to create a skeleton extension by running `gnome-extensions create`.
+::: tip
+The `gnome-extensions create` command can be run from any directory, because it
+will always create the extension in `~/.local/share/gnome-shell/extensions`.
+:::
 
-Instead of passing options on the command line, you can start creating an extension interactively:
+GNOME Shell ships with a program you can use to create a skeleton extension by
+running `gnome-extensions create`.
+
+Instead of passing options on the command line, you can start creating an
+extension interactively:
 
 ```sh
 $ gnome-extensions create --interactive
 ```
-
-Note that the current directiory of your shell does not matter in this case
-since the extension files will be created in the
-`~/.local/share/gnome-shell/extensions` directory.
 
 1. **Choose a name:**
 
@@ -46,12 +51,12 @@ since the extension files will be created in the
 
 4. **Choose the starting template:**
 
-    ```sh
-    Choose one of the available templates:
-    1) Plain       –  An empty extension
-    2) Indicator   –  Add an icon to the top bar
-    Template [1-2]: 1
-    ```
+   ```sh
+   Choose one of the available templates:
+   1) Plain       –  An empty extension
+   2) Indicator   –  Add an icon to the top bar
+   Template [1-2]: 1
+   ```
 
 The whole process looks like this on the command line:
 
@@ -75,13 +80,15 @@ Choose one of the available templates:
 Template [1-2]: 1
 ```
 
-Once you finish the last step, the extension template will be created and opened in an editor:
+Once you finish the last step, the extension template will be created and opened
+in an editor:
 
 <img :src="$withBase('/assets/img/gnome-extensions-create-editor.png')" />
 
 ## Manual Creation
 
-Start by creating an extension directory, then open the two required files in `gedit` or another editor:
+Start by creating an extension directory, then open the two required files in
+`gedit` or another editor:
 
 ```sh
 $ mkdir -p ~/.local/share/gnome-shell/extensions/example@shell.gnome.org
@@ -89,9 +96,11 @@ $ cd ~/.local/share/gnome-shell/extensions/example@shell.gnome.org
 $ gedit extension.js metadata.json &
 ```
 
-Populate `extension.js` and `metadata.json` with the basic requirements, remembering that `uuid` MUST match the directory name of your extension:
+Populate `extension.js` and `metadata.json` with the basic requirements,
+remembering that `uuid` MUST match the directory name of your extension:
 
 ### `metadata.json`
+
 ```js
 {
     "uuid": "example@shell.gnome.org",
@@ -105,7 +114,8 @@ Populate `extension.js` and `metadata.json` with the basic requirements, remembe
 
 ### `extension.js`
 
-Notice that in the example below, we are using three top-level functions instead of class like in the example above.
+Notice that in the example below, we are using three top-level functions instead
+of class like in the example above.
 
 ```js
 'use strict';
@@ -115,47 +125,55 @@ const Me = ExtensionUtils.getCurrentExtension();
 
 
 function init() {
-    log(`initializing ${Me.metadata.name}`);
+    console.debug(`initializing ${Me.metadata.name}`);
 }
 
 
 function enable() {
-    log(`enabling ${Me.metadata.name}`);
+    console.debug(`enabling ${Me.metadata.name}`);
 }
 
 
 function disable() {
-    log(`disabling ${Me.metadata.name}`);
+    console.debug(`disabling ${Me.metadata.name}`);
 }
 ```
 
 ## Enabling the Extension
 
-Depending on whether you are running a Wayland session or an X11 session, we will prepare a simple debugging environment. For more information about debugging GNOME Shell extensions, see the [Debugging](debugging.html) page.
+Depending on whether you are running a Wayland session or an X11 session, we
+will prepare a simple debugging environment. For more information about
+debugging GNOME Shell extensions, see the [Debugging](debugging.html) page.
 
-For either session type, start by opening a new terminal, such as GNOME Terminal or GNOME Console.
+For either session type, start by opening a new terminal, such as GNOME Terminal
+or GNOME Console.
 
 - **Wayland Sessions**
 
-    Execute the following command, which will start a nested instance of GNOME Shell:
+    Execute the following command, which will start a nested instance of GNOME
+    Shell:
 
     ```sh
     dbus-run-session -- gnome-shell --nested --wayland
     ```
     
-    Once the new process start, any output from the nested session will be printed in the same terminal.
+    Once the new process start, any output from the nested session will be
+    printed in the same terminal.
 
 - **X11 Sessions**
 
-    Start by executing the following command, which will monitor the output of GNOME Shell:
+    Start by executing the following command, which will monitor the output of
+    GNOME Shell:
 
     ```sh
     $ journalctl -f -o cat /usr/bin/gnome-shell
     ```
     
-    Then press `Alt`+`F2` to open the *Run a Command* dialog, then run the built-in command `restart` to have GNOME Shell load your extension.
+    Then press `Alt`+`F2` to open the *Run a Command* dialog, then run the
+    built-in command `restart` to have GNOME Shell load your extension.
 
-Now that you're prepared to debug any problems with your extension, use the `gnome-extensions` tool to enable your extension by running the following command:
+Now that you're prepared to debug any problems with your extension, use the
+`gnome-extensions` tool to enable your extension by running the following command:
 
 ```sh
 $ gnome-extensions enable example@shell.gnome.org
@@ -178,11 +196,11 @@ messages from your extension might be buried within them.
 
 ## A Working Extension
 
-As a simple example, let's add a panel button to show what a working extension might look like:
+As a simple example, let's add a panel button to show what a working extension
+might look like:
 
 ```js
 const St = imports.gi.St;
-const Gio = imports.gi.Gio;
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
@@ -196,7 +214,7 @@ class Extension {
     }
     
     enable() {
-        log(`enabling ${Me.metadata.name}`);
+        console.debug(`enabling ${Me.metadata.name}`);
 
         let indicatorName = `${Me.metadata.name} Indicator`;
         
@@ -204,9 +222,9 @@ class Extension {
         this._indicator = new PanelMenu.Button(0.0, indicatorName, false);
         
         // Add an icon
-        let icon = new St.Icon({
-            gicon: new Gio.ThemedIcon({name: 'face-laugh-symbolic'}),
-            style_class: 'system-status-icon'
+        const icon = new St.Icon({
+            icon_name: 'face-laugh-symbolic',
+            style_class: 'system-status-icon',
         });
         this._indicator.add_child(icon);
 
@@ -218,7 +236,7 @@ class Extension {
     // REMINDER: It's required for extensions to clean up after themselves when
     // they are disabled. This is required for approval during review!
     disable() {
-        log(`disabling ${Me.metadata.name}`);
+        console.debug(`disabling ${Me.metadata.name}`);
 
         this._indicator.destroy();
         this._indicator = null;
@@ -227,7 +245,7 @@ class Extension {
 
 
 function init() {
-    log(`initializing ${Me.metadata.name}`);
+    console.debug(`initializing ${Me.metadata.name}`);
     
     return new Extension();
 }
