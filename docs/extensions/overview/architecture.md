@@ -5,7 +5,9 @@ title: Architecture
 # Architecture
 
 
-This page is an overview of GNOME Shell's architecture, from the perspective of GNOME Shell extensions. It is intended to help clarify how extensions fit into the larger picture.
+This page is an overview of GNOME Shell's architecture, from the perspective of
+GNOME Shell extensions. It is intended to help clarify how extensions fit into
+the larger picture.
 
 ## Overview
 
@@ -13,27 +15,44 @@ This page is an overview of GNOME Shell's architecture, from the perspective of 
 
 ## Clutter and St
 
-Unlike most GNOME applications, Mutter and GNOME Shell are both built on the Clutter toolkit which is more abstract than Gtk.
+Unlike most GNOME applications, Mutter and GNOME Shell are both built on the
+Clutter toolkit which is more abstract than GTK.
 
-[Clutter][clutter] widgets are called [Actors][clutter-actor] and have all the basic properties and signals you would expect from a base widget. Actors can contain other actors using several layout managers and have built-in support for animations and other effects.
+[Clutter][clutter] widgets are called [Actors][clutter-actor] and have all the
+basic properties and signals you would expect from a base widget. Actors can
+contain other actors using several layout managers and have built-in support for
+animations and other effects.
 
-[St][st] builds on Clutter to provide more complex widgets like buttons, icons, text entries and scrollable areas. It also adds support for CSS so the style of widgets can be changed programmatically or from a stylesheet.
+[St][st] builds on Clutter to provide more complex widgets like buttons, icons,
+text entries and scrollable areas. It also adds support for CSS so the style of
+widgets can be changed programmatically or from a stylesheet.
 
 ## Mutter
 
-In Wayland sessions [Mutter][mutter] implements the compositor side of the Wayland protocol, while in X11 sessions it serves as the window manager and compositing manager.
+In Wayland sessions [Mutter][mutter] implements the compositor side of the
+Wayland protocol, while in X11 sessions it serves as the window manager and
+compositing manager.
 
-For GNOME Shell extensions, the [`Meta`][meta] import gives access to displays, workspaces, windows, clipboard selections and more.
+For GNOME Shell extensions, the [`Meta`][meta] import gives access to displays,
+workspaces, windows, clipboard selections and more.
 
 ## Shell
 
-[Shell][shell] provides a number of utilities and classes, including the [`global`][shell-global] object. Just as `Meta` is the library API for Mutter, `Shell` is effectively the library of GNOME Shell itself.
+[Shell][shell] provides a number of utilities and classes, including the
+[`global`][shell-global] object. Just as `Meta` is the library API for Mutter,
+`Shell` is effectively the library of GNOME Shell itself.
 
 ## JavaScript
 
-Like most of the GNOME API, the libraries described above are all written in C. They are made available to GJS by [GObject-Introspection][gi], which provides metadata for language bindings and is also used to generate the [GNOME API documentation][gnome-api].
+Like most of the GNOME API, the libraries described above are all written in C.
+They are made available to GJS by [GObject-Introspection][gi], which provides
+metadata for language bindings and is also used to generate the
+[GNOME API documentation][gnome-api].
 
-GNOME Shell's [JavaScript codebase][gnome-shell-js] uses these libraries to create the user interface you interact with every day, organized into modules. A number of these modules are re-used throughout GNOME Shell and are commonly used in extensions:
+GNOME Shell's [JavaScript codebase][gnome-shell-js] uses these libraries to
+create the user interface you interact with every day, organized into modules.
+A number of these modules are re-used throughout GNOME Shell and are commonly
+used in extensions:
 
 * [PopupMenu][popup-menu]
 
@@ -49,7 +68,9 @@ GNOME Shell's [JavaScript codebase][gnome-shell-js] uses these libraries to crea
 
 ## Extensions
 
-GNOME Shell extensions can use or modify anything described above, much like GNOME Shell's JavaScript itself. Once an extension is loaded and enabled, it effectively becomes a part of GNOME Shell.
+GNOME Shell extensions can use or modify anything described above, much like
+GNOME Shell's JavaScript itself. Once an extension is loaded and enabled, it
+effectively becomes a part of GNOME Shell.
 
 This means extensions can:
 
