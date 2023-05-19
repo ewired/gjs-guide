@@ -10,26 +10,6 @@ GNOME Shell's UI and extensions are written in GJS, which is JavaScript bindings
 
 JavaScript is a prototype-based language, which means that extensions can modify the UI and behaviour of GNOME Shell *while* it is running. This is what is known as "monkey-patching".
 
-## Overview
-
-> The basics of extensions
-
-### [Anatomy](overview/anatomy.md)
-
-What an extension is made of
-
-### [Imports and Modules](overview/imports-and-modules.md)
-
-How to use imports and modules
-
-### [Architecture](overview/architecture.md)
-
-GNOME Shell Architecture
-
-### [Updates and Breakage](overview/updates-and-breakage.md)
-
-GNOME Shell updates and how they affect extensions
-
 ## Development
 
 ### [Creating](development/creating.md)
@@ -51,6 +31,26 @@ How to debug an extension
 ### [Targeting Older GNOME Versions](development/targeting-older-gnome.md)
 
 Making the extension work on multiple versions of GNOME
+
+## Overview
+
+> General reference for extension concepts, files and architecture
+
+### [Anatomy](overview/anatomy.md)
+
+Detailed explanation of the files and structure of a GNOME Shell Extension
+
+### [Imports and Modules](overview/imports-and-modules.md)
+
+How to use imports and modules in GNOME Shell and extensions
+
+### [Architecture](overview/architecture.md)
+
+High-level overview of GNOME Shell as it relates to extensions
+
+### [Updates and Breakage](overview/updates-and-breakage.md)
+
+GNOME Shell updates and how they affect extensions
 
 ## Topics
 
