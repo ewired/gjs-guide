@@ -60,8 +60,7 @@ a minimal example:
     "name": "Example",
     "description": "This is an example extension.",
     "shell-version": [ "3.38", "40" ],
-    "url": "https://gitlab.gnome.org/World/ShellExtensions/example",
-    "version": 1
+    "url": "https://gitlab.gnome.org/World/ShellExtensions/example"
 }
 ```
 
@@ -75,10 +74,10 @@ Below is a complete example, demonstrating all current possible fields:
     "description": "This is an example extension.",
     "shell-version": [ "3.38", "40" ],
     "url": "https://gitlab.gnome.org/World/ShellExtensions/example",
-    "version": 1,
+    "gettext-domain": "example@gjs.guide",
     "session-modes": ["user", "unlock-dialog"],
     "settings-schema": "org.gnome.shell.extensions.example",
-    "gettext-domain": "example@gjs.guide",
+    "version": 1,
 }
 ```
 
@@ -138,16 +137,6 @@ repository where the code can be found and issues can be reported.
 
 It is required for extensions submitted to https://extensions.gnome.org/ to have
 a valid URL.
-
-#### `version`
-
-This field is the version of your extension, as known to the GNOME Extensions
-website, and **MUST** be a whole number like `1`. It **is not** a semantic
-version like `1.1` or a string like `"1"`.
-
-This version is automatically incremented by the GNOME Extensions website with
-each submission, but many extension developers choose to match their release
-versions with this.
 
 ### Optional Fields
 
@@ -210,6 +199,16 @@ The current possible session modes are:
     
 Extensions that want to support other session modes must provide a justification
 to be approved during review for distribution from the GNOME Extensions website.
+
+#### `version`
+
+This field is the submission version of an extension, as known to the GNOME
+Extensions website, and **MUST** be a whole number like `1`. It **is not** a
+semantic version like `1.1` or a string like `"1"`.
+
+This field is set and incremented automatically by the GNOME Extensions website
+with each submission, but many extension developers choose to match their
+release versions with this.
 
 
 ## `extension.js` (Required)
