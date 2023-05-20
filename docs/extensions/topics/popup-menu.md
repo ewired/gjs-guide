@@ -84,8 +84,8 @@ menuItem.setOrnament(PopupMenu.Ornament.CHECK);
 // Disabling the item (active property will no longer change)
 menuItem.sensitive = false;
 
-// Watching the `activated` signal
-menuItem.connect('activated', (item, event) => {
+// Watching the `activate` signal
+menuItem.connect('activate', (item, event) => {
     // Do something special for pointer buttons
     if (event.get_type() === Clutter.EventType.BUTTON_PRESS)
         console.log('Pointer was pressed!');
