@@ -809,6 +809,11 @@ class Service {
 }
 ```
 
+When a property is set by a client of your service, the setter will be passed
+the return value of [`GLib.Variant.deepUnpack()`][gjs-deepunpack]. When a client
+requests the value of a property, the getter may return either a native value
+(e.g. `'a string'`) or a `GLib.Variant` that matches the expected signature.
+
 Note that the object returned by `Gio.DBusExportedObject.wrapJSObject()` and the
 class instance are separate. The class definition above expects that the D-Bus
 object has been assigned to `this._impl`, so that it can emit property changes
@@ -851,6 +856,7 @@ const ownerId = Gio.bus_own_name(
 );
 ```
 
+[gjs-deepunpack]: https://gjs.guide/guides/glib/gvariant.html#deepunpack
 [gjs-wrapjsobject]: https://gjs-docs.gnome.org/gjs/overrides.md#gio-dbusexportedobject-wrapjsobject
 
 
