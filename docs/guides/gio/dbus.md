@@ -730,13 +730,10 @@ Gio.bus_unown_name(ownerId);
 ### Exporting Interfaces
 
 Now that we know how to own a well-known name, let's get to exporting our
-service interface:
+service interface. We'll use the same XML definition from the earlier example,
+since it has one of everything:
 
 ```js
-const { Gio } = imports.gi;
-
-
-// We'll use our XML definition from earlier as an example
 const interfaceXml = `
 <node>
   <interface name="guide.gjs.Test">
@@ -753,6 +750,20 @@ const interfaceXml = `
     <property name="ReadWriteProperty" type="b" access="readwrite"/>
   </interface>
 </node>`;
+```
+
+GJS provides a convenience function for creating a service, which takes an XML
+definition and a class instance. The function is called
+[`Gio.DBusExportedObject.wrapJSObject()`][gjs-wrapjsobject] and is documented
+with the other Gio overrides in GJS.
+
+The class can be either a plain JavaScript class or a GObject subclass, as long
+as it implements the defined methods and properties. Changes to property values
+and other signals must be emitted manually.
+
+```js
+const { GLib, Gio } = imports.gi;
+
 
 class Service {
     constructor() {
@@ -760,7 +771,7 @@ class Service {
 
     // Properties
     get ReadOnlyProperty() {
-        return 'a string';
+        return GLib.Variant.new_string('a string');
     }
 
     get ReadWriteProperty() {
@@ -771,7 +782,12 @@ class Service {
     }
 
     set ReadWriteProperty(value) {
+        if (this._readWriteProperty === value)
+            return;
+
         this._readWriteProperty = value;
+        this._impl.emit_property_changed('ReadWriteProperty',
+            GLib.Variant.new_boolean(this.ReadWriteProperty));
     }
 
     // Methods
@@ -784,18 +800,37 @@ class Service {
 
         return input.length;
     }
-}
 
-// Note that when using the D-Bus conveniences in GJS, our JavaScript
-// implementation instance is separate from the GObject interface instance.
-let serviceImplementation = null;
-let serviceInterface = null;
+    // Signals
+    emitTestSignal() {
+        this._impl.emit_signal('TestSignal',
+            new GLib.Variant('(sb)', ['string', true]));
+    }
+}
+```
+
+Note that the object returned by `Gio.DBusExportedObject.wrapJSObject()` and the
+class instance are separate. The class definition above expects that the D-Bus
+object has been assigned to `this._impl`, so that it can emit property changes
+and signals.
+
+If you choose to follow the same pattern, just be sure that is done before you
+export the service:
+
+```js
+let serviceInstance = null;
+let exportedObject = null;
+
 
 function onBusAcquired(connection, name) {
-    serviceImplementation = new Service();
-    serviceInterface = Gio.DBusExportedObject.wrapJSObject(interfaceXml,
-        serviceImplementation);
-    serviceInterface.export(connection, '/guide/gjs/Test');
+    // Create the class instance, then the D-Bus object
+    serviceInstance = new Service();
+    exportedObject = Gio.DBusExportedObject.wrapJSObject(interfaceXml,
+        serviceInstance);
+
+    // Assign the exported object to the property the class expects, then export
+    serviceInstance._impl = exportedObject;
+    exportedObject.export(connection, '/guide/gjs/Test');
 }
 
 function onNameAcquired(connection, name) {
@@ -815,6 +850,8 @@ const ownerId = Gio.bus_own_name(
     onNameLost
 );
 ```
+
+[gjs-wrapjsobject]: https://gjs-docs.gnome.org/gjs/overrides.md#gio-dbusexportedobject-wrapjsobject
 
 
 ## Other APIs
