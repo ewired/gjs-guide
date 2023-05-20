@@ -12,9 +12,9 @@ JavaScript is a prototype-based language, which means that extensions can modify
 
 ## Development
 
-### [Creating](development/creating.md)
+### [Getting Started](development/creating.md)
 
-Creating an extension
+How to get started creating your first extension
 
 ###  [Preferences](development/preferences.md)
 

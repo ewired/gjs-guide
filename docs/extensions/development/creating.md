@@ -1,12 +1,12 @@
 ---
-title: Creating
+title: Getting Started
 ---
 
-# Creating
+# Getting Started
 
-This page will guide you through creating a new GNOME Shell extension. If this
-is your first extension, you will probably want to use the `gnome-extensions`
-tool.
+This page will guide you through setting up a basic development environment and
+creating a new extension. If this is your first extension, it is recommended
+that you use the `gnome-extensions` tool.
 
 ## GNOME Extensions Tool
 
