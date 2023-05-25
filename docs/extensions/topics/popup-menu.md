@@ -4,6 +4,11 @@ title: Popup Menu
 
 # Popup Menu
 
+::: tip
+Some classes in this module are pure JavaScript and do not support GObject
+features like property bindings.
+:::
+
 The [`PopupMenu`][js-popupmenu] module contains classes for creating popup menus
 in GNOME Shell. Extension authors often use these with panel buttons and
 [Quick Settings](quick-settings.html).
@@ -26,9 +31,13 @@ before the content of an item, such as a check mark.
 
 ### `PopupBaseMenuItem`
 
+Parent Class: [`St.BoxLayout`][stboxlayout]
+
 There are several types of menu items, all derived from the abstract base-class
 `PopupBaseMenuItem`. This class cannot be created by itself, but contains a
 number of methods, properties and signals common to all items.
+
+[stboxlayout]: https://gjs-docs.gnome.org/st12/st.boxlayout
 
 #### Methods
 
@@ -47,13 +56,14 @@ number of methods, properties and signals common to all items.
 * `setOrnament(ornament)` — Sets the ornament for the item
     * ornament (`PopupMenu.Ornament`) — A [`PopupMenu.Ornament`](#ornament)
 
-[clutterevent]: https://gjs-docs.gnome.org/clutter10/clutter.event
+[clutterevent]: https://gjs-docs.gnome.org/clutter12/clutter.event
 
 #### Properties
 
-* `active` (`Boolean`) — Whether the item is selected or hovered (read-write)
+* `active` (`Boolean`) — Whether the item is selected or hovered
+    (GObject: read-write)
 * `sensitive` (`Boolean`) — Whether the item can be selected and activated
-    (read-write)
+    (GObject: read-write)
     
 #### Signals
 
@@ -61,7 +71,7 @@ number of methods, properties and signals common to all items.
     * item (`PopupMenu.PopupBaseMenuItem`) — The emitting object
     * event (`Clutter.Event`) — The current [`Clutter.Event`][clutterevent]
     
-[clutterevent]: https://gjs-docs.gnome.org/clutter10/clutter.event
+[clutterevent]: https://gjs-docs.gnome.org/clutter12/clutter.event
     
 #### Example
 
@@ -96,6 +106,8 @@ menuItem.connect('activate', (item, event) => {
 
 ### `PopupMenuItem`
 
+Parent Class: [`PopupMenu.PopupBaseMenuItem`](#popupbasemenuitem)
+
 A simple menu item with a text label.
 
 #### Methods
@@ -106,7 +118,8 @@ A simple menu item with a text label.
 
 #### Properties
 
-* (`St.Label`) `label` — A [`St.Label`][stlabel] (read-only)
+* (`St.Label`) `label` — A [`St.Label`][stlabel]
+    (JavaScript: read-only)
 
 [stlabel]: https://gjs-docs.gnome.org/st10/st.label
 
@@ -124,6 +137,8 @@ menuItem.label.text = 'New Label';
 
 ### `PopupImageMenuItem`
 
+Parent Class: [`PopupMenu.PopupBaseMenuItem`](#popupbasemenuitem)
+
 This menu item is like `PopupMenuItem`, with a small icon placed before the
 label.
 
@@ -138,8 +153,10 @@ label.
 
 #### Properties
 
-* `icon` (`St.Icon`) — An [`St.Icon`][sticon] (read-only)
-* `label` (`St.Label`) — An [`St.Label`][stlabel] (read-only)
+* `icon` (`St.Icon`) — An [`St.Icon`][sticon]
+    (JavaScript: read-only)
+* `label` (`St.Label`) — An [`St.Label`][stlabel]
+    (JavaScript: read-only)
 
 [sticon]: https://gjs-docs.gnome.org/st10/st.icon
 [stlabel]: https://gjs-docs.gnome.org/st10/st.label
@@ -164,6 +181,8 @@ menuItem.label.text = 'New Label';
 
 ### `PopupSeparatorMenuItem`
 
+Parent Class: [`PopupMenu.PopupBaseMenuItem`](#popupbasemenuitem)
+
 This menu item is used to separate other items, with an optional label.
 
 #### Methods
@@ -173,7 +192,8 @@ This menu item is used to separate other items, with an optional label.
 
 #### Properties
 
-* `label` (`St.Label`) — An [`St.Label`][stlabel] (read-only)
+* `label` (`St.Label`) — An [`St.Label`][stlabel]
+    (JavaScript: read-only)
 
 [stlabel]: https://gjs-docs.gnome.org/st10/st.label
 
@@ -190,11 +210,13 @@ menuItem.label.text = 'New Label';
 
 ### `PopupSwitchMenuItem`
 
+Parent Class: [`PopupMenu.PopupBaseMenuItem`](#popupbasemenuitem)
+
 This menu item is like `PopupMenuItem`, with a switch placed after the label.
 
 #### Methods
 
-* `new PopupImageMenuItem(text, active, params)` — Constructor
+* `new PopupSwitchMenuItem(text, active, params)` — Constructor
     * text (`String`) — The item label
     * active (`Boolean`) — The initial state of the switch
     * params (`Object`) — Additional item properties
@@ -206,8 +228,10 @@ This menu item is like `PopupMenuItem`, with a switch placed after the label.
 
 #### Properties
 
-* `label` (`St.Label`) — An [`St.Label`][stlabel] (read-only)
-* `state` (`Boolean`) — The switch state (read-only)
+* `label` (`St.Label`) — An [`St.Label`][stlabel]
+    (JavaScript: read-only)
+* `state` (`Boolean`) — The switch state
+    (JavaScript: read-only)
 
 [stlabel]: https://gjs-docs.gnome.org/st10/st.label
 
@@ -217,7 +241,7 @@ This menu item is like `PopupMenuItem`, with a switch placed after the label.
     * item (`PopupMenu.PopupSwitchMenuItem`) — The emitting object
     * state (`Boolean`) — The new switch state
 
-[clutterevent]: https://gjs-docs.gnome.org/clutter10/clutter.event
+[clutterevent]: https://gjs-docs.gnome.org/clutter12/clutter.event
 
 #### Example
 
@@ -242,6 +266,8 @@ menuItem.connect('toggled', (item, state) => {
 
 ### `PopupSubMenuMenuItem`
 
+Parent Class: [`PopupMenu.PopupBaseMenuItem`](#popupbasemenuitem)
+
 This menu item represent a submenu containing other items. It has an label, icon
 and expander to reveal the items it contains.
 
@@ -255,10 +281,12 @@ and expander to reveal the items it contains.
 
 #### Properties
 
-* `icon` (`St.Icon`) — An [`St.Icon`][sticon] if `wantIcon` was `true` at
-    construct time (read-only)
-* `label` (`St.Label`) — An [`St.Label`][stlabel] (read-only)
-* `menu` (`PopupMenu.PopupSubMenu`) — The submenu (read-only)
+* `icon` (`St.Icon`) — An [`St.Icon`][sticon] if `wantIcon` was `true`
+    (JavaScript: read-only)
+* `label` (`St.Label`) — An [`St.Label`][stlabel]
+    (JavaScript: read-only)
+* `menu` (`PopupMenu.PopupSubMenu`) — The submenu
+    (JavaScript: read-only)
 
 [sticon]: https://gjs-docs.gnome.org/st10/st.icon
 [stlabel]: https://gjs-docs.gnome.org/st10/st.label
@@ -287,9 +315,13 @@ menuItem.menu.addAction('Submenu Item 2', () => console.log('activated'));
 
 ### `PopupMenuBase`
 
+Parent Class: [`Signals.EventEmitter`][signals-eventemitter]
+
 There are several types of menus, all derived from the abstract base-class
 `PopupBaseMenu`. This class cannot be created by itself, but contains a
 number of methods, properties and signals common to all menus.
+
+[signals-eventemitter]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/main/js/misc/signals.js
 
 #### Methods
 
@@ -332,15 +364,18 @@ number of methods, properties and signals common to all menus.
 * `toggle()` — Toggles the open state of the menu
 * `destroy()` — Destroys the menu and all its items
 
-[clutterevent]: https://gjs-docs.gnome.org/clutter10/clutter.event
+[clutterevent]: https://gjs-docs.gnome.org/clutter12/clutter.event
 [gicon]: https://gjs-docs.gnome.org/gio20/gio.icon
 
 #### Properties
 
 * (`PopupMenu.PopupBaseMenuItem`|`PopupMenu.PopupMenuSection`) `firstMenuItem` —
-    Gets the first item in the menu (read-only)
-* `numMenuItems` (`Number`) — Gets the number of items in the menu (read-only)
-* `sensitive` (`Boolean`) — Whether the menu is sensitive (read-write)
+    Gets the first item in the menu
+    (JavaScript: read-only)
+* `numMenuItems` (`Number`) — Gets the number of items in the menu
+    (JavaScript: read-only)
+* `sensitive` (`Boolean`) — Whether the menu is sensitive
+    (JavaScript: read-write)
 
 #### Signals
 
@@ -392,6 +427,8 @@ menu.removeAll();
 
 ### `PopupMenu`
 
+Parent Class: [`PopupMenu.PopupMenuBase`](#popupmenubase)
+
 A basic popup menu.
 
 #### Methods
@@ -409,7 +446,7 @@ A basic popup menu.
 * `setSourceAlignment(alignment)` — Sets the arrow alignment for the box pointer
     * alignment (`Number`) — A number between `0..1`
 
-[clutteractor]: https://gjs-docs.gnome.org/clutter10/clutter.actor
+[clutteractor]: https://gjs-docs.gnome.org/clutter12/clutter.actor
 [stside]: https://gjs-docs.gnome.org/st10/st.side
 
 #### Example
@@ -426,6 +463,8 @@ menu.addAction('Menu Item', () => console.log('activated'));
 ```
 
 ### `PopupMenuSection`
+
+Parent Class: [`PopupMenu.PopupBaseMenuItem`](#popupbasemenuitem)
 
 This is a menu that can be added to other menus as though it were an item. It's
 usually used to organize items into groups, then added to a parent menu.
@@ -449,6 +488,8 @@ menu.addMenuItem(section);
 
 ### `PopupSubMenu`
 
+Parent Class: [`PopupMenu.PopupMenuBase`](#popupmenubase)
+
 This menu should typically only be used indirectly, by creating a
 [`PopupSubMenuMenuItem`](#popupsubmenumenuitem).
 
@@ -459,7 +500,7 @@ This menu should typically only be used indirectly, by creating a
         menu points to.
     * sourceArrow (`Clutter.Actor`) — The parent item's expander arrow
 
-[clutteractor]: https://gjs-docs.gnome.org/clutter10/clutter.actor
+[clutteractor]: https://gjs-docs.gnome.org/clutter12/clutter.actor
 
 
 ## Animations
