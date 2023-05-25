@@ -188,3 +188,235 @@ var ListWidget = GObject.registerClass({
     }
 });
 ```
+
+## Defining Interfaces
+
+::: tip
+GObject Interfaces exist to implement type safe multiple-inheritance in the C
+programming language, while JavaScript code should usually just use mix-ins.
+:::
+
+Interfaces are defined in GJS by inheriting from `GObject.Interface` and
+providing the class definition property `Requires`. This field must include a
+base type that is `GObject.Object` or a subclass of `GObject.Object`.
+
+The `Requires` field may also contain multiple other interfaces that are either
+implemented by the base type, or that the implementation is expected to. For
+example, `Requires: [GObject.Object, Gio.Action]` indicates that an
+implementation must provide methods, properties and emit signals from the
+[`Gio.Action`][gaction] interface, or be derived from a base type that does.
+
+[gaction]: https://gjs-docs.gnome.org/gio20/gio.action
+
+#### Defining Methods
+
+Methods defined on an interface must be implemented, if the method throws the
+special error `GObject.NotImplementedError()`. Methods that do not throw this
+error are optional to implement.
+
+Note that unlike GObject Interfaces defined by a C library, methods are
+overridden directly rather than by virtual function. For example, instead of
+overriding `vfunc_requiredMethod()`, you should override `requiredMethod()`.
+
+#### Defining Properties
+
+Properties defined on an interface must always be implemented, using
+`GObject.ParamSpec.override()` in the `Properties` class definition property.
+The implementation should also provide `get` and `set` methods for the
+property, as indicated by the [GObject Property Flags][gproperty-flags].
+
+[gproperty-flags]: subclassing.html#property-flags
+
+#### Defining Signals
+
+Signals defined on an interface do not need to be implemented. Typically
+interface definitions will provide emitter methods, such as with
+[`Gio.ListModel.items_changed()`][glistmodel-itemschanged], otherwise they can
+be emitted by calling [`GObject.Object.prototype.emit()`][gobject-emit] on an
+instance of the implementation.
+
+[gaction]: https://gjs-docs.gnome.org/gio20/gio.action
+[glistmodel-itemschanged]: https://gjs-docs.gnome.org/gio20/gio.listmodel#method-items_changed
+[gobject-emit]: https://gjs-docs.gnome.org/gjs/overrides.md#gobject-object-emit
+
+### A Simple Interface
+
+Below is a simple example of defining an interface that only requires
+`GObject.Object`:
+
+
+```js
+const GObject = imports.gi.GObject;
+
+const SimpleInterface = GObject.registerClass({
+    GTypeName: 'SimpleInterface',
+    Requires: [GObject.Object],
+    Properties: {
+        'simple-property': GObject.ParamSpec.boolean(
+            'simple-property',
+            'Simple property',
+            'A property that must be implemented',
+            GObject.ParamFlags.READABLE,
+            true
+        ),
+    },
+    Signals: {
+        'simple-signal': {},
+    },
+}, class SimpleInterface extends GObject.Interface {
+
+    /**
+     * By convention interfaces provide methods for emitting their signals, but
+     * you can always call `emit()` on the instance of an implementation.
+     */
+    emitSimple() {
+        this.emit('simple-signal');
+    }
+
+    /**
+     * Interfaces can define methods that MAY be implemented, by providing a
+     * default implementation.
+     */
+    optionalMethod() {
+        return true;
+    }
+
+    /**
+     * Interfaces can define methods that MUST be implemented, by throwing the
+     * special error `GObject.NotImplementedError()`.
+     */
+    requiredMethod() {
+        throw new GObject.NotImplementedError();
+    }
+});
+```
+
+Note that unlike with interfaces defined by C libraries, we override methods
+like `requiredMethod()` directly, not `vfunc_requiredMethod()`. Below is a
+minimal implementation of `SimpleInterface`:
+
+```js
+const GObject = imports.gi.GObject;
+
+const SimpleImplementation = GObject.registerClass({
+    Implements: [SimpleInterface],
+    Properties: {
+        'simple-property': GObject.ParamSpec.override('simple-property',
+            SimpleInterface),
+    },
+}, class SimpleImplementation extends GObject.Object {
+
+    get simple_property() {
+        return true;
+    }
+
+    requiredMethod() {
+        log('requiredMethod() implemented');
+    }
+});
+```
+
+Instances of the implementation can then be constructed like any class. The
+`instanceof` operator can be used to confirm the base class (i.e. `GObject`) and
+any interfaces it implements:
+
+```js
+const simpleInstance = new SimpleImplementation();
+
+if (simpleInstance instanceof GObject.Object)
+    log('An instance of a GObject');
+
+if (simpleInstance instanceof SimpleInterface)
+    log('An instance implementing SimpleInterface');
+
+if (!(simpleInstance instanceof Gio.ListModel))
+    log('Not an implementation of a list model');
+```
+
+### A Complex Interface
+
+More complex interfaces can also be defined that depend on other interfaces,
+including those defined in GJS. `ComplexInterface` depends on `Gio.ListModel`
+and `SimpleInterface`, while adding a property and a method.
+
+```js
+const {Gio, GObject} = imports.gi;
+
+const ComplexInterface = GObject.registerClass({
+    GTypeName: 'ComplexInterface',
+    Requires: [Gio.ListModel, SimpleInterface],
+    Properties: {
+        'complex-property': GObject.ParamSpec.boolean(
+            'complex-property',
+            'Complex property',
+            'A property that must be implemented',
+            GObject.ParamFlags.READABLE,
+            true
+        ),
+    },
+}, class ComplexInterface extends GObject.Interface {
+
+    complexMethod() {
+        throw new GObject.NotImplementedError();
+    }
+});
+```
+
+An implementation of this interface must then meet the requirements of
+`Gio.ListModel` and `SimpleInterface`, which both require `GObject.Object`. The
+following implementation of `ComplexInterface` will meet the requirements of:
+
+* `GObject.Object` by inheriting from [`Gio.ListStore`][gliststore], a subclass
+    of `GObject.Object` subclass
+* `Gio.ListModel` by inheriting from [`Gio.ListStore`][gliststore], which
+    implements `Gio.ListModel`
+* `SimpleInterface` by implementing its methods and properties
+* `ComplexInterface` by implementing its methods and properties
+
+```js
+const {Gio, GObject} = imports.gi;
+
+const ComplexImplementation = GObject.registerClass({
+    Implements: [Gio.ListModel, SimpleInterface, ComplexInterface],
+    Properties: {
+        'complex-property': GObject.ParamSpec.override('complex-property',
+            ComplexInterface),
+        'simple-property': GObject.ParamSpec.override('simple-property',
+            SimpleInterface),
+    },
+}, class ComplexImplementation extends Gio.ListStore {
+    get complex_property() {
+        return false;
+    }
+
+    get simple_property() {
+        return true;
+    }
+
+    complexMethod() {
+        log('complexMethod() implemented');
+    }
+
+    requiredMethod() {
+        log('requiredMethod() implemented');
+    }
+});
+```
+
+By using `instanceof`, we can confirm both the inheritance and interface support
+of the implementation:
+
+```js
+let complexInstance = new ComplexImplementation();
+
+if (complexInstance instanceof GObject.Object &&
+    complexInstance instanceof Gio.ListStore)
+    log('An instance with chained inheritance');
+
+if (complexInstance instanceof Gio.ListModel &&
+    complexInstance instanceof SimpleInterface &&
+    complexInstance instanceof ComplexInterface)
+    log('An instance implementing three interfaces');
+```
+
+[gliststore]: https://gjs-docs.gnome.org/gio20/gio.liststore
