@@ -207,6 +207,8 @@ const Me = ExtensionUtils.getCurrentExtension();
 const Main = imports.ui.main;
 const PanelMenu = imports.ui.panelMenu;
 
+const _ = ExtensionUtils.gettext;
+
 
 class Extension {
     constructor() {
@@ -216,7 +218,7 @@ class Extension {
     enable() {
         console.debug(`enabling ${Me.metadata.name}`);
 
-        let indicatorName = `${Me.metadata.name} Indicator`;
+        const indicatorName = _('%s Indicator').format(Me.metadata.name);
         
         // Create a panel button
         this._indicator = new PanelMenu.Button(0.0, indicatorName, false);
@@ -246,6 +248,8 @@ class Extension {
 
 function init() {
     console.debug(`initializing ${Me.metadata.name}`);
+
+    ExtensionUtils.initTranslations();
     
     return new Extension();
 }
