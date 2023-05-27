@@ -54,6 +54,10 @@ GNOME Shell updates and how they affect extensions
 
 ## Topics
 
+### [ExtensionUtils](topics/extension-utils.md)
+
+Documentation for built-in extension utilities
+
 ### [PopupMenus](topics/popup-menu.md)
 
 Documentation for popup menus in GNOME Shell
