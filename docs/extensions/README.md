@@ -16,6 +16,10 @@ JavaScript is a prototype-based language, which means that extensions can modify
 
 How to get started creating your first extension
 
+### [Accessibility](development/accessibility.md)
+
+How to ensure your extension is accessible
+
 ###  [Preferences](development/preferences.md)
 
 Creating a preferences window

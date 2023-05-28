@@ -140,6 +140,7 @@ const development = {
 
     children: [
         '/extensions/development/creating.md',
+        '/extensions/development/accessibility.md',
         '/extensions/development/debugging.md',
         '/extensions/development/preferences.md',
         '/extensions/development/translations.md',
