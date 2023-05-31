@@ -270,7 +270,7 @@ class SearchProvider {
     filterResults(results, maxResults) {
         console.debug(`filterResults([${results}], ${maxResults})`);
         
-        if (results.length <= maxNumber)
+        if (results.length <= maxResults)
             return results;
         
         return results.slice(0, maxResults);
