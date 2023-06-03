@@ -30,6 +30,57 @@ If this is your first time writing an extension, please see the documentation av
 
 `init()` is called by GNOME Shell when your extension is loaded, not when it is enabled. Your extension **MUST NOT** create any objects, connect any signals, add any main loop sources or modify GNOME Shell here.
 
+With regard to objects created in the global scope, static objects and arrays
+(e.g. enumerations or string lists) are permitted, while constructing class
+instances is not. Objects intended to be constructed as instances, should be
+created when `enable()` is called and destroyed when `disable()` is called.
+
+```js
+/*
+ * This is permitted
+ */
+const FoobarState = {
+    DEFAULT: 0,
+    CHANGED: 1,
+};
+
+var FoobarBase = class {
+    state = FoobarState.DEFAULT;
+};
+
+const FoobarTypes = [
+    class extends FoobarBase {},
+    class extends FoobarBase {},
+];
+
+/*
+ * This is not permitted
+ */
+const DEFAULT_FOOBAR = new FoobarBase();
+
+
+/*
+ * Do this instead
+ */
+var DEFAULT_INSTANCE = null;
+
+function init() {
+}
+
+function enable() {
+    if (DEFAULT_INSTANCE === null)
+        DEFAULT_INSTANCE = new FoobarBase();
+}
+
+function disable() {
+    if (DEFAULT_INSTANCE instanceof FoobarBase) {
+        // Ensure any reference cycles and signals are disconnected as well,
+        // before nulling out the variable, to ensure it can be collected.
+        DEFAULT_INSTANCE = null;
+    }
+}
+```
+
 As a rule, `init()` should **ONLY** be used for operations that can only be done once and can not be undone. Most extensions should only use `init()` to initialize Gettext translations:
 
 ```js
