@@ -27,8 +27,7 @@ are not named `user`, so we need to ensure this by also checking the parent mode
     "description": "This is an example of using session modes in an extension.",
     "shell-version": [ "42" ],
     "session-modes": ["user", "unlock-dialog"],
-    "url": "https://gitlab.gnome.org/World/ShellExtensions/session-modes-example",
-    "version": 1
+    "url": "https://gitlab.gnome.org/World/ShellExtensions/session-modes-example"
 }
 ```
 

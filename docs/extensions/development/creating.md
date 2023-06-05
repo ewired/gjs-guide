@@ -106,7 +106,6 @@ remembering that `uuid` MUST match the directory name of your extension:
     "uuid": "example@shell.gnome.org",
     "name": "Example",
     "description": "This extension puts an icon in the panel with a simple dropdown menu.",
-    "version": 1,
     "shell-version": [ "42" ],
     "url": "https://gitlab.gnome.org/World/ShellExtensions/gnome-shell-extension-example"
 }

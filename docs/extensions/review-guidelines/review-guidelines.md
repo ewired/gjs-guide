@@ -257,7 +257,7 @@ The _metadata.json_ file that ships with every extension should be well-formed a
 | name | This should not conflict with another extension if possible. If it is a fork of another extension it **MUST** have a unique name to distinguish it. |
 | uuid | This must be of the form `extension-id@user-domain`. `extension-id` and `user-domain` **MUST** only contain numbers, letters, period (`.`), underscore (`_`) and dash (`-`). `user-domain` **MUST** be a domain or namespace you control and be separated from `extension-id` with an `@` symbol. |
 | description | This should be a reasonable length, but may contain a few paragraphs separated with `\n` literals or a bullet point list made with `*` characters. |
-| version | This must be a whole number like `2`, not a string like `"2"` or semantic version like `2.1`.  |
+| version | **Deprecated:** This field is set for internal use by `extensions.gnome.org`. |
 | shell-version | This **MUST** only contain stable releases and up to one development release. Extensions must not claim to support future GNOME Shell versions. As of GNOME 40, an entry may simply be a major version like `40` to cover the entire release. |
 | url | This should be a link to a Github or [GitLab][gitlab] repository where users can report problems and learn more about your extension. |
 | session-modes | This **MUST** be dropped if you are only using `user` mode. The only valid values are `user` and `unlock-dialog`. |
@@ -269,7 +269,6 @@ Example:
     "uuid": "color-button@my-account.github.io",
     "name": "ColorButton",
     "description": "ColorButton adds a colored button to the panel.\n\nIt is a fork of MonochromeButton.",
-    "version": 1,
     "shell-version": [ "3.38", "40", "41.alpha" ],
     "url": "https://github.com/my-account/color-button",
     "session-modes":  [ "unlock-dialog", "user" ]

@@ -15,8 +15,7 @@ For example, this *metadata.json* means you are supporting GNOME Shell 40 and 3.
     "description": "Extension Description",
     "shell-version": ["3.36", "40"],
     "url": "",
-    "uuid": "example@example",
-    "version": 1
+    "uuid": "example@example"
 }
 ```
 
