@@ -7,5 +7,9 @@
     "gettext-domain": "example@gjs.guide",
     "session-modes": ["user", "unlock-dialog"],
     "settings-schema": "org.gnome.shell.extensions.example",
+    "donations": {
+        "github": "john_doe",
+        "custom": ["https://example.com/1/", "https://example.com/2/"]
+    },
     "version": 1
 }

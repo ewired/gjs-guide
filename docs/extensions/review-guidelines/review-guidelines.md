@@ -127,6 +127,7 @@ The _metadata.json_ file that ships with every extension should be well-formed a
 | shell-version | This **MUST** only contain stable releases and up to one development release. Extensions must not claim to support future GNOME Shell versions. As of GNOME 40, an entry may simply be a major version like `40` to cover the entire release. |
 | url | This should be a link to a Github or [GitLab][gitlab] repository where users can report problems and learn more about your extension. |
 | session-modes | This **MUST** be dropped if you are only using `user` mode. The only valid values are `user` and `unlock-dialog`. |
+| donations | This **MUST** only contain [possible keys][anatomy-donations] and **MUST** be dropped if you don't use any of the keys. |
 
 Example:
 
@@ -212,4 +213,5 @@ There are several ways for you to get help with your extension.
 [stackoverflow-gjs]: https://stackoverflow.com/questions/tagged/gjs
 [gnome-extensions-irc]: irc://irc.gimpnet.org/shell-extensions
 [gnome-extensions-matrix]: https://matrix.to/#/#extensions:gnome.org
+[anatomy-donations]: /extensions/overview/anatomy.html#donations
 

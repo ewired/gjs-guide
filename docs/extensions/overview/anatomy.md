@@ -191,6 +191,23 @@ This field is set and incremented automatically by the GNOME Extensions website
 with each submission, but many extension developers choose to match their
 release versions with this.
 
+#### `donations`
+
+This field is an object including donation links with these possible keys:
+
+- buymeacoffee
+- custom
+- github
+- kofi
+- patreon
+- paypal
+
+Value of each element can be string or array of strings (maximum array
+length is 3).
+
+While `custom` pointing to the exact value (URL), other keys only including
+the user handle (for example, `"paypal": "john_doe"` points to the
+`https://paypal.me/john_doe`).
 
 ## `extension.js` (Required)
 
