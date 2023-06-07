@@ -84,16 +84,7 @@ To make using GSettings easier in an extension, set the
 [`settings-schema`](../overview/anatomy.md#settings-schema) field in
 [`metadata.json`](../overview/anatomy.md#metadata-json-required):
 
-```js
-{
-    "uuid": "example@gjs.guide",
-    "name": "Example",
-    "description": "This is an example extension.",
-    "shell-version": [ "3.38", "40" ],
-    "url": "https://gitlab.gnome.org/World/ShellExtensions/example",
-    "settings-schema": "org.gnome.shell.extensions.example"
-}
-```
+@[code json](@src/extensions/development/preferences/metadata.json)
 
 With this field set, [`ExtensionUtils.getSettings()`][utils-getsettings] can be
 called with no arguments. Otherwise you may pass any valid GSettings schema ID.
@@ -108,81 +99,14 @@ For JavaScript properties and other use cases, `Gio.Settings` emits
 [`Gio.Settings::changed`][gsettings-changed] with the property name as the
 signal detail (e.g. `changed::show-indicator`).
 
-```js
-const Gio = imports.gi.Gio;
-const St = imports.gi.St;
+@[code js](@src/extensions/development/preferences/extension.js)
 
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Main = imports.ui.main;
-const PanelMenu = imports.ui.panelMenu;
-
-const _ = ExtensionUtils.gettext;
-
-
-class Extension {
-    constructor() {
-        this._indicator = null;
-    }
-    
-    enable() {
-        console.debug(`enabling ${Me.metadata.name}`);
-
-        const indicatorName = _('%s Indicator').format(Me.metadata.name);
-        
-        // Create a panel button
-        this._indicator = new PanelMenu.Button(0.0, indicatorName, false);
-
-        // Open the preferences when the indicator is clicked
-        this._indicator.connect('clicked', () => ExtensionUtils.openPrefs());
-        
-        // Add an icon
-        const icon = new St.Icon({
-            icon_name: 'face-laugh-symbolic',
-            style_class: 'system-status-icon',
-        });
-        this._indicator.add_child(icon);
-
-        // `Main.panel` is the actual panel you see at the top of the screen,
-        // not a class constructor.
-        Main.panel.addToStatusArea(indicatorName, this._indicator);
-
-        // Create a new GSettings object, and bind the "show-indicator"
-        // setting to the "visible" property.
-        this.settings = ExtensionUtils.getSettings();
-        this.settings.bind('show-indicator', this._indicator, 'visible',
-            Gio.SettingsBindFlags.DEFAULT);
-
-        // Watch for changes to a specific setting
-        this.setting.connect('changed::show-indicator', (settings, key) => {
-            console.debug(`${key} = ${settings.get_value(key).print(true)}`);
-        });
-    }
-    
-    disable() {
-        console.debug(`disabling ${Me.metadata.name}`);
-
-        this._indicator.destroy();
-        this._indicator = null;
-        this.settings = null;
-    }
-}
-
-
-function init() {
-    console.debug(`initializing ${Me.metadata.name}`);
-
-    ExtensionUtils.initTranslations();
-    
-    return new Extension();
-}
-```
 
 [gvariant-guide]: ../../guides/glib/gvariant.md
 [gsettings]: https://gjs-docs.gnome.org/gio20/gio.settings
 [gsettings-bind]: https://gjs-docs.gnome.org/gio20/gio.settings#method-bind
-[gsettings-get_boolean]: https://gjs-docs.gnome.org/gio20/gio.settings#method-get_boolean
-[gsettings-set_value]: https://gjs-docs.gnome.org/gio20/gio.settings#method-set_value
+[gsettings-getboolean]: https://gjs-docs.gnome.org/gio20/gio.settings#method-get_boolean
+[gsettings-setvalue]: https://gjs-docs.gnome.org/gio20/gio.settings#method-set_value
 [gsettings-changed]: https://gjs-docs.gnome.org/gio20/gio.settings#signal-changed
 [utils-getsettings]: ../topics/extension-utils.md#extensionutils-getsettings-schema
 
@@ -202,51 +126,7 @@ screenshots available in the [Widget Gallery][adw-widget-gallery]. You may also
 use any of the [other APIs](https://gjs-docs.gnome.org) that are compatible with
 GTK4 (notable exceptions include `Meta`, `Clutter`, `Shell` and `St`).
 
-```js
-'use strict';
-
-const { Adw, Gio, Gtk } = imports.gi;
-
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-
-const _ = ExtensionUtils.gettext;
-
-
-function init() {
-    ExtensionUtils.initTranslations();
-}
-
-function fillPreferencesWindow(window) {
-    const settings = ExtensionUtils.getSettings();
-    
-    // Create a preferences page, with a single group
-    const page = new Adw.PreferencesPage();
-    window.add(page);
-
-    const group = new Adw.PreferencesGroup();
-    page.add(group);
-
-    // Create a new preferences row
-    const row = new Adw.ActionRow({ title: _('Show Extension Indicator') });
-    group.add(row);
-
-    // Create a switch and bind its value to the `show-indicator` key
-    const toggle = new Gtk.Switch({
-        active: settings.get_boolean('show-indicator'),
-        valign: Gtk.Align.CENTER,
-    });
-    settings.bind('show-indicator', toggle, 'active',
-        Gio.SettingsBindFlags.DEFAULT);
-
-    // Add the switch to the row
-    row.add_suffix(toggle);
-    row.activatable_widget = toggle;
-
-    // Make sure the window doesn't outlive the settings object
-    window._settings = settings;
-}
-```
+@[code js](@src/extensions/development/preferences/prefs.js)
 
 The preference dialog can be opened with `gnome-extensions prefs`, or any other
 tool for managing extensions:

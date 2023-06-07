@@ -57,32 +57,12 @@ The topic of Gettext and the `locale/` directory is explained on the
 information about the extension such as its UUID, name and description. Below is
 a minimal example:
 
-```js
-{
-    "uuid": "example@gjs.guide",
-    "name": "Example",
-    "description": "This is an example extension.",
-    "shell-version": [ "3.38", "40" ],
-    "url": "https://gitlab.gnome.org/World/ShellExtensions/example"
-}
-```
+@[code json](@src/extensions/overview/anatomy/metadataRequired.json)
 
 There are a number of other, optional fields that `metadata.json` may contain.
 Below is a complete example, demonstrating all current possible fields:
 
-```js
-{
-    "uuid": "example@gjs.guide",
-    "name": "Example",
-    "description": "This is an example extension.",
-    "shell-version": [ "3.38", "40" ],
-    "url": "https://gitlab.gnome.org/World/ShellExtensions/example",
-    "gettext-domain": "example@gjs.guide",
-    "session-modes": ["user", "unlock-dialog"],
-    "settings-schema": "org.gnome.shell.extensions.example",
-    "version": 1,
-}
-```
+@[code json](@src/extensions/overview/anatomy/metadata.json)
 
 ### Required Fields
 
@@ -218,84 +198,16 @@ release versions with this.
 extension and contains the function hooks `init()`, `enable()` and `disable()`
 used by GNOME Shell to load, enable and disable your extension.
 
-There are two ways `extension.js` can be implemented. The first approach
-requires a top-level `init()` function that returns a class instance with
-with `enable()` and `disable()` methods.
+There are two ways `extension.js` can be implemented. The first requires a
+top-level `init()` function that returns an object with with `enable()` and
+`disable()` methods.
 
-```js
-// This is a handy import we'll use to grab our extension's object
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-
-
-class Extension {
-    constructor() {
-    }
-    
-    /**
-     * This function is called when your extension is enabled, which could be
-     * done in GNOME Extensions, when you log in or when the screen is unlocked.
-     *
-     * This is when you should setup any UI for your extension, change existing
-     * widgets, connect signals or modify GNOME Shell's behaviour.
-     */
-    enable() {
-        console.debug(`enabling ${Me.metadata.name}`);
-    }
-    
-
-    /**
-     * This function is called when your extension is uninstalled, disabled in
-     * GNOME Extensions, when you log out or when the screen locks.
-     *
-     * Anything you created, modified or setup in enable() MUST be undone here.
-     * Not doing so is the most common reason extensions are rejected in review!
-     */
-    disable() {
-        console.debug(`disabling ${Me.metadata.name}`);
-    }
-}
-
-
-/**
- * This function is called once when your extension is loaded, not enabled. This
- * is a good time to setup translations or anything else you only do once.
- *
- * You MUST NOT make any changes to GNOME Shell, connect any signals or add any
- * MainLoop sources here.
- *
- * @param {ExtensionMeta} meta - An extension meta object, described below.
- * @returns {Object} an object with enable() and disable() methods
- */
-function init(meta) {
-    console.debug(`initializing ${meta.metadata.name}`);
-    
-    return new Extension();
-}
-```
+@[code js](@src/extensions/overview/anatomy/extension.js)
 
 The second approach requires `init()`, `enable()` and `disable()` as top-level
 functions. You are welcome use whichever pattern best suits you.
 
-```js
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-
-
-function init(meta) {
-    console.debug(`initializing ${meta.metadata.name}`);
-}
-
-
-function enable() {
-    console.debug(`enabling ${Me.metadata.name}`);
-}
-
-
-function disable() {
-    console.debug(`disabling ${Me.metadata.name}`);
-}
-```
+@[code js](@src/extensions/overview/anatomy/extensionModule.js)
 
 ### Extension Meta Object
 
@@ -337,80 +249,7 @@ GTK3 or libraries that depend on it like libhandy.
 not present, there will simply be no preferences button in GNOME Extensions or
 the [GNOME Extensions Website](https://extensions.gnome.org/local/).
 
-```js
-const {Adw, GLib, Gtk} = imports.gi;
-
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-
-
-/**
- * Like `extension.js` this is used for any one-time setup like translations.
- *
- * @param {ExtensionMeta} meta - An extension meta object, described below.
- */
-function init(meta) {
-    console.debug(`initializing ${meta.metadata.name} Preferences`);
-}
-
-
-/**
- * This function is called when the preferences window is first created to build
- * and return a GTK widget.
- *
- * As of GNOME 42, the preferences window will be a `Adw.PreferencesWindow`. The
- * widget returned by this function will be added to an `Adw.PreferencesPage` or
- * `Adw.PreferencesGroup` if necessary.
- *
- * @returns {Gtk.Widget} the preferences widget
- */
-function buildPrefsWidget() {
-    // This may be any GtkWidget, although usually you would choose a container
-    // container like a GtkBox, GtkGrid or GtkNotebook
-    const prefsWidget = new Gtk.Box();
-
-    // Add a widget to the container, usually a preference row such as
-    // AdwActionRow, AdwComboRow or AdwRevealerRow
-    const label = new Gtk.Label({ label: `${Me.metadata.name}` });
-    prefsWidget.append(label);
-    
-    return prefsWidget;
-}
-
-/**
- * This function is called when the preferences window is first created to fill
- * the `Adw.PreferencesWindow`.
- *
- * This function will only be called by GNOME 42 and later. If this function is
- * present, `buildPrefsWidget()` will NOT be called.
- *
- * @param {Adw.PreferencesWindow} window - The preferences window
- */
-function fillPreferencesWindow(window) {
-    const prefsPage = new Adw.PreferencesPage({
-        name: 'general',
-        title: 'General',
-        icon_name: 'dialog-information-symbolic',
-    });
-    window.add(prefsPage);
-    
-    const prefsGroup = new Adw.PreferencesGroup({
-        title: 'Appearance',
-        description: `Configure the appearance of ${Me.metadata.name}`,
-    });
-    prefsPage.add(prefsGroup);
-    
-    const showIndicatorRow = new Adw.ActionRow({
-        title: 'Show Indicator',
-        subtitle: 'Whether to show the panel indicator',
-    });
-    prefsGroup.add(showIndicatorRow);
-    
-    const showIndicatorSwitch = new Gtk.Switch();
-    showIndicatorRow.add_suffix(showIndicatorSwitch);
-    showIndicatorRow.set_activatable_widget(showIndicatorSwitch);
-}
-```
+@[code js](@src/extensions/overview/anatomy/prefs.js)
 
 Something that's important to understand:
 
@@ -445,48 +284,11 @@ extension preferences or any other application.
 in `extension.js` or GNOME Shell as a whole. For example, if you had the
 following widgets:
 
-```js
-// A standard StLabel
-let label = new St.Label({
-    text: 'LabelText',
-    style_class: 'example-style'
-});
-
-// An StLabel subclass with `CssName` set to "ExampleLabel"
-var ExampleLabel = GObject.registerClass({
-    GTypeName: 'ExampleLabel',
-    CssName: 'ExampleLabel'
-}, class ExampleLabel extends St.Label {
-});
-
-let exampleLabel = new ExampleLabel({
-    text: 'Label Text'
-});
-```
+@[code js](@src/extensions/overview/anatomy/stylesheet.js)
 
 You could have this in your `stylesheet.css`:
 
-```css
-/* This will change the color of all StLabel elements */
-StLabel {
-    color: red;
-}
-
-/* This will change the color of all elements with the "example-style" class */
-.example-style {
-    color: green;
-}
-
-/* This will change the color of StLabel elements with the "example-style" class */
-StLabel.example-style {
-    color: blue;
-}
-
-/* This will change the color of your StLabel subclass with the custom CssName */
-ExampleLabel {
-    color: yellow;
-}
-```
+@[code css](@src/extensions/overview/anatomy/stylesheet.css)
 
 [ego]: https://extensions.gnome.org
 

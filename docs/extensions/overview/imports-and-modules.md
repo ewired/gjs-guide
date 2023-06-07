@@ -4,7 +4,7 @@ title: Imports and Modules
 
 # Imports and Modules
 
-::: tip
+::: warning
 Note that as of GNOME 44, neither GNOME Shell nor Extensions support
 [ESModules][esmodules], and must use GJS's custom import scheme.
 :::
@@ -23,49 +23,7 @@ The basic rules of exporting with GJS's import system are that anything defined
 with `var` will be exported, while anything defined with `const` or `let` will
 NOT be exported.
 
-```js
-'use strict';
-
-// Any imports this extension needs itself must also be imported here
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-
-// Most importantly, variables declared with `let` or `const` are NOT exported
-const LOCAL_CONSTANT = 42;
-let localVariable = 'a value';
-
-// This includes function expressions and classes declared with `class`
-let _privateFunction = function() {};
-
-// TIP: Private members are often prefixed with `_` in JavaScript, which is clue
-// to other developers that these should only be used internally and may change
-class _PrivateClass {
-    constructor() {
-        this._initialized = true;
-    }
-}
-
-
-// Function declarations WILL be available as properties of the module
-function exportedFunction(a, b) {
-    return a + b;
-}
-
-// Use `var` to assign any other members you want available as part the module
-var EXPORTED_VARIABLE = 42;
-
-var exportedFunction2 = function(...args) {
-    return exportedFunction(...args);
-}
-
-var ExportedClass = class ExportedClass extends _PrivateClass {
-    construct(params) {
-        super();
-
-        Object.assign(this, params);
-    }
-};
-```
+@[code js](@src/extensions/overview/imports-and-modules/exportingModules.js)
 
 ## Importing Modules
 
@@ -74,23 +32,11 @@ available as `Me.imports.exampleLib`. If it was in a subdirectory, such as
 `example@gjs.guide/modules/exampleLib.js`, you would access it as
 `Me.imports.modules.exampleLib`.
 
-```js
-// GNOME Shell imports
-const Main = imports.ui.main;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-
-// You can import your modules using the extension object we imported as `Me`.
-const ExampleLib = Me.imports.exampleLib;
-
-let myObject = new ExampleLib.ExportedClass();
-ExampleLib.exportedFunction(0, ExampleLib.EXPORTED_VARIABLE);
-```
+@[code js](@src/extensions/overview/imports-and-modules/importingModules.js)
 
 Many of the elements in GNOME Shell like panel buttons, popup menus and
-notifications are built from reusable classes and functions. These common
-elements are the closest GNOME Shell has in terms of stable public API. Here are
-a few links to some commonly used modules.
+notifications are built from reusable classes and functions, found in modules
+like these:
 
 * [`js/misc/extensionUtils.js`][extension-utils]
 * [`js/ui/modalDialog.js`][modal-dialog]
@@ -108,25 +54,14 @@ const PanelMenu = imports.ui.panelMenu;
 const PopupMenu = imports.ui.popupMenu;
 ```
 
-### Importing Libraries
+## Importing Libraries
 
-Extensions can also import libraries from the GNOME platform, or any other
-library supporting [GObject Introspection][gobject-introspection]. There are
-also a few built-in libraries such as [`Cairo`][cairo] and [`Gettext`][gettext]
-that are slightly different.
+Extensions can import libraries from the GNOME platform, or any other library
+supporting [GObject Introspection][gobject-introspection]. There are also a few
+built-in libraries such as [`Cairo`][cairo] and [`Gettext`][gettext] that are
+imported differently.
 
-```js
-// GJS's Built-in Modules are in the top-level of the import object
-const Gettext = imports.gettext;
-const Cairo = imports.cairo;
-
-// Introspected libraries are under the `gi` namespace
-const Clutter = imports.gi.Clutter;
-const Meta = imports.gi.Meta;
-
-// Multiple libraries can be imported with object destructuring
-const { GLib, GObject, Gio } = imports.gi;
-```
+@[code js](@src/extensions/overview/imports-and-modules/importingLibraries.js)
 
 
 [extension-utils]: https://gitlab.gnome.org/GNOME/gnome-shell/blob/main/js/misc/extensionUtils.js

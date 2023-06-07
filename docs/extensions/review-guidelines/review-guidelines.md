@@ -28,184 +28,50 @@ If this is your first time writing an extension, please see the documentation av
 
 ### Only use init() for initialization
 
-`init()` is called by GNOME Shell when your extension is loaded, not when it is enabled. Your extension **MUST NOT** create any objects, connect any signals, add any main loop sources or modify GNOME Shell here.
+`init()` is called by GNOME Shell when your extension is loaded, not when it is
+enabled. Your extension **MUST NOT** create any objects, connect any signals,
+add any main loop sources or modify GNOME Shell here.
 
-With regard to objects created in the global scope, static objects and arrays
-(e.g. enumerations or string lists) are permitted, while constructing class
-instances is not. Objects intended to be constructed as instances, should be
-created when `enable()` is called and destroyed when `disable()` is called.
+It is permitted to create static objects and arrays in the global scope or
+`init()` (e.g. enumerations or string lists), but constructing class instances
+is not permitted. Objects intended to be constructed as instances should be
+created when `enable()` is called, and destroyed when `disable()` is called.
 
-```js
-/*
- * This is permitted
- */
-const FoobarState = {
-    DEFAULT: 0,
-    CHANGED: 1,
-};
+@[code js](@src/extensions/review-guidelines/initNoInstances.js)
 
-var FoobarBase = class {
-    state = FoobarState.DEFAULT;
-};
+As a rule, `init()` should **ONLY** be used for operations that can only be done
+once and can not be undone. Most extensions should only use `init()` to
+initialize Gettext translations:
 
-const FoobarTypes = [
-    class extends FoobarBase {},
-    class extends FoobarBase {},
-];
+@[code js](@src/extensions/review-guidelines/initTranslations.js)
 
-/*
- * This is not permitted
- */
-const DEFAULT_FOOBAR = new FoobarBase();
+If using the `Extension()` object pattern, this extends to the `constructor()`
+of the `Extension` class:
 
-
-/*
- * Do this instead
- */
-var DEFAULT_INSTANCE = null;
-
-function init() {
-}
-
-function enable() {
-    if (DEFAULT_INSTANCE === null)
-        DEFAULT_INSTANCE = new FoobarBase();
-}
-
-function disable() {
-    if (DEFAULT_INSTANCE instanceof FoobarBase) {
-        // Ensure any reference cycles and signals are disconnected as well,
-        // before nulling out the variable, to ensure it can be collected.
-        DEFAULT_INSTANCE = null;
-    }
-}
-```
-
-As a rule, `init()` should **ONLY** be used for operations that can only be done once and can not be undone. Most extensions should only use `init()` to initialize Gettext translations:
-
-```js
-const ExtensionUtils = imports.misc.extensionUtils;
-
-
-function init() {
-    ExtensionUtils.initTranslations();
-}
-
-function enable() {
-    // Create objects, connect signals, create timeout sources, etc.
-}
-
-function disable() {
-    // Destroy objects, disconnect signals, remove timeout sources, etc.
-}
-```
-
-If using the `Extension()` object pattern, this extends to the `constructor()` of the `Extension` class:
-
-```js
-const ExtensionUtils = imports.misc.extensionUtils;
-
-
-class Extension {
-    constructor() {
-        // DO NOT create objects, connect signals or add main loop sources here
-    }
-
-    enable() {
-        // Create objects, connect signals, create timeout sources, etc.
-    }
-
-    disable() {
-        // Destroy objects, disconnect signals, remove timeout sources, etc.
-    }
-}
-
-function init() {
-    // Initialize translations before returning the extension object
-    ExtensionUtils.initTranslations();
-
-    return new Extension();
-}
-```
+@[code js](@src/extensions/review-guidelines/initTranslationsAlternate.js)
 
 ### Destroy all objects
 
-Any objects or widgets created by an extension **MUST** be destroyed in `disable()`:
+Any objects or widgets created by an extension **MUST** be destroyed in
+`disable()`:
 
-```js
-const St = imports.gi.St;
-
-let widget = null;
-
-function init() {
-}
-
-function enable() {
-    widget = new St.Widget();
-}
-
-function disable() {
-    if (widget) {
-        widget.destroy();
-        widget = null;
-    }
-}
-```
+@[code js](@src/extensions/review-guidelines/destroyObjects.js)
 
 ### Disconnect all signals
 
-Any signal connections made by an extension **MUST** be disconnected in `disable()`:
+Any signal connections made by an extension **MUST** be disconnected in
+`disable()`:
 
-```js
-let handlerId = null;
-
-function init() {
-}
-
-function enable() {
-    handlerId = global.settings.connect('changed::favorite-apps', () => {
-        log('app favorites changed');
-    });
-}
-
-function disable() {
-    if (handlerId) {
-        global.settings.disconnect(handlerId);
-        handlerId = null;
-    }
-}
-```
+@[code js](@src/extensions/review-guidelines/disconnectSignals.js)
 
 ### Remove main loop sources
 
 Any main loop sources created **MUST** be removed in `disable()`:
 
+@[code js](@src/extensions/review-guidelines/removeSources.js)
 
-```js
-const GLib = imports.gi.GLib;
-
-let sourceId = null;
-
-function init() {
-}
-
-function enable() {
-    sourceId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 5, () => {
-        log('Source triggered');
-
-        return GLib.SOURCE_CONTINUE;
-    });
-}
-
-function disable() {
-    if (sourceId) {
-        GLib.Source.remove(sourceId);
-        sourceId = null;
-    }
-}
-```
-
-You **MUST** remove all active main loop sources in `disable()`, even if the callback function will eventually return `false` or `GLib.SOURCE_REMOVE`.
+You **MUST** remove all active main loop sources in `disable()`, even if the
+callback function will eventually return `false` or `GLib.SOURCE_REMOVE`.
 
 ### Code must not be obfuscated
 
@@ -264,16 +130,7 @@ The _metadata.json_ file that ships with every extension should be well-formed a
 
 Example:
 
-```json
-{
-    "uuid": "color-button@my-account.github.io",
-    "name": "ColorButton",
-    "description": "ColorButton adds a colored button to the panel.\n\nIt is a fork of MonochromeButton.",
-    "shell-version": [ "3.38", "40", "41.alpha" ],
-    "url": "https://github.com/my-account/color-button",
-    "session-modes":  [ "unlock-dialog", "user" ]
-}
-```
+@[code json](@src/extensions/review-guidelines/metadata.json)
 
 ### Session Modes
 

@@ -46,7 +46,7 @@ $ gnome-extensions create --interactive
    ```sh
    UUID is a globally-unique identifier for your extension.
    This should be in the format of an email address (clicktofocus@janedoe.example.com)
-   UUID: example@shell.gnome.org
+   UUID: example@gjs.guide
    ```
 
 4. **Choose the starting template:**
@@ -72,7 +72,7 @@ Description: An extension serving as an example
 
 UUID is a globally-unique identifier for your extension.
 This should be in the format of an email address (clicktofocus@janedoe.example.com)
-UUID: example@shell.gnome.org
+UUID: example@gjs.guide
 
 Choose one of the available templates:
 1) Plain       –  An empty extension
@@ -91,8 +91,8 @@ Start by creating an extension directory, then open the two required files in
 `gedit` or another editor:
 
 ```sh
-$ mkdir -p ~/.local/share/gnome-shell/extensions/example@shell.gnome.org
-$ cd ~/.local/share/gnome-shell/extensions/example@shell.gnome.org
+$ mkdir -p ~/.local/share/gnome-shell/extensions/example@gjs.guide
+$ cd ~/.local/share/gnome-shell/extensions/example@gjs.guide
 $ gedit extension.js metadata.json &
 ```
 
@@ -101,42 +101,14 @@ remembering that `uuid` MUST match the directory name of your extension:
 
 ### `metadata.json`
 
-```js
-{
-    "uuid": "example@shell.gnome.org",
-    "name": "Example",
-    "description": "This extension puts an icon in the panel with a simple dropdown menu.",
-    "shell-version": [ "42" ],
-    "url": "https://gitlab.gnome.org/World/ShellExtensions/gnome-shell-extension-example"
-}
-```
+@[code json](@src/extensions/overview/anatomy/metadataRequired.json)
 
 ### `extension.js`
 
 Notice that in the example below, we are using three top-level functions instead
 of class like in the example above.
 
-```js
-'use strict';
-
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-
-
-function init() {
-    console.debug(`initializing ${Me.metadata.name}`);
-}
-
-
-function enable() {
-    console.debug(`enabling ${Me.metadata.name}`);
-}
-
-
-function disable() {
-    console.debug(`disabling ${Me.metadata.name}`);
-}
-```
+@[code js](@src/extensions/overview/anatomy/extension.js)
 
 ## Enabling the Extension
 
@@ -175,7 +147,7 @@ Now that you're prepared to debug any problems with your extension, use the
 `gnome-extensions` tool to enable your extension by running the following command:
 
 ```sh
-$ gnome-extensions enable example@shell.gnome.org
+$ gnome-extensions enable example@gjs.guide
 ```
 
 In case of Wayland, execute the above command in a terminal started from within
@@ -198,61 +170,7 @@ messages from your extension might be buried within them.
 As a simple example, let's add a panel button to show what a working extension
 might look like:
 
-```js
-const St = imports.gi.St;
-
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Main = imports.ui.main;
-const PanelMenu = imports.ui.panelMenu;
-
-const _ = ExtensionUtils.gettext;
-
-
-class Extension {
-    constructor() {
-        this._indicator = null;
-    }
-    
-    enable() {
-        console.debug(`enabling ${Me.metadata.name}`);
-
-        const indicatorName = _('%s Indicator').format(Me.metadata.name);
-        
-        // Create a panel button
-        this._indicator = new PanelMenu.Button(0.0, indicatorName, false);
-        
-        // Add an icon
-        const icon = new St.Icon({
-            icon_name: 'face-laugh-symbolic',
-            style_class: 'system-status-icon',
-        });
-        this._indicator.add_child(icon);
-
-        // `Main.panel` is the actual panel you see at the top of the screen,
-        // not a class constructor.
-        Main.panel.addToStatusArea(indicatorName, this._indicator);
-    }
-    
-    // REMINDER: It's required for extensions to clean up after themselves when
-    // they are disabled. This is required for approval during review!
-    disable() {
-        console.debug(`disabling ${Me.metadata.name}`);
-
-        this._indicator.destroy();
-        this._indicator = null;
-    }
-}
-
-
-function init() {
-    console.debug(`initializing ${Me.metadata.name}`);
-
-    ExtensionUtils.initTranslations();
-    
-    return new Extension();
-}
-```
+@[code js](@src/extensions/development/creating/extension.js)
 
 Now, save the `extension.js` file and reload the extension, by repeating the
 steps in the [Enabling the Extension](#enabling-the-extension) section.

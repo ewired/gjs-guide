@@ -1,0 +1,8 @@
+{
+    "uuid": "example@gjs.guide",
+    "name": "Example Extension",
+    "description": "This is an example extension.",
+    "shell-version": [ "3.38", "40" ],
+    "url": "https://gitlab.gnome.org/ewlsh/gjs-guide",
+    "settings-schema": "org.gnome.shell.extensions.example"
+}

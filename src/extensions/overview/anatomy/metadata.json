@@ -1,0 +1,11 @@
+{
+    "uuid": "example@gjs.guide",
+    "name": "Example Extension",
+    "description": "This is an example extension.",
+    "shell-version": [ "3.38", "40" ],
+    "url": "https://gitlab.gnome.org/ewlsh/gjs-guide",
+    "gettext-domain": "example@gjs.guide",
+    "session-modes": ["user", "unlock-dialog"],
+    "settings-schema": "org.gnome.shell.extensions.example",
+    "version": 1
+}

@@ -1,0 +1,8 @@
+{
+    "uuid": "color-button@my-account.github.io",
+    "name": "ColorButton",
+    "description": "ColorButton adds a colored button to the panel.\n\nIt is a fork of MonochromeButton.",
+    "shell-version": [ "3.38", "40", "41.alpha" ],
+    "url": "https://github.com/my-account/color-button",
+    "session-modes":  [ "unlock-dialog", "user" ]
+}

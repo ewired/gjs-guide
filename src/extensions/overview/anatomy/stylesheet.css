@@ -1,0 +1,19 @@
+/* This will change the color of all StLabel elements */
+StLabel {
+    color: red;
+}
+
+/* This will change the color of all elements with the "example-style" class */
+.example-style {
+    color: green;
+}
+
+/* This will change the color of StLabel elements with the "example-style" class */
+StLabel.example-style {
+    color: blue;
+}
+
+/* This will change the color of your StLabel subclass with the custom CssName */
+ExampleLabel {
+    color: yellow;
+}

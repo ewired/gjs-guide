@@ -20,6 +20,13 @@ export default defineUserConfig<DefaultThemeOptions>({
     ],
   ],
 
+  markdown: {
+    importCode: {
+      handleImportPath: (str) =>
+        str.replace(/^@src/, path.resolve(__dirname, './../../src')),
+    },
+  },
+
   theme: path.resolve(__dirname, './theme/index.ts'),
   themeConfig: {
     editLinks: true,

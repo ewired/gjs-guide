@@ -41,40 +41,32 @@ try {
 
 ### Version Number Detection
 
-If you know when a feature was introduced or a part of the code updated, you can adapt to these changes by targeting specific version numbers. It is possible to browse older code on the [Shell's GitLab page][shell-gitlab] by changing the tag.
+If you know when a feature was introduced or a part of the code updated, you can
+adapt to these changes by targeting specific version numbers. It is possible to
+browse older code on the [Shell's GitLab page][shell-gitlab] by changing the
+tag.
 
-Prior to version 40, GNOME Shell used 3.xx version numbers, even minor number denoting a stable release.
+Prior to version 40, GNOME Shell used 3.xx version numbers, even minor number
+denoting a stable release.
 
-```js
-const Config = imports.misc.config;
-const [major, minor] = Config.PACKAGE_VERSION.split('.').map(s => Number(s));
-
-if (major === 3 && minor <= 36)
-    log('Shell 3.36 or lower');
-else if (major === 3 && minor === 38)
-    log('Shell 3.38');
-else if (major >= 40)
-    log('Shell 40 or higher');
-```
+@[code js](@src/extensions/development/targeting-older-gnome/shellVersionCheck.js)
 
 ## Preferences
 
 ### GTK Version
 
-Starting from GNOME 40, the preferences dialog uses GTK4, while older versions use GTK3. There has been some changes between the two versions, please refer to the [GTK4 migration guide][gtk4-migration] for an overview.
+Starting from GNOME 40, the preferences dialog uses GTK4, while older versions
+use GTK3. There has been some changes between the two versions, please refer to
+the [GTK4 migration guide][gtk4-migration] for an overview.
 
 If you need different code, it is possible to check the current GTK version:
 
-```js
-const { Gtk } = imports.gi;
-const version = Gtk.get_major_version();
-
-log(`GTK version is ${version}`);
-```
+@[code js](@src/extensions/development/targeting-older-gnome/gtkVersionCheck.js)
 
 ### `buildPrefsWidget()`
 
-Prior to version 42, the `prefs.js` needed a `buildPrefsWidget` function, returning a `GtkWidget` to be inserted in the preferences dialog.
+Prior to version 42, the `prefs.js` needed a `buildPrefsWidget` function,
+returning a `GtkWidget` to be inserted in the preferences dialog.
 
 ```js
 function buildPrefsWidget() {
@@ -82,7 +74,10 @@ function buildPrefsWidget() {
 }
 ```
 
-It is still possible to use this function in the current version of GNOME. The `fillPreferencesWindow` function will have priority, so you can have different widgets for versions older than 42. Useful if you want to use Libadwaita widgets on current versions, and only GTK widgets on older versions.
+It is still possible to use this function in the current version of GNOME. The
+`fillPreferencesWindow` function will have priority, so you can have different
+widgets for versions older than 42. Useful if you want to use Libadwaita widgets
+on current versions, and only GTK widgets on older versions.
 
 [anatomy-shell-version]: ../overview/anatomy.md#shell-version
 

@@ -75,34 +75,7 @@ number of methods, properties and signals common to all items.
     
 #### Example
 
-```js
-const Clutter = imports.gi.Clutter;
-const PopupMenu = imports.ui.popupMenu;
-
-// PopupMenuItem is a subclass of PopupBaseMenuItem
-const menuItem = new PopupMenu.PopupMenuItem('Item Label', {
-    active: false,
-    can_focus: true,
-    hover: true,
-    reactive: true,
-    style_class: 'my-menu-item',
-});
-
-// Adding an ornament
-menuItem.setOrnament(PopupMenu.Ornament.CHECK);
-
-// Disabling the item (active property will no longer change)
-menuItem.sensitive = false;
-
-// Watching the `activate` signal
-menuItem.connect('activate', (item, event) => {
-    // Do something special for pointer buttons
-    if (event.get_type() === Clutter.EventType.BUTTON_PRESS)
-        console.log('Pointer was pressed!');
-        
-    return Clutter.EVENT_PROPAGATE;
-});
-```
+@[code js](@src/extensions/topics/popup-menu/popupBaseMenuItem.js)
 
 ### `PopupMenuItem`
 
@@ -125,15 +98,7 @@ A simple menu item with a text label.
 
 #### Example
 
-```js
-const PopupMenu = imports.ui.popupMenu;
-
-const menuItem = new PopupMenu.PopupMenuItem('Item Label',
-    {});
-    
-// Setting the label
-menuItem.label.text = 'New Label';
-```
+@[code js](@src/extensions/topics/popup-menu/popupMenuItem.js)
 
 ### `PopupImageMenuItem`
 
@@ -151,6 +116,8 @@ label.
 * `setIcon(icon)` — Sets the icon for the item
     * icon (`String`|`Gio.Icon`) — A themed icon name or [`Gio.Icon`][gicon]
 
+[gicon]: https://gjs-docs.gnome.org/gio20/gio.icon
+
 #### Properties
 
 * `icon` (`St.Icon`) — An [`St.Icon`][sticon]
@@ -163,21 +130,7 @@ label.
 
 #### Example
 
-```js
-const PopupMenu = imports.ui.popupMenu;
-
-const menuItem = new PopupMenu.PopupImageMenuItem('Item Label',
-    'info-symbolic', {});
-
-// Setting the icon, by method or property
-menuItem.setIcon('info-symbolic');
-menuItem.icon.icon_name = 'info-symbolic';
-
-// Setting the label
-menuItem.label.text = 'New Label';
-```
-
-[gicon]: https://gjs-docs.gnome.org/gio20/gio.icon
+@[code js](@src/extensions/topics/popup-menu/popupImageMenuItem.js)
 
 ### `PopupSeparatorMenuItem`
 
@@ -199,14 +152,7 @@ This menu item is used to separate other items, with an optional label.
 
 #### Example
 
-```js
-const PopupMenu = imports.ui.popupMenu;
-
-const menuItem = new PopupMenu.PopupSeparatorMenuItem('Optional Label');
-
-// Setting the label
-menuItem.label.text = 'New Label';
-```
+@[code js](@src/extensions/topics/popup-menu/popupSeparatorMenuItem.js)
 
 ### `PopupSwitchMenuItem`
 
@@ -245,24 +191,7 @@ This menu item is like `PopupMenuItem`, with a switch placed after the label.
 
 #### Example
 
-```js
-const PopupMenu = imports.ui.popupMenu;
-
-const menuItem = new PopupMenu.PopupSwitchMenuItem('Item Label',
-    true, {});
-
-// Getting and setting the switch state (both calls are equivalent)
-menuItem.setToggleState(!menuItem.state);
-menuItem.toggle();
-
-// Setting the label
-menuItem.label.text = 'New Label';
-
-// Watching the switch state and updating the switch label
-menuItem.connect('toggled', (item, state) => {
-    item.setStatusText(state ? 'On' : 'Off');
-});
-```
+@[code js](@src/extensions/topics/popup-menu/popupSwitchMenuItem.js)
 
 ### `PopupSubMenuMenuItem`
 
@@ -293,23 +222,7 @@ and expander to reveal the items it contains.
 
 #### Example
 
-```js
-const PopupMenu = imports.ui.popupMenu;
-
-const menuItem = new PopupMenu.PopupSubMenuMenuItem('Item Label',
-    true, {});
-
-// Setting the icon
-menuItem.icon.icon_name = 'info-symbolic';
-
-// Setting the label
-menuItem.label.text = 'New Label';
-
-// Adding items
-menuItem.menu.addAction('Submenu Item 1', () => console.log('activated'));
-menuItem.menu.addAction('Submenu Item 2', () => console.log('activated'));
-```
-
+@[code js](@src/extensions/topics/popup-menu/popupSubMenuMenuItem.js)
 
 ## Menus
 
@@ -398,32 +311,7 @@ number of methods, properties and signals common to all menus.
 
 #### Example
 
-```js
-const St = imports.gi.St;
-
-const BoxPointer = imports.ui.BoxPointer;
-const PopupMenu = imports.ui.popupMenu;
-
-const sourceActor = new St.Widget();
-const menu = new PopupMenu.PopupMenu(sourceActor, 0.0, St.Side.TOP);
-
-// Adding items
-const menuItem1 = menu.addAction('Item 1', () => console.log('activated'));
-
-const menuItem2 = new PopupMenu.PopupMenuItem('Item 2');
-menu.addMenuItem(menuItem2, 0);
-
-// Moving items
-menu.moveMenuItem(menuItem2, 1);
-
-// Opening and closing menus
-menu.open(BoxPointer.PopupAnimation.FADE);
-menu.close(BoxPointer.PopupAnimation.NONE);
-
-// Removing items
-menuItem1.destroy();
-menu.removeAll();
-```
+@[code js](@src/extensions/topics/popup-menu/popupMenuBase.js)
 
 ### `PopupMenu`
 
@@ -451,16 +339,7 @@ A basic popup menu.
 
 #### Example
 
-```js
-const St = imports.gi.St;
-const PopupMenu = imports.ui.popupMenu;
-
-const sourceActor = new St.Widget();
-const menu = new PopupMenu.PopupMenu(sourceActor, 0.0, St.Side.TOP);
-
-// Adding items
-menu.addAction('Menu Item', () => console.log('activated'));
-```
+@[code js](@src/extensions/topics/popup-menu/popupMenu.js)
 
 ### `PopupMenuSection`
 
@@ -471,20 +350,7 @@ usually used to organize items into groups, then added to a parent menu.
 
 #### Example
 
-```js
-const St = imports.gi.St;
-const PopupMenu = imports.ui.popupMenu;
-
-// Parent Menu
-const sourceActor = new St.Widget();
-const menu = new PopupMenu.PopupMenu(sourceActor, 0.0, St.Side.TOP);
-
-// Menu Section
-const section = new PopupMenu.PopupMenu();
-section.addAction('Menu Item', () => console.log('activated'));
-
-menu.addMenuItem(section);
-```
+@[code js](@src/extensions/topics/popup-menu/popupMenuSection.js)
 
 ### `PopupSubMenu`
 

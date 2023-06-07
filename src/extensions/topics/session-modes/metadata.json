@@ -1,0 +1,8 @@
+{
+    "uuid": "session-modes@gjs.guide",
+    "name": "Session Modes Example",
+    "description": "This is an example of using session modes in an extension.",
+    "shell-version": [ "42" ],
+    "session-modes": ["user", "unlock-dialog"],
+    "url": "https://gitlab.gnome.org/ewlsh/gjs-guide"
+}
