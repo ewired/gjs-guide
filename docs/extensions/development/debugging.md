@@ -4,65 +4,150 @@ title: Debugging
 
 # Debugging
 
-While debugging is always an important part of programming, it can be a little more difficult with GNOME Shell extensions because of how they integrate into an existing process. 
+When an extension is enabled it is effectively applied like a patch, and so
+enabled extensions become a part of the GNOME Shell process. As a result,
+debugging extensions can sometimes involve non-standard methods.
+
+This document will explain the basic workflow required to develop, test and
+debug GNOME Shell extensions.
 
 ## Reloading Extensions
 
-As a technical limitation of JavaScript engines, extensions can not be unloaded from a running instance of GNOME Shell. This can make testing incremental changes tedious.
+Unlike frameworks that can load and unload plugins or shared libraries,
+JavaScript engines can not "unload" code from the interpreter. This means a new
+GNOME Shell process must be started to load changes in an extension, and ensure
+a clean environment for testing the new code.
 
 ### Running a Nested GNOME Shell
 
-The most convenient way to test incremental changes, especially for Wayland users, is by running a nested instance of GNOME Shell. Running the following command from a terminal will start a new `gnome-shell` process, with its own D-Bus session:
+::: warning
+A nested instance of GNOME Shell is not fully isolated, and will not protect
+your system from data loss or other consequences.
+:::
+
+Wayland desktops can run a nested instance of GNOME Shell, similar to running a
+virtual machine, except only the `gnome-shell` process is run and there is very
+little isolation.
+
+A nested instance is wrapped in a new D-Bus session, which allows GNOME Shell to
+export D-Bus services and other tasks that would normally conflict with the host
+system. Start a nested instance by running the command below in a new terminal:
 
 ```sh
 dbus-run-session -- gnome-shell --nested --wayland
 ```
 
-Any errors, warnings or debug messages will be logged in the terminal, which also makes it much easier to fix problems that occur when the extension is loaded.
+GNOME Shell and Mutter will log many debug messages and harmless warnings to the
+terminal, and display a new desktop in a window. The process can be further
+controlled by setting enviroment variables used when
+[Running GLib Applications](https://docs.gtk.org/glib/running.html) and
+specifically the `MUTTER_DEBUG_DUMMY_MODE_SPECS` varaible which can be used to
+set the display resolution:
 
-Note that a nested GNOME Shell is not completely isolated, so you may encounter some problems depending on how the extension interacts with the desktop. Most extensions should work exactly as they do in a standard session, though.
+@[code sh](@src/extensions/development/debugging/gnome-nested.sh)
 
 ### Restarting GNOME Shell
 
-In an X11 session, GNOME Shell can be completely restarted by pressing `Alt`+`F2` to open the *Run a Command* dialog, then running the built-in command `restart`. Wayland sessions do not support the `restart` command, so you must log out and log in to restart GNOME Shell.
+::: tip
+Wayland sessions can not restart GNOME Shell while the user is logged in, so
+you must log out and log back in to restart the `gnome-shell` process.
+:::
+
+X11 desktops can't run a nested instance of GNOME Shell, but can be restarted
+without having to log out and log back in. Before restarting, be sure to have
+a terminal open for [logging](#logging).
+
+Start by pressing `Alt`+`F2` to open the ***Run a Command*** dialog, then enter
+the built-in command `restart`. GNOME Shell will restart, reloading all
+extensions, while logging debug messages, warnings and errors.
 
 ## Logging
 
 ::: tip
-Some distributions may require you to be part of a `systemd` user group to access logs. On systems that are not using `systemd`, logs may be written to `~/.xsession-errors`.
+You may be required to be part of a `systemd` user group to access logs. Systems
+that are not using `systemd` may write logs to `~/.xsession-errors`.
 :::
 
-GJS has a number of logging facilities, some particular to GJS, others inherited from JavaScript and a few that are provided by GLib. There is more complete documentation available for [Built-in Logging][logging-docs] and the [`console`][console-docs] suite of functions.
+This section explains logging with a focus on GNOME Shell extensions. There is
+more complete documentation for [Logging][logging-docs] available in the
+[API Documentation](https://gjs-docs.gnome.org).
 
-GNOME Shell extensions have a special feature available that can be used with `journald`. By passing an extension's UUID with the `GNOME_SHELL_EXTENSION_UUID` variable, you can filter out all messages except those that your extension logs:
+### Recommended Practices
 
-```sh
-$ journalctl -f -o cat GNOME_SHELL_EXTENSION_UUID=example@shell.gnome.org
+The [`console`][console-docs] API is the recommended method for logging, using a
+function determined by log level. For example, `console.debug()` must always be
+used for information only useful during development, while `console.warn()`
+should only be used to log warnings that may indicate a bug.
+
+For logging an `Error` as a warning message with a stack trace, the built-in
+function [`logError()`][logging-logerror] is still a convenient choice:
+
+```js
+Promise.reject().catch(logError);
+
+try {
+    throw new Error('example');
+} catch (e) {
+    logError(e, 'Prefix');
+}
 ```
 
-Note that the `console` functions do not work with the `GNOME_SHELL_EXTENSION_UUID` feature, so if you rely on this you should use the built-in functions instead. This will also filter out messages from the `gnome-shell` process itself, which may mean you miss errors and warnings still relevant to your extension.
+The best practice is to keep logging to a minimum, focusing on unexpected events
+and failures. All logged messages are included in the system log, so excessive
+logging can even make debugging other applications more difficult.
+
+### Filtering by Extension
+
+::: warning
+This feature has limited usefulness, because it silences other messages from
+GNOME Shell and only works with the built-in [`log()`][logging-log] function
+(not [`console.log()`][console-log]).
+:::
+
+GNOME Shell extensions have a special feature available that can be used with
+`journald`. When the `GNOME_SHELL_EXTENSION_UUID` variable is set to your
+extension's UUID, it will filter out all messages except those logged by your
+extension with the global [`log()`][logging-log] function:
+
+```sh
+$ journalctl -f -o cat GNOME_SHELL_EXTENSION_UUID=example@gjs.guide
+```
 
 ## GJS Console
 
-Similar to Python, GJS also has a console you can use to test things out. However, you will not be able to access live code running in the `gnome-shell` process or import JS modules from GNOME Shell, since this a separate process.
+::: tip
+The GJS console is a separate process, without access to the `gnome-shell`
+process or the ability to import JavaScript modules used by extensions.
+:::
+
+Similar to Node.js, GJS also has a REPL shell (Read-Evalute-Print-Loop) that can
+be used to test simple pieces of code:
 
 ```sh
 $ gjs-console
+
 gjs> log('a message');
 Gjs-Message: 06:46:03.487: JS LOG: a message
 
 gjs> try {
-....     throw new Error('An error occurred');
+....     throw new Error('example');
 .... } catch (e) {
-....     logError(e, 'ConsoleError');
+....     logError(e, 'Prefix');
 .... }
 
-(gjs-console:9133): Gjs-WARNING **: 06:47:06.311: JS ERROR: ConsoleError: Error: An error occurred
+(gjs-console:9133): Gjs-WARNING **: 06:47:06.311: JS ERROR: Prefix: Error: example
 @typein:2:16
 @<stdin>:1:34
+gjs> ^C
+(To exit, press Ctrl+C again or Ctrl+D)
+$
+```
 ```
 
 
 [console-standard]: https://console.spec.whatwg.org/
 [console-docs]: https://gjs-docs.gnome.org/gjs/console.md
+[console-log]: https://gjs-docs.gnome.org/gjs/console.md#console-log
 [logging-docs]: https://gjs-docs.gnome.org/gjs/logging.md
+[logging-log]: https://gjs-docs.gnome.org/gjs/logging.md#log
+[logging-logerror]: https://gjs-docs.gnome.org/gjs/logging.md#logerror
