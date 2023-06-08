@@ -113,6 +113,79 @@ extension with the global [`log()`][logging-log] function:
 $ journalctl -f -o cat GNOME_SHELL_EXTENSION_UUID=example@gjs.guide
 ```
 
+## Looking Glass
+
+Looking Glass is a debugger and inspector, built into GNOME Shell. Note that it
+is not a stepping debugger like the one started by `gjs --debugger`, but more
+like the inspector in GTK.
+
+To open Looking Glass, start by pressing `Alt`+`F2` to open the
+***Run a Command*** dialog, then enter the built-in command `lg`.
+
+### Evaluator
+
+The *Evaluator* page is the default page of Looking Glass, and a unique REPL
+console that can run arbitrary JavaScript in the current GNOME Shell process. It
+has command history, tab completion and automatically saves the return values of
+expressions and function calls.
+
+The libraries `GLib`, `GObject`, `Gio`, `Clutter`, `Meta`, `St` and `Shell` are
+imported. Additionally, the following are defined:
+
+* `stage` - An alias for `global.stage`
+* `Main` - An alias for `imports.ui.main`
+* `inspect(x = 0, y = 0)` - Get the `Clutter.Actor` at `(x, y)`
+* `r(index = 0)` - Get the return value of a previous command at `index`
+
+Each line is executed separately, so multiple expressions and function calls
+must be joined by a semi-colon (`;`). For example:
+
+```
+>>> const sum = 2 + 2; const square = sum * sum; return `Sum: ${sum}, Square: ${square}`;
+r(0) = Sum: 4, Square: 16
+>>> Main.panel
+r(1) = [0x55b300338460 Gjs_ui_panel_Panel:first-child last-child "panel"]
+```
+
+Clicking `[0x55b300338460 Gjs_ui_panel_Panel:first-child last-child "panel"]`
+will open a dialog with the object's properties, including links to other
+objects. In the top-left corner of Looking Glass there is a button with a target
+icon (`⌖`), which allows you to select an actor with the mouse and calls the
+`inspect()` function for you:
+
+```
+>>> 2 + 2
+r(0) = 4
+>>> Main.panel
+r(1) = [0x55b300338460 Gjs_ui_panel_Panel:first-child last-child "panel"]
+>>> inspect(1028, 26)
+r(2) = [0x55b3003a3d30 Gjs_ui_dateMenu_DateMenuButton.panel-button clock-display:first-child last-child "(Jun 8 17:43)"]
+```
+
+### Windows
+
+The *Windows* page lists the open windows in the current session. Clicking on
+the window title opens the inspector for the `Meta.Window` object, and clicking
+on the `.desktop` file name opens it for the `Shell.App` object.
+
+### Extensions
+
+The *Extensions* page lists the extensions in the current session. It displays
+the status of the extension, such as *"Enabled"* or *"Downloading"*, and buttons
+to view any errors, open the source directory and visit the extension's website.
+
+### Actors
+
+The *Actors* page allows browsing all the widgets in the shell as a tree of
+objects. This is sometimes necessary to acquire a reference to an actor that is
+hidden from sight, or a non-visual object that exists as a property of an actor.
+
+### Flags
+
+The *Flags* page contains many debugging options for Clutter and Mutter. These
+options are generally reserved for GNOME Shell development, and should be used
+with care.
+
 ## GJS Console
 
 ::: tip
