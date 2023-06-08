@@ -62,32 +62,6 @@ gjs> try {
 @<stdin>:1:34
 ```
 
-## Recovering from Fatal Errors
-
-Despite the fact that extensions are written in JavaScript, the code is executed in the same process as `gnome-shell` so fatal programmer errors can crash GNOME Shell in a few situations. If your extension crashes GNOME Shell as a result of the `init()` or `enable()` hooks being called, this can leave you unable to log into GNOME Shell.
-
-If you find yourself in this situation, you may be able to correct the problem from a TTY:
-
- 1. **Switch to a free TTY and log in**
-
-    You can do so, for example, by pressing `Ctrl` + `Alt` + `F4`. You may have to cycle through the `F#` keys.
-
- 2. **Start `journalctl` as above**
-
-    ```sh
-    $ journalctl -f -o cat /usr/bin/gnome-shell
-    ```
-
- 3. **Switch back to GDM and log in**
-
-    After your log in fails, switch back to the TTY running `journalctl` and see if you can determine the problem in your code. If you can, you may be able to correct the problem using `nano` or `vim` from the command-line.
-
-If you fail to diagnose the problem, or you find it easier to review your code in a GUI editor, you can simply move your extension directory up one directory. This will prevent your extension from being loaded, without losing any of your code:
-
-```sh
-$ mv ~/.local/share/gnome-shell/extensions/example@shell.gnome.org ~/.local/share/gnome-shell/
-```
-
 
 [console-standard]: https://console.spec.whatwg.org/
 [console-docs]: https://gjs-docs.gnome.org/gjs/console.md
