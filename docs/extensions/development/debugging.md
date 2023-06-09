@@ -41,7 +41,7 @@ GNOME Shell and Mutter will log many debug messages and harmless warnings to the
 terminal, and display a new desktop in a window. The process can be further
 controlled by setting environment variables used when
 [Running GLib Applications](https://docs.gtk.org/glib/running.html) and
-specifically the `MUTTER_DEBUG_DUMMY_MODE_SPECS` varaible which can be used to
+specifically the `MUTTER_DEBUG_DUMMY_MODE_SPECS` variable which can be used to
 set the display resolution:
 
 @[code sh](@src/extensions/development/debugging/gnome-nested.sh)
@@ -193,7 +193,7 @@ The GJS console is a separate process, without access to the `gnome-shell`
 process or the ability to import JavaScript modules used by extensions.
 :::
 
-Similar to Node.js, GJS also has a REPL shell (Read-Evalute-Print-Loop) that can
+Similar to Node.js, GJS also has a REPL shell (Read-Evaluate-Print-Loop) that can
 be used to test simple pieces of code:
 
 ```sh
