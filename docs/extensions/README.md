@@ -6,9 +6,32 @@ title: Extensions
 
 ## Introduction
 
-GNOME Shell's UI and extensions are written in GJS, which is JavaScript bindings for the [GNOME APIs][gnome-api].
+GNOME Shell and extensions are written in GJS, which is JavaScript bindings for
+[GNOME Platform APIs][gnome-api]. For an overview of how extensions fit into
+GNOME Shell and the platform, see the [Architecture](overview/architecture.md)
+page.
 
-JavaScript is a prototype-based language, which means that extensions can modify the UI and behaviour of GNOME Shell *while* it is running. This is what is known as "monkey-patching".
+For a general programming tasks with GJS, there are guides for topics like
+[Asynchronous Programming](../guides/gjs/asynchronous-programming.md) and
+[Working with Files](../guides/gio/file-opertations.md), as well as gentle
+introductions to core concepts like [GObject](../guides/gobject/basics.md).
+
+#### Getting Help
+
+There are several ways for you to get help with your extension.
+
+- Ask on [Discourse][discourse], GNOME's official forums
+- Ask in the [Matrix][gnome-extensions-matrix]/[IRC][gnome-extensions-irc] room
+- Ask on [StackOverflow][stackoverflow]
+
+There are also tutorial videos by extension developer and reviewer
+[JustPerfection][justperfection-videos].
+
+[discourse]: https://discourse.gnome.org/tag/extensions
+[stackoverflow]: https://stackoverflow.com/questions/tagged/gnome-shell-extensions+gjs
+[gnome-extensions-irc]: irc://irc.gimpnet.org/shell-extensions
+[gnome-extensions-matrix]: https://matrix.to/#/#extensions:gnome.org
+[justperfection-videos]: https://www.youtube.com/watch?v=iMyR5lJf7dU&list=PLr3kuDAFECjZhW-p56BoVB7SubdUHBVQT
 
 ## Development
 
