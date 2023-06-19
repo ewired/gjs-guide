@@ -120,6 +120,7 @@ const gio = {
     children: [
         '/guides/gio/dbus.md',
         '/guides/gio/file-operations.md',
+        '/guides/gio/list-models.md',
         '/guides/gio/subprocesses.md',
     ],
 };

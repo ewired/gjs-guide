@@ -72,6 +72,10 @@ D-Bus inter-process communication in GJS
 
 Basic File Operations in GJS
 
+### [List Models](gio/list-models.md)
+
+List model API implementation and usage
+
 ### [Subprocesses in GJS](gio/subprocesses.md)
 
 Spawning subprocesses in GJS
