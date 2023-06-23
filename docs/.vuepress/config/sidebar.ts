@@ -118,6 +118,7 @@ const gio = {
     text: 'Gio',
     collapsible: true,
     children: [
+        '/guides/gio/actions-and-menus.md',
         '/guides/gio/dbus.md',
         '/guides/gio/file-operations.md',
         '/guides/gio/list-models.md',
