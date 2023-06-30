@@ -7,10 +7,10 @@ const Me = ExtensionUtils.getCurrentExtension();
 /**
  * Like `extension.js` this is used for any one-time setup like translations.
  *
- * @param {ExtensionMeta} meta - An extension meta object, described below.
+ * @param {object} metadata - The metadata.json file, parsed as JSON.
  */
-function init(meta) {
-    console.debug(`initializing ${meta.metadata.name} Preferences`);
+function init(metadata) {
+    console.debug(`initializing ${metadata.name} Preferences`);
 }
 
 
