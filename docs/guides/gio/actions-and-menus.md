@@ -57,7 +57,7 @@ means to report the success of an activation.
 signal. If the signal has a handler connected, it will be passed the parameter,
 otherwise if the action is stateful it will attempt to change the value.
 
-   @[code js](@src/guides/gio/actions-and-menus/gactionActivatable.js)
+@[code js](@src/guides/gio/actions-and-menus/gactionActivatable.js)
 
 ### Stateful Actions
 
@@ -78,7 +78,7 @@ to allow validating the new value. If the signal has a handler connected, it
 can decide whether to call `Gio.SimpleAction.set_state()`, otherwise it will
 be called unconditionally.
 
-   @[code js](@src/guides/gio/actions-and-menus/gactionStateful.js)
+@[code js](@src/guides/gio/actions-and-menus/gactionStateful.js)
 
 [gaction-changestate]: https://gjs-docs.gnome.org/gio20/gio.action#method-change_state
 [gaction-getstatehint]: https://gjs-docs.gnome.org/gio20/gio.action#method-get_state_hint
