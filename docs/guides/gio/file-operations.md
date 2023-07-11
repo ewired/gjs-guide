@@ -136,7 +136,7 @@ reading from the stream:
 
 To open file in read-write mode instead, you can use
 [`Gio.File.open_readwrite()`][gfileopenreadwrite]. This will return a
-[`Gio.FileIOStream`][gfileiostream], which holds both an `Gio.FileInputStream`
+[`Gio.FileIOStream`][gfileiostream], which holds both a `Gio.FileInputStream`
 you can use for reading and a `Gio.FileOutputStream` you can use for writing:
 
 @[code js](@src/guides/gio/file-operations/gfileOpenReadWrite.js)
