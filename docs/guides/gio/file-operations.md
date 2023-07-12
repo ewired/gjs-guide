@@ -171,7 +171,7 @@ select the correct flags for the operation you want to perform.
 Note that `Gio.File.copy()` will not copy non-empty directories, nor will it
 recursively copy files. To do that you must recursively copy files manually.
 
-@[code js](@src/guides/gio/file-operations/gfileOpenReadWrite.js)
+@[code js](@src/guides/gio/file-operations/gfileCopy.js)
 
 If you want to move a file instead of copying it, you can use
 [`Gio.File.move()`][gfilemove]. Unlike `Gio.File.copy()`, this function can move
@@ -197,7 +197,7 @@ manually.
 You may, however, use [`Gio.File.trash()`][gfiletrash] to send entire
 directories of files to the user's Trash:
 
-@[code js](@src/guides/gio/file-operations/gfileDelete.js)
+@[code js](@src/guides/gio/file-operations/gfileTrash.js)
 
 [gfiledelete]: https://gjs-docs.gnome.org/gio20/gio.file#method-delete
 [gfiletrash]: https://gjs-docs.gnome.org/gio20/gio.file#method-trash

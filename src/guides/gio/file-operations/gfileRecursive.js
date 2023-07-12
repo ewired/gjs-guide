@@ -4,11 +4,28 @@ const {GLib, Gio} = imports.gi;
 /**
  * Callback signature for recursiveFileOperation().
  *
+ * The example callback `recursiveDeleteCallback()` demonstrates how to
+ * recursively delete a directory of files, while skipping unsupported file types.
+ *
  * @param {Gio.File} file - the file to operate on
  * @param {Gio.FileType} fileType - the file type
  * @param {Gio.Cancellable} [cancellable] - optional cancellable
  * @return {Promise|null} a Promise for the operation, or %null to ignore
  */
+function recursiveDeleteCallback(file, fileType, cancellable = null) {
+    switch (fileType) {
+        case Gio.FileType.REGULAR:
+        case Gio.FileType.SYMBOLIC_LINK:
+            return file.delete(cancellable);
+
+        case Gio.FileType.DIRECTORY:
+            return recursiveFileOperation(file, recursiveDeleteCallback,
+                cancellable);
+
+        default:
+            return null;
+    }
+}
 
 
 /**
@@ -59,20 +76,4 @@ async function recursiveFileOperation(file, callback, cancellable = null) {
 
     // Return the Promise for the top-level file
     return callback(file, cancellable);
-}
-
-
-// A callback that recursively deletes a directory of files
-function recursiveDeleteCallback(file, fileType, cancellable = null) {
-    switch (fileType) {
-        case Gio.FileType.REGULAR:
-        case Gio.FileType.SYMBOLIC_LINK:
-            return file.delete(cancellable);
-
-        case Gio.FileType.DIRECTORY:
-            return recursiveFileOperation(file, deleteCallback, cancellable);
-
-        default:
-            return null;
-    }
 }
